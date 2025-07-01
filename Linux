@@ -1,0 +1,193 @@
+=============
+SED Command
+=============
+
+=> SED stands for stream editor
+
+=> SED is used to process the data (substitute, delete, print, insert)
+
+=> Using SED command we can perform operations on the file without opening the file.
+
+=> SED is very powerful command in linux
+
+
+# replace first occurance of linux keyword with unix
+sed 's/linux/unix/' data.txt
+
+# replace second occurance of linux keyword with unix
+sed 's/linux/unix/2' data.txt
+
+# replace 3rd occurance of linux keyword with unix
+sed 's/linux/unix/3' data.txt
+
+# replace all occurances of linux keyword with unix
+sed 's/linux/unix/g' data.txt
+
+# substitute and save changes in original file
+sed -i 's/linux/unix/g' data.txt
+
+# delete first line of the file
+sed -i '1d' data.txt
+
+# delete fourth line of the file
+sed -i '4d' data.txt
+
+#delete last line of the file
+sed -i '$d' data.txt
+
+# delete data from nth line to last line
+sed -i 'n,$d' data.txt
+
+Note: n is a number
+
+# delete data from 5th line to 15th line
+sed -i '5, 15d' data.txt
+
+# print data from line number 10 to 20
+sed -n '10,20p' data.txt
+
+# insert data at 2nd line
+sed '2i\i love india' data.txt
+
+# insert data at last line
+sed '$a\i am from ashokit' data.txt
+
+=================
+User Management
+=================
+
+=> Linux is a multi user based OS
+
+=> Multiple users can acces single linux machine and can perform multi tasking at time.
+
+Note: "ec2-user" is a default user in amazon linux vm. ec2-user having sudo priviliges.
+
+=> Within one linux machine we can create multiple user accounts
+
+=> when we create user account, for user one home directory will be created.
+
+		ec2-user => /home/ec2-user
+
+		john => /home/john
+
+		smith => /home/smith
+
+# create user
+sudo useradd <uname>
+
+# set password for user & update pwd for user
+sudo passwd <uname>		
+
+# display all users created
+cat /etc/passwd
+
+# swith user account
+su <uname>
+
+# navigate to current user home directory
+cd ~
+
+# Delete user
+$ sudo userdel <uname>
+
+# Delete user along with user home directory
+$ sudo userdel <uname> --remove
+
+# how to change username
+$ sudo usermod -l <new-name> <old-name>
+
+
+
+/etc/passwd: Contains general user information.
+/etc/shadow: Contains hashed passwords and other security-related information.
+
+===================================
+Working with user groups in linux
+===================================
+
+=> When we create user in linux, for every user one user group also will be created with the given username.
+
+# Display all groups in linux
+$ cat /etc/group
+
+# Create group in linux
+$ sudo groupadd <group-name>
+
+# Adding user to group
+$ sudo usermod -aG <group-name> <username>
+
+# Remove user from the group
+$ sudo gpasswd -d <username> <group-name>
+
+# display users belongs to a group
+$ sudo lid -g <group-name>
+
+# display user belongs to which groups
+$ id <username>
+
+# delete group
+$ sudo groupdel <group-name>
+
+# changing group name
+$ sudo groupmod -n <new-name> <old-name>
+
+
+=======================================================================================
+Assignment : create new user and connect with linux vm using newly created user account
+=======================================================================================
+
+
+
+=> In linux, to enable password based authentication we need to modify below 2 files
+
+		1) sudoers
+		2) sshd_config
+
+=================================
+What is sudoers file in Linux
+=================================
+
+=> It is very important configuration file in linux machine.
+
+=> Using this file we can control which user can run command as a superuser.
+
+# print sudoersfile content
+$ sudo cat /etc/sudeors
+
+Note: We should be very careful while working with sudoers file. If we do any mistakes in sudoers file then system will be crashed.
+
+
+########## Giving sudo previliges for user #######
+
+# open sudoers file
+$ sudo visudo
+
+# Add below line
+<username> ALL=(ALL:ALL) ALL
+
+=> After making changes to close sudoers file =>  ( CTRL + X + Y + Enter)
+
+========================================================
+How to enable password based authentication for users ?
+========================================================
+
+=> In linux vm, by default passwordauthentication is no
+
+=> If we want to connect with linux vm using username and password then we need to set that value as yes.
+
+=> WE WLL MODIFY THIS IN "sshd_config" file.
+
+# Display sshd_configurration file data
+$ sudo cat /etc/ssh/sshd_config
+
+# Open file
+$ sudo vi /etc/ssh/sshd_config
+
+Note: Go to insert mode and enable pwdbasedauthentication as yes
+
+# restart sshd service
+# sudo systemctl restart sshd
+
+Note : Now we can connect with linux vm using username and pwd
+
+$ ssh username@public-ip
