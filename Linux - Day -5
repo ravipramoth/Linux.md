@@ -75,5 +75,8 @@ WC ----> word count
 -L  ===> Print length of longenst line 
 
 ---------------------------------------------------------------------------------------------------------
-
+to create file witl dummy data 
+yes " this is simple line"  | head -c 1000 > test.txt
+# head -c 100M > test.txt
+truncate -s 1000 tamil.txt
 
