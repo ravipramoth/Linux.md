@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Define the path to the local script
+LOCAL_SCRIPT="/path/to/your/local/script.sh"
+
+# Define the remote servers
+SERVER_1="ubuntu@3.93.192.22"
+SERVER_2="ec2-user@54.91.123.124"
+
+# Execute the script on the first server
+echo "Running script on $SERVER_1..."
+ssh "$SERVER_1" "bash -s" < "$LOCAL_SCRIPT" 1>>/dev/null
+
+# Check if the previous command was successful
+if [ $? -eq 0 ]; then
+    echo "Script executed successfully on $SERVER_1."
+else
+    echo "Failed to execute script on $SERVER_1."
+fi
+
+# Execute the script on the second server
+echo "Running script on $SERVER_2..."
+ssh "$SERVER_2" "bash -s" < "$LOCAL_SCRIPT"
+
+# Check if the previous command was successful
+if [ $? -eq 0 ]; then
+    echo "Script executed successfully on $SERVER_2."
+else
+    echo "Failed to execute script on $SERVER_2."
+fi
+----------------------------------------------------------------
+# End of script
+# This script runs a local script on two remote servers using SSH.  

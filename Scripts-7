@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# Input and Output files
+input_file="urls.txt"               # Replace with your input file
+output_200_file="urls_200.txt"      # File to store 200 responses
+output_other_file="urls_other.txt"  # File to store non-200 responses
+
+# Clear the output files if they already exist
+> "$output_200_file"
+> "$output_other_file"
+
+# Loop through each URL in the input file
+while IFS= read -r url; do
+    # Make a request and get the HTTP status code
+    response=$(curl -o /dev/null -s -w "%{http_code}" "$url")
+    
+    # Check if the response is 200
+    if [ "$response" -eq 200 ]; then
+        echo "$url - $response" >> "$output_200_file"
+    else
+        echo "$url - $response" >> "$output_other_file"
+    fi
+done < "$input_file"
+
+echo "Check completed. Results saved to $output_200_file and $output_other_file"
+
+
+--------------------
+https://www.google.com
+https://www.github.com
+https://www.facebook.com
+https://www.example.com
+https://www.nonexistentwebsite.com  
+http://httpstat.us/200  
+http://httpstat.us/404  
+http://httpstat.us/500 
+http://httpstat.us/301  
+------------------------------------------------------------------------------------------------- 
+
+
+
+
+# This script checks the HTTP status of URLs listed in a file and categorizes them based on their response codes.
+# It uses `curl` to fetch the URLs and checks if the response code is 200 (OK) or something else.   
+

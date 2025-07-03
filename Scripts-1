@@ -1,0 +1,238 @@
+#! /bin/bash
+
+a=10
+b=20
+
+if [ $a -lt 15 ] && [ $b -gt 15 ]; then
+  echo "Both conditions are true"
+else
+  echo "One or both conditions are false"
+fi
+
+
+--------------------------------------------------- 
+
+! /bin/bash
+
+# Taking input from the user
+read -p "Enter value for a: " a
+read -p "Enter value for b: " b
+
+# Using && (AND) condition
+if [ $a -lt 15 ] && [ $b -gt 15 ]; then
+  echo "Both conditions are true"
+else
+  echo "One or both conditions are false"
+fi
+
+
+---------------------------------------------------
+
+#! /bin/bash
+
+# Ping google.com with 1 packet and check if it responds
+ping -c 1 google.com > /root/output  2>&1
+
+# Check the exit status of the ping command
+if [ $? -eq 0 ]; then
+  echo $?
+  echo "Google.com is reachable"
+ 
+else
+  echo $? 
+  echo "Google.com is not reachable"
+fi
+
+---------------------------------------------------
+
+ #! /bin/bash
+
+# Ping google.com with 1 packet and check if it responds
+ping -c 1 google.com > /root/output  2>&1
+
+# Check the exit status of the ping command
+if [ $? -eq 0 ]; then
+  echo $?
+  echo "Google.com is reachable"
+ 
+else
+  echo $? 
+  echo "Google.com is not reachable"
+fi
+
+--------------------------------------------------------------------------------------
+
+#! /bin/bash
+
+# Prompt the user for a file name
+read -p "Enter the file name to check: " filename
+
+# Check if the file exists
+if [ -e "$filename" ]; then
+  echo "The file $filename exists."
+else
+  echo "The file $filename does not exist."
+fi
+---------------------------------------------------
+
+-e checks if the file exists.
+-f checks if the file is a regular file.
+-d checks if the file is a directory.
+-r checks if the file is readable.
+-w checks if the file is writable.
+-x checks if the file is executable.
+-s checks if the file is not empty. 
+
+
+#! /bin/bash
+
+# Prompt the user for a file name
+read -p "Enter the file name to check: " filename
+
+# Check if the file exists
+if [ -e "$filename" ]; then
+  echo "The file $filename exists."
+else
+  echo "The file $filename does not exist."
+fi
+-------------------------------------------------------------------------------------------------------
+
+#! /bin/bash
+
+# Prompt the user for a file name
+read -p "Enter the file name to check: " filename
+
+# Check if it is a regular file
+if [ -f "$filename" ]; then
+  echo "$filename is a regular file."
+else
+  echo "$filename is not a regular file."
+fi
+----------------------------------------------------------------------------------- 
+#! /bin/bash
+
+# Prompt the user for a directory name
+read -p "Enter the directory name to check: " dirname
+
+# Check if it is a directory
+if [ -d "$dirname" ]; then
+  echo "$dirname is a directory."
+else
+  echo "$dirname is not a directory."
+fi
+-----------------------------------------------------------------------------
+#! /bin/bash
+
+# Prompt the user for a file name
+read -p "Enter the file name to check: " filename
+
+# Check if the file is readable
+if [ -r "$filename" ]; then
+  echo "$filename is readable."
+else
+  echo "$filename is not readable."
+fi
+----------------------------------------------------------------------------------------------
+
+#! /bin/bash
+
+# Prompt the user for a file name
+read -p "Enter the file name to check: " filename
+
+# Check if the file is writable
+if [ -w "$filename" ]; then
+  echo "$filename is writable."
+else
+  echo "$filename is not writable."
+fi
+------------------------------------------------------------ 
+
+#! /bin/bash
+
+# Prompt the user for a file name
+read -p "Enter the file name to check: " filename
+
+# Check if the file is executable
+if [ -x "$filename" ]; then
+  echo "$filename is executable."
+else
+  echo "$filename is not executable."
+fi
+----------------------------------------------------------------------------------
+#! /bin/bash
+
+# Prompt the user for a file name
+read -p "Enter the file name to check: " filename
+
+# Check if the file is empty
+if [ -s "$filename" ]; then
+  echo "$filename is not empty."
+else
+  echo "$filename is empty or does not exist."
+fi
+---------------------------------------------------------------------
+
+
+#!/bin/bash
+
+# String Operations
+echo "String Operations:"
+
+str1="Hello" 
+str2="World"
+concatenated="$str1 $str2"
+echo "Concatenated: $concatenated"
+
+str="Hello World"
+length=${#str}
+echo "Length of the string: $length"  
+
+substring=${str:6:5}
+echo "Substring: $substring"
+
+replaced=${str/World/Universe}
+echo "String after replacement: $replaced"
+
+if [[ $str == *"World"* ]]; then
+  echo "String contains 'World'"
+else
+  echo "String does not contain 'World'"
+fi
+------------------------------------------------------------------------------------------
+echo
+# Arithmetic Operations
+echo "Arithmetic Operations:"
+
+a=10
+b=5
+
+sum=$((a + b))
+echo "Sum: $sum"
+
+difference=$((a - b))
+echo "Difference: $difference"
+
+product=$((a * b))
+echo "Product: $product"
+
+quotient=$((a / b))
+echo "Quotient: $quotient"
+
+remainder=$((a % b))
+echo "Remainder: $remainder"
+
+((a++))  # Post-increment
+echo "Incremented value of a: $a"
+
+((a--))  # Post-decrement
+echo "Decremented value of a: $a"
+
+readonly abc=10 
+
+def = abc+15 
+
+abc= abc+15 
+
+25 
+-------------------------------------------         
+
