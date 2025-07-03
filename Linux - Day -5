@@ -1,0 +1,79 @@
+File Permission  
+
+- -> it is file or directory d-> Directory l --> link file 
+rw- --> Owner of file 
+r--  --- > group permission 
+r-- -->  Other permission 
+
+0==>  No Permission 
+1==> Excute 
+2==> write 
+3 (2+1) ==> Execute + read 
+4 ===> read 
+5 (4+1) ==> read + excute 
+6 (4+2) ===> read + write 
+7 == Full Permission  ( R+ W + X )
+
+Default permission  file create 644 
+default Permission for directory 755 
+
+
+Link file is noting both Shortcut 
+
+Hard Link --- > What ever change happen in actual file and same will be changed in shortcut file change will happen 
+            --- > in case if we delete file -- > still we can have shorcut file 
+            ln <orginal - file name > < shortcut-file >
+
+Soft Link : --- > What ever change happen in actual file and same will be changed in shortcut file change will happen 
+            --> if we delete orginal file shortcut file become danggling not accessible 
+            
+            ln -s <orginal - file name > < shortcut-file >
+
+-------------------------------------------------------------- 
+Zip --- > file compress 
+
+to create a zip file 
+    zip newfile-name <file1,file2>
+to see the content in the zip file 
+    zip -sf <zip file name >
+to append a file to zip 
+    zip -r <zipfilename> < appendfile>
+to remove a file from zip 
+    zip -d <zip filename> < removed file name >
+to encrypt 
+   zip -e <filename> < files1,files 2>
+
+--------------------------------------------------------------------------------------------------
+TAR -- Tape Archive 
+
+c --- > create 
+v ---> verbose ( Show Progress )
+f --> filename 
+-x --- > Extract 
+-r -==> append a file 
+-s --> view 
+to creat a file 
+    tar -cvf < filename.tar>  <files/foplder >
+Compress 
+    tar -zcvf < filename.tar.gz>  <files/foplder >
+to extract 
+    tar -xvf < filename.tar>
+    tar -zxvf < filename.tar>
+to append a file to existing tar 
+    tar -rvf <filename.tar> < append file >
+to deleta a file from exisiting tar 
+    tar --delete -f <filename.tar>  < removing file name>
+to view the content of the file 
+    tar -sf <filename.tar>
+
+------------------------------------------------------------------------------------------------------
+WC ----> word count 
+-l ===> Count line 
+-w ==> count words 
+-c  ==> count bytes 
+-m ===> count character 
+-L  ===> Print length of longenst line 
+
+---------------------------------------------------------------------------------------------------------
+
+

@@ -1,3 +1,14 @@
+CAT --- It will print top to bottom 
+TAC - Bottom to top it will print 
+cat -n -- it will print data with line numbers 
+
+Head - it will print top 10 lines 
+head -n 5 --> it will print top 5 lines 
+tail  - it will print bottom 10 lines 
+tail -n 5 --> it will print bottom 5 lines 
+tail -f <file-name> -- > it will print the live logs 
+
+
 =============
 SED Command
 =============
@@ -71,7 +82,7 @@ Note: "ec2-user" is a default user in amazon linux vm. ec2-user having sudo priv
 		john => /home/john
 
 		smith => /home/smith
-
+ssh -i tamil@ec2-18-207-221-152.compute-1.amazonaws.com
 # create user
 sudo useradd <uname>
 
