@@ -236,3 +236,22 @@ abc= abc+15
 25 
 -------------------------------------------         
 
+Function with Arrays: Printing Array Elements 
+
+#!/bin/bash
+# A function to print all elements of an array
+
+print_array() {
+    local arr=("$@")
+    echo "Array elements are:"
+    for element in "${arr[@]}"; do
+        echo "$element"
+    done
+}
+
+# Call the function
+my_array=("apple" "banana" "cherry")
+print_array "${my_array[@]}
+
+-----------------------------------------------------------
+

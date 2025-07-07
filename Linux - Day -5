@@ -80,3 +80,180 @@ yes " this is simple line"  | head -c 1000 > test.txt
 # head -c 100M > test.txt
 truncate -s 1000 tamil.txt
 ------------------------------------------------------ 
+
+awk -- > text processing tool
+awk 'BEGIN {print "Hello World"}'   
+
+Sample data 
+
+ID,Name,Department,Salary,Location
+101,John Doe,Engineering,75000,New York
+102,Jane Smith,Marketing,62000,Los Angeles
+103,Emily Davis,Finance,68000,Chicago
+104,Michael Brown,Engineering,80000,Boston
+105,Linda Wilson,HR,55000,Seattle
+106,Robert Johnson,Finance,70000,New York
+107,Patricia Garcia,Marketing,64000,Austin
+108,James Martinez,HR,57000,San Francisco
+109,Barbara Lee,Engineering,77000,Seattle
+110,William Anderson,Marketing,61000,Boston
+
+awk -F, '{print $1, $2}' data.csv
+awk -F, '{print $1, $2, $3}' data.csv | sort    
+
+awk -F',' '/105/ {print $1, $4}' data
+
+awk '/Name/ {print}' data
+awk '/ID/ {print}' data
+awk '{print $1, $4}' data
+awk '{print NR, $0}' data
+awk '{print NR "-" $1 }
+awk -F ',' '{print NR "-",  $1 }' data
+
+--------------------------------------------------------------------------------------- 
+Cut -- > text processing tool
+cut  -c 1-5 data
+cut -d ',' -f 1,2 data
+
+----------------------------------------------------------------------------------------
+
+Process Management
+
+PS -- > Process Status
+ps aux -- > show all ruuuning process with details
+ps -ef -- > show all running process with details
+top- > show all running process with details in real time
+htop -- > show all running process with details in real time with more details
+kill <PID> -- > to kill a process
+kill -9 <PID> -- > to force kill a process
+nice <PID> -- > to change the priority of a process
+renice <PID> -- > to change the priority of a process
+jobs -- > to show all running jobs
+pgrep <process name> -- > to search for a process
+pkill <process name> -- > to kill a process by name
+& -- > to run a process in background
+fg <job number> -- > to bring a process to foreground
+bg <job number> -- > to run a process in background
+nohup <command> & -- > to run a command in background even after logout
+
+-----------------------------------------------------------------------------------------
+Systen Management   
+
+systemctl -- > to manage system services
+systemctl start <service name> -- > to start a service
+systemctl stop <service name> -- > to stop a service
+systemctl restart <service name> -- > to restart a service  
+systemctl status <service name> -- > to check the status of a service
+systemctl enable <service name> -- > to enable a service to start at boot
+
+journalctl -- > to view system logs
+journalctl -f -- > to follow system logs in real time   
+journalctl -u <service name> -- > to view logs of a specific service
+journalctl --since "2023-10-01" --until "2023-10-31" -- > to view logs between specific dates
+journalctl -p err -- > to view error logs
+journalctl -f -u httpd
+
+-------------------------------------------------------------------------------------------
+
+Hostname: 
+
+sudo hostnamectl set-hostname new-hostname
+
+--------------------------------------------------------------------------------------------------
+Scripting -- Automation -- daily task / repetitive task
+
+she-bang , sha-bang --- #! /bin/bash ----- > not mandatory but it is good practice to have this in the first line of the script 
+
+---------------------------------------------------
+
+#! /bin/bash
+
+uptime 
+free -m
+df -h
+du -sh /root 
+uname -a
+whoami  
+cal 
+date
+hostname
+
+
+--------------------------------------------------------------------
+
+#! /bin/bash
+echo "This is a simple script to display system information"
+uptime 
+free -m
+df -h
+du -sh /root 
+uname -a
+whoami  
+cal 
+date
+hostname
+
+
+--------------------------------------------------------------------
+
+#! /bin/bash
+echo " Please Enter your name"
+read name
+echo "Hello $name, Welcome to the Linux world"
+
+--------------------------------------------------------------------
+#! /bin/bash
+read -p "Please enter your name: " fname
+echo "Hello $fname, Welcome to the Linux world"
+
+--------------------------------------------------------------------
+
+Varibels ---- > to store data in the script in key-value pair
+
+there is no data type in bash scripting
+
+int var=10
+string var="Hello World"
+array var=(1 2 3 4 5)
+float var=10.5  No data type in bash scripting
+
+# user variable
+name="Pramoth"
+age=34
+company="TechnoFist"
+
+#! /bin/bash
+name="Pramoth"  
+age=34
+company="TechnoFist"
+
+echo "My name is $name"
+echo "My age is $age"
+echo "I work at $company"
+--------------------------------------------------------------------
+system variables | Environment variables 
+
+$PATH
+#SHELL
+env -   
+-------------------------------------------------
+
+sudo yum install croine -y 
+sudo systemctl enable crond
+sudo systemctl start crond
+
+sudo yum install rsyslog
+
+sudo systemctl enable rsyslog
+sudo systemctl start rsyslog
+sudo vim /etc/rsyslog.conf
+
+cat /etc/log/cron
+
+sudo systemctl restart rsyslog
+
+journalctl -u crond 
+
+-------------------------------------------------------------
+
+
