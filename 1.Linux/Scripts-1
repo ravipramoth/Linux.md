@@ -1,3 +1,59 @@
+If as Condtional Statements
+# Using if as a conditional statement to check if a number is positive, negative, or zero
+Comperassion   operator 
+Equal to: -eq
+Not equal to: -ne
+less than: -lt
+Greater than: -gt   
+less than or equal to: -le
+Greater than or equal to: -ge 
+
+IF syntax:
+```bash
+ if [ condition ]; then
+    # commands to execute if condition is true
+    # statement 1
+  else
+    # commands to execute if condition is false
+    # statement 2
+  fi
+
+  If with multiple conditions
+
+# Using if with multiple conditions to check if a number is positive, negative, or zero
+    if [condition1 ] ; then 
+    # commands to execute if condition1 is true
+    # statement 1 
+    elif [condition2 ]; then
+    # commands to execute if condition2 is true 
+    # statement 2
+    elif [condition3 ]; then
+    # commands to execute if condition3 is true 
+    # statement 3
+    else
+    # commands to execute if none of the conditions are true
+    # statement 4
+  fi
+-----------------------------------------------------------------
+
+#! /bin/bash
+
+a=10
+
+if [ $a -lt 15 ]; then
+  echo "Condition 1 is true"
+else
+  echo "Condition 1 is false"
+fi
+
+----------------------------------
+
+&& (AND) operator
+# Using && (AND) operator to check if both conditions are true 
+|| (OR) operator
+# Using || (OR) operator to check if at least one condition is true
+
+
 #! /bin/bash
 
 a=10
@@ -8,7 +64,18 @@ if [ $a -lt 15 ] && [ $b -gt 15 ]; then
 else
   echo "One or both conditions are false"
 fi
+--------------------------------------------------
 
+#! /bin/bash
+
+a=10
+b=20
+
+if [ $a -lt 15 ] || [ $b -gt 15 ]; then
+  echo "At least one condition is true"
+else
+  echo "Both conditions are false"
+fi
 
 --------------------------------------------------- 
 
@@ -45,20 +112,6 @@ fi
 
 ---------------------------------------------------
 
- #! /bin/bash
-
-# Ping google.com with 1 packet and check if it responds
-ping -c 1 google.com > /root/output  2>&1
-
-# Check the exit status of the ping command
-if [ $? -eq 0 ]; then
-  echo $?
-  echo "Google.com is reachable"
- 
-else
-  echo $? 
-  echo "Google.com is not reachable"
-fi
 
 --------------------------------------------------------------------------------------
 
@@ -76,38 +129,14 @@ fi
 ---------------------------------------------------
 
 -e checks if the file exists.
--f checks if the file is a regular file.
+-f checks if the file is a regular file.  normal file & link file
 -d checks if the file is a directory.
--r checks if the file is readable.
+-r checks if the file is readable. soft link file orginal file if deleted
 -w checks if the file is writable.
 -x checks if the file is executable.
 -s checks if the file is not empty. 
 
-
-#! /bin/bash
-
-# Prompt the user for a file name
-read -p "Enter the file name to check: " filename
-
-# Check if the file exists
-if [ -e "$filename" ]; then
-  echo "The file $filename exists."
-else
-  echo "The file $filename does not exist."
-fi
--------------------------------------------------------------------------------------------------------
-
-#! /bin/bash
-
-# Prompt the user for a file name
-read -p "Enter the file name to check: " filename
-
-# Check if it is a regular file
-if [ -f "$filename" ]; then
-  echo "$filename is a regular file."
-else
-  echo "$filename is not a regular file."
-fi
+---------------------------------------------------------------------
 ----------------------------------------------------------------------------------- 
 #! /bin/bash
 
@@ -182,24 +211,35 @@ str1="Hello"
 str2="World"
 concatenated="$str1 $str2"
 echo "Concatenated: $concatenated"
+-----------------------------------------------------------
+#!/bin/bash
 
-str="Hello World"
-length=${#str}
-echo "Length of the string: $length"  
+# String Operations
 
-substring=${str:6:5}
+read -p "Enter first string: " str1
+length=${#str1}
+echo "Length of the string: $length"
+------------------------------------------------------------
+#!/bin/bash
+read -p "Enter first string: " str
+substring=${str:1:6}  # Extracts substring from index 1 with length 6
 echo "Substring: $substring"
-
+-----------------------------------------------------------
+#!/bin/bash
+read -p "Enter first string: " str
 replaced=${str/World/Universe}
 echo "String after replacement: $replaced"
 
+
+--------------------------------------------------------
+#!/bin/bash
+read -p "Enter first string: " str
 if [[ $str == *"World"* ]]; then
   echo "String contains 'World'"
 else
   echo "String does not contain 'World'"
 fi
 ------------------------------------------------------------------------------------------
-echo
 # Arithmetic Operations
 echo "Arithmetic Operations:"
 
@@ -224,19 +264,29 @@ echo "Remainder: $remainder"
 ((a++))  # Post-increment
 echo "Incremented value of a: $a"
 
-((a--))  # Post-decrement
-echo "Decremented value of a: $a"
+((a+=2))  # Post-increment
+echo "Incremented value of a: $a"
 
-readonly abc=10 
+((b--))  # Post-decrement
+echo "Decremented value of b: $b"
 
-def = abc+15 
+sum=$((a + b))
+echo "Sum post increment: $sum"
 
-abc= abc+15 
-
-25 
 -------------------------------------------         
 
-Function with Arrays: Printing Array Elements 
+Array Operations is used to store multiple values in a single variable
+#!/bin/bash
+# Array Operations
+company=("TechnoFist" "apple" "banana" "cherry")
+#Indexing starts from 0
+echo ${company[0]}  # Accessing the first element
+echo ${company[3]}  # Accessing the second element
+echo "length=${#company[@]}"  # Getting the length of the array
+
+
+-----------------------------------------------
+Function with Arrays: Printing Array Elements
 
 #!/bin/bash
 # A function to print all elements of an array
@@ -254,4 +304,5 @@ my_array=("apple" "banana" "cherry")
 print_array "${my_array[@]}
 
 -----------------------------------------------------------
+
 

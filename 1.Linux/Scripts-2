@@ -82,3 +82,4 @@ reversed=$(echo "$word" | rev)
 echo "Reversed word: $reversed"
 -----------------------------------------------------
 
+

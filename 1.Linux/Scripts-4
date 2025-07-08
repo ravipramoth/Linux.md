@@ -40,4 +40,20 @@ word_count=$(tr -s ' ' '\n' < "$filename" | grep -v '^$' | wc -l)
 echo "Number of words in the file '$filename': $word_count"
 -----------------------------------------------------------------------------------------------------------
 
+#!/bin/bash
+
+trap "echo 'Ctrl+C detected. Exiting...'; exit 1" SIGINT
+
+while true; do
+  echo "Running... Press Ctrl+C to stop."
+  sleep 2
+done
+-----------------------------------------------------
+
+trap "echo 'Cannot terminate with SIGTERM'" SIGTERM
+
+while true; do
+  sleep 1
+done
+-----------------------------------------------------
 

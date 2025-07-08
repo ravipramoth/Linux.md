@@ -9,7 +9,7 @@ set ssl-verify=ignore
 set smtp=smtp://smtp.gmail.com:587
 set smtp-auth=login
 set smtp-auth-user=ravipramoth@gmail.com
-set smtp-auth-password=ayibxqogjtlqmonf
+set smtp-auth-password= SMTP Code 
 set from="ravipramoth@gmail.com"
 set nss-config-dir=/etc/pki/nssdb/
 
@@ -19,3 +19,5 @@ echo "This is a test email from Amazon Linux" | mailx -s "Test Email" -a /home/e
 
 ---------------------------------- 
 
+echo "Report attached" | mailx -s "Monthly Report" \
+-a /tmp/report.pdf -a /tmp/log.txt ravipramoth@gmail.com 

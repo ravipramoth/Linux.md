@@ -223,11 +223,11 @@ age=34
 company="TechnoFist"
 
 #! /bin/bash
-name="Pramoth"  
-age=34
-company="TechnoFist"
+read -p "Please enter your name: " fname
+read -p "Please enter your age: " age
+read -p "Please enter your company: " company
 
-echo "My name is $name"
+echo "My name is $fname"
 echo "My age is $age"
 echo "I work at $company"
 --------------------------------------------------------------------

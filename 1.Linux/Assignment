@@ -1,0 +1,43 @@
+#! /bin/bash
+
+# Ping google.com with 1 packet and check if it responds
+ping -c 1 google.com > /root/output  2>&1
+
+# Check the exit status of the ping command
+if [ $? -eq 0 ]; then
+  echo $?
+  echo "Google.com is reachable"
+ 
+else
+  echo $? 
+  echo "Google.com is not reachable"
+fi 
+
+using above script get input from user at runtime and check if the website is reachable or not
+----------------------------------------------------
+#! /bin/bash -- She bang line sha bang line---- recommended to have this in the first line of the script but not mandatory
+# /bin/s
+
+# Prompt the user for a file name
+read -p "Enter the file name to check: " filename
+
+# Check if the file exists
+if [ -e "$filename" ]; then
+  echo "The file $filename exists."
+else
+  echo "The file $filename does not exist."
+fi
+
+-e checks if the file exists.
+-f checks if the file is a regular file.  normal file & link file
+-d checks if the file is a directory.
+-r checks if the file is readable. soft link file orginal file if deleted
+-w checks if the file is writable.
+-x checks if the file is executable.
+-s checks if the file is not empty.
+
+Try to create a script that checks if a file exists and if it is readable, writable, and executable. If the file does not exist, create it with some default content.
+
+--------------------------------------------------------------------- 
+
+
