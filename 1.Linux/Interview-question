@@ -1,0 +1,12 @@
+Interview Questions : 
+Difference between | and || 
+| -- Pipe operator, used to pass the output of one command as input to another command ( you can use it to chain commands together).
+|| -- Logical OR operator, used to execute the second command only if the first command fails (returns a non-zero exit status).
+$#-- Number of positional parameters passed to the script.
+$0 -- Name of the script itself.
+$$ - Process ID of the current script.
+$! -- Process ID of the last background command executed.
+$? -- Exit status of the last command executed (0 for success, non-zero for failure).
+
+& -- Used to run a command in the background, allowing the terminal to accept new commands while the previous command is still running.
+&& -- Used to run a command in the background, allowing the terminal to accept new commands while the previous command is still running. 

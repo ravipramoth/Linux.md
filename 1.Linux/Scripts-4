@@ -1,20 +1,23 @@
 #!/bin/bash
 # Script to reverse a given word
 
-read -p "Enter a word: " word
+read -p "Enter a word: " word # Example input: "devops"
 
 # Get the length of the word
-length=${#word}
+length=${#word} # 6 
 
 # Initialize an empty string for the reversed word
 reversed=""
 
 # Loop through the word from the last character to the first
-for (( i=$length-1; i>=0; i-- ))
+for (( i=$length-1; i>=0; i-- ))  #for(i=6-1; i>=0; i-- ))
 do
-    reversed="$reversed${word:$i:1}"
+    reversed="$reversed${word:$i:1}" #spoved 
 done
 echo "Reversed word: $reversed"
+# rev -It will automatically reverse the string
+
+
 ---------------------------------------------------------------------------- 
 #!/bin/bash
 # Script to count the number of words in a file, excluding extra spaces and empty lines

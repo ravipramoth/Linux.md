@@ -39,5 +39,29 @@ fi
 Try to create a script that checks if a file exists and if it is readable, writable, and executable. If the file does not exist, create it with some default content.
 
 --------------------------------------------------------------------- 
+Assingment: 3 
+
+nginx 
+docker 
+httpd
+mysql 
+jenkins 
+
+Write a case script for above service to start, stop, restart, and check the status of each service. 
+
+
+--------------------------------------------------------------------------------------------------------------------------
+Assingment : 4 
+if service is inactive make that service active using systemctl command.
+
+nginx 
+docker 
+httpd
+mysql 
+jenkins 
+
+Try to use While loop to run the script 
+-------------------------------------------------------------------------------
+
 
 

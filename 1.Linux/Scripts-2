@@ -1,17 +1,74 @@
 For Loop 
+
+for (condition)
+
+// start; end; increment
+
+done 
+
+----------------------------------------------------------------------- 
+#!/bin/bash
+# A simple for loop to print numbers from 1 to 5
+
+read -p "Enter a number: " num
+for ((i=0; i<=num; i++))
+do
+    echo "Number: $i"
+done
+
+
+-----------------------------------------------------
+
+
+
 Switch -- Selections 
+
+# syntax
+# case variable in
+
+#     pattern1)
+#         # commands
+#         ;;
+#     pattern2)
+#         # commands
+#         ;;
+#     *)
+#         # commands
+#         ;;
+esac
+------------------------------------------------------------
+
+#!/bin/bash
+# A case statement to match a variable
+
+read -p "Enter a number between 1 and 3: " number
+
+case $number in
+    1)
+        echo "You entered One"
+        ;;
+    2)
+        echo "You entered Two"
+        ;;
+    3)
+        echo "You entered Three"
+        ;;
+    *)
+        echo "Invalid number! Please enter between 1 and 3."
+        ;;
+esac
+# ------------------------------------------------------------------------
+
+
+
 while loop 
 Functions 
 Postional parameters 
 array 
-
-> 
-<
-cut < for  file 
-
-cut <<< Strings 
-cut -d ':' -f1 <<< Strings 
-echo "sring" | cut -d ':' -f1 
+-------------------------------------------------------------
+cut <<< Strings
+cut -d ':' -f1 <<< Strings
+echo "string" | cut -d ':' -f1
 cut -d ':' -f1 <<< $(cat /etc/passwd | grep ec2-user)
 --------------------------------------------
 array
@@ -67,7 +124,7 @@ echo "Sliced Fruits: ${fruits[@]:2:4}"  # Starts at index 1, gets 3 elements
 # Remove a specific element from an array
 
 fruits=("apple" "banana" "cherry" "orange")
-unset fruits[4]  # Removes "banana"
+unset fruits[3]  # Removes "orange"
 
 # Print the array after removal
 echo "Fruits after removal: ${fruits[@]}"
@@ -81,5 +138,68 @@ reversed=$(echo "$word" | rev)
 
 echo "Reversed word: $reversed"
 -----------------------------------------------------
+Interview Questions : 
+Difference between | and || 
+| -- Pipe operator, used to pass the output of one command as input to another command ( you can use it to chain commands together).
+|| -- Logical OR operator, used to execute the second command only if the first command fails (returns a non-zero exit status).
+$#-- Number of positional parameters passed to the script.
+$0 -- Name of the script itself.
+$$ - Process ID of the current script.
+$! -- Process ID of the last background command executed.
+$? -- Exit status of the last command executed (0 for success, non-zero for failure).
+
+& -- Used to run a command in the background, allowing the terminal to accept new commands while the previous command is still running.
+&& -- Used to run a command in the background, allowing the terminal to accept new commands while the previous command is still running.
+------------------------------------------------------------------
 
 
+
+All service  up an running 
+
+nginx 
+docker 
+httpd
+mysql 
+jenkins 
+
+SERVICES=("nginx" "docker" "httpd" "mysql" "jenkins")
+for checking in "${SERVICES[@]}"; do
+    if systemctl is-active --quiet "$checking"; then
+        echo "$checking is running."
+    else
+        echo "$service is not running."
+    fi
+done
+
+
+----------------------------------------------- 
+
+
+read -p "Enter a number between 1 and 3: " number
+echo " for 1 - Restart the a service payment "
+echo " for 2 - Stop the a service payment "
+echo " for 3 - Start the a service payment "
+echo " for 4 - Status of the a service payment 
+echo " for 5 - restart the a service cart service "
+
+case $number in
+    1)
+        systemctl restart payment.service
+        ;;
+    2)
+        systemctl stop payment.service
+        ;;
+    3)
+        systemctl start payment.service
+        ;;
+    4)
+        systemctl status payment.service
+        ;;
+    5)
+        systemctl restart cart.service
+        ;;
+        ;;
+    *)
+        echo "Invalid number! Please enter between 1 and 3."
+        ;;
+esac
