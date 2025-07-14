@@ -255,5 +255,36 @@ sudo systemctl restart rsyslog
 journalctl -u crond 
 
 -------------------------------------------------------------
+14-07-2025 -- Class running Notes .. 
+
+Cron jobs ---> 
+    # you have take file backup every data at 2 AM  
+
+    You will write script to take backup of the file 
+    every day login at 2 am and you will run the script (weekend ) 
+    cron Jobs will at schedule and run the script at 2 am every day
+Services -- > 
+    nginx 
+    docker 
+    httpd
+    mysql 
+    jenkins
+Cron job we can schedule to run at specific time and date every 5 minutes --- in case failure you will get email alert 
+    */5 * * * * /path/to/backup_script.sh
 
 
+cron expression format
+    * * * * * /path/to/script.sh
+    - - - - -
+    | | | | |
+    | | | | +---- Day of the week (0 - 7) (Sunday is both 0 and 7)
+    | | | +------ Month (1 - 12)
+    | | +-------- Day of the month (1 - 31)
+    | +---------- Hour (0 - 23)
+    +------------ Minute (0 - 59)
+
+    eg : 
+    0 5 * * 0 /path/to/script.sh --- bash script(it wont run) | Chmod +x /path/to/script.sh
+    # This will run the script at 5 AM every Sunday
+
+    ---------------------------------------------------------------

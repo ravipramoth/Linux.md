@@ -35,6 +35,9 @@ http://httpstat.us/200
 http://httpstat.us/404  
 http://httpstat.us/500 
 http://httpstat.us/301  
+
+APi calls --- > how microservices communicate with each other
+API calls are used to enable communication between different software applications or services, allowing them to exchange data
 ------------------------------------------------------------------------------------------------- 
 
 

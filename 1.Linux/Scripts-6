@@ -28,7 +28,7 @@ ${ECHO} $(date '+%F') "Validating java tool" >> ${LOG_FILE}
 if ${COMMAND} -v java 1>/dev/null 2>&1 ; then
         JAVA=$(${COMMAND} -v java )
         javaVer=$(${JAVA} -version 2>&1 | ${AWK} 'NR==1' | ${CUT}  -d ' ' -f3 | ${TR} -d '"')
-        ${ECHO} $(date '+%F') "JAVA Version is : ${javaVer} " >> ${LOG_FILE}
+        ${ECHO} $(date '+%F') "JAVA Version is : ${javaVer} " | ${TEE} -a ${LOG_FILE}
 else 
         javaVer="Not Found"
 fi 

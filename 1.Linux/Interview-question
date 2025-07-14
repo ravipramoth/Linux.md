@@ -10,3 +10,38 @@ $? -- Exit status of the last command executed (0 for success, non-zero for fail
 
 & -- Used to run a command in the background, allowing the terminal to accept new commands while the previous command is still running.
 && -- Used to run a command in the background, allowing the terminal to accept new commands while the previous command is still running. 
+
+
+---------------------  
+
+> ---  Current output wil add to the file.. Only sucess outout will added 
+>> -- Append outpu to exisiting file ---> both sucess and failure add 
+
+1> --> Sucess 
+2> ---> error 
+&>> ---> both sucess and failure 
+&> -- append and sucess
+
+tee -- &>> -- it will append ouput to the file 
+--------------------------------------
+
+/dev/null is a special file in Linux that discards all data written to it — like a black hole. 
+----------------------------
+# Response code: 
+
+| Code | Meaning                      |
+| ---- | ---------------------------- |
+| 200  | OK (Success)         
+201 /202 -- system is under maintaince         |
+| 301  | Moved Permanently (Redirect) |
+| 302  | Found (Temporary Redirect)   |
+| 400  | Bad Request                  |
+| 401  | Unauthorized                 |
+| 403  | Forbidden                    |
+| 404  | Not Found                    |
+| 500  | Internal Server Error        |
+| 502  | Bad Gateway                  |
+| 503  | Service Unavailable          |
+
+
+------------------------------------------------------

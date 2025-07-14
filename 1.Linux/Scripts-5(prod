@@ -32,6 +32,9 @@ HOSTNAME=/usr/bin/hostname
 MAILX=/usr/bin/mailx 
 TEE=/usr/bin/tee
 LOG_FILE=/root/log/$(basename $0)_$(date '+%F').log
+pc=$(ps -ef | grep -i docker | grep -v grep | wc -l)
+echo $pc
+# ps -ef | grep docker 
 if [[ ${pc} -eq 0 ]] ; then
     ${ECHO} " $(date '+%F')Service ${serviceName} is not up and running on host: $(${HOSTNAME}) " | ${TEE} -a ${LOG_FILE}
     ${ECHO} " $(date '+%F') Service ${serviceName} is not up and running on host: $(${HOSTNAME})"  | ${MAILX} -s "Alert Service ${serviceName} status" ${mailTo}
