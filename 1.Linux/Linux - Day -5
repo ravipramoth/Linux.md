@@ -288,3 +288,43 @@ cron expression format
     # This will run the script at 5 AM every Sunday
 
     ---------------------------------------------------------------
+    15-07-2025 -- Class running Notes ..
+
+
+sudo yum install cron -y -- to install cron service
+sudo systemctl enable crond -- to enable cron service
+sudo systemctl start crond -- to start cron service
+sudo systemctl status crond -- to check the status of cron service
+
+crontab -e -- to edit the cron jobs for the current user 
+
+You have to press i to add the cron job 
+Syntax 
+
+* * * * *  /path/to/script.sh <complete path of the script> 
+
+sudo yum install rsyslog --- It will helps to use all system logs in one place
+
+sudo systemctl enable rsyslog
+sudo systemctl start rsyslog
+sudo vi /etc/rsyslog.conf
+
+--------------------------------------------------------------------------------
+
+Crontab use case 
+    1: Backup Script
+    2. API Health Check
+    3. Log Rotation
+    4. Docker images cleanup < Dangling images cleanup > 
+    5. unused pods we can delete
+    --------------------------------------------------------------------------
+
+    PasswordAuthentication yes 
+    PubkeyAuthentication yes
+
+Password -- logged into another system 
+ssh -o StrictHostKeyChecking=no username@hostname 
+
+by generating ssh key
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+ssh-copy-id -i ~/.ssh/id_rsa.pub ec2-user@3.87.71.192

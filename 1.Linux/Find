@@ -1,0 +1,42 @@
+find /var/log -type f -mtime +7
+
+
+ssh-keygen -t rsa -b 2048
+
+ssh-copy-id -i ~/.ssh/id_rsa.pub username@target_instance_ip
+
+
+/etc/ssh/sshd_config
+
+
+PubkeyAuthentication yes
+
+
+
+PasswordAuthentication no
+
+sudo systemctl restart sshd
+
+
+sudo systemctl restart ssh
+
+------------------------------------------------------------------
+Write a Script which will help you get important details of your machine like
+
+
+
+IP Details
+
+Uptime
+
+Last login details
+
+Disk Space Utilization
+
+Free Memory Stats
+
+----------------------------------------------------------------------
+
+
+
+-------------------------------------------------------------------------------------

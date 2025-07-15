@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Define the path to the local script
-LOCAL_SCRIPT="/path/to/your/local/script.sh"
+LOCAL_SCRIPT="/root/testing-ssh.sh"
 
 # Define the remote servers
-SERVER_1="ubuntu@3.93.192.22"
-SERVER_2="ec2-user@54.91.123.124"
+SERVER_1="ec2-user@3.80.209.194"
+SERVER_2="root@3.87.71.192"
 
 # Execute the script on the first server
 echo "Running script on $SERVER_1..."
@@ -31,3 +31,10 @@ fi
 ----------------------------------------------------------------
 # End of script
 # This script runs a local script on two remote servers using SSH.  
+
+ssh "ec2-user@3.80.209.194" bash -s pathtoyourlocalscript.sh 
+
+ubuntu --- SSH_config ---  > /etc/ssh/sshd_config
+
+----------------------------------------------------------------
+
