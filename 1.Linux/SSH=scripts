@@ -4,8 +4,8 @@
 LOCAL_SCRIPT="/path/to/your/local/script.sh"
 
 # Define the remote servers
-SERVER_1="ubuntu@3.93.192.22"
-SERVER_2="ec2-user@54.91.123.124"
+SERVER_1="ubuntu@3.93.192.22" #  apt package manager
+SERVER_2="ec2-user@54.91.123.124" # yum package manager 
 
 # Execute the script on the first server
 echo "Running script on $SERVER_1..."
@@ -61,7 +61,9 @@ else
     exit 1
 fi
 
-echo "Script completed successfully."
+echo "Script completed successfully." 
+
+# Ansible is good for that --- > Package manager --- > yum or apt
 
 ---------------------------------------------------------
 #!/bin/bash
@@ -70,8 +72,7 @@ echo "Script completed successfully."
 DIR="/var/log"
 
 # Days threshold
-DAYS=30
-
+read -p "Enter the number of days: " DAYS
 # Log file
 LOG_FILE="/var/log/deleted_files_$(date +%F).log"
 
@@ -91,7 +92,7 @@ echo "$OLD_FILES"
 # Ask user for confirmation
 read -p "Do you want to delete these files? (yes/no): " answer
 
-case "$answer" in
+case "$answer" in #Yes YEs YES 
     [Yy][Ee][Ss])
         echo "Cleanup started at: $(date)" >> "$LOG_FILE"
         echo "$OLD_FILES" | while read -r file; do
@@ -141,10 +142,16 @@ for service in "${services[@]}"; do
     check_service "$service"
 done
 
+
+
+# * * * * * /path/to/your/script.sh 
 --------------------------------------------------------------------------------------------------------------------- 
 Copy file to remote server using scp
+
 scp /path/to/local/file username@remote_host:/path/to/remote/destination
- 
+
+
+
 rsync to copy files to remote server
 
 rsync -avz /path/to/local/file username@remote_host:/path/to/remote/destination
@@ -152,3 +159,4 @@ rsync -avz /path/to/local/file username@remote_host:/path/to/remote/destination
 -a: archive mode
 -v: verbose
 -z: compress data during transfer
+-------------------------------------------------------------- 

@@ -60,3 +60,111 @@ while true; do
 done
 -----------------------------------------------------
 
+echo -e "\e[COLOR_CODEmYour Message\e[0m"
+
+| Color   | Code |
+| ------- | ---- |
+| Black   | 30   |
+| Red     | 31   |
+| Green   | 32   |
+| Yellow  | 33   |
+| Blue    | 34   |
+| Magenta | 35   |
+| Cyan    | 36   |
+| White   | 37   |
+| Terminal | 0   |
+
+
+| Format | Description              | Example Output |
+| ------ | ------------------------ | -------------- |
+| `%Y`   | Year (4 digits)          | `2025`         |
+| `%y`   | Year (2 digits)          | `25`           |
+| `%m`   | Month (2 digits)         | `07`           |
+| `%B`   | Full month name          | `July`         |
+| `%b`   | Abbreviated month name   | `Jul`          |
+| `%d`   | Day of month (2 digits)  | `11`           |
+| `%A`   | Full weekday name        | `Thursday`     |
+| `%a`   | Abbreviated weekday name | `Thu`          |
+| `%H`   | Hour (24-hour)           | `14`           |
+| `%I`   | Hour (12-hour)           | `02`           |
+| `%M`   | Minute                   | `30`           |
+| `%S`   | Second                   | `45`           |
+| `%p`   | AM/PM                    | `PM`           |
+| `%Z`   | Time zone                | `IST`          |
+
+
+
+#!/bin/bash
+
+USERID=$(id -u)
+TIMESTAMP=$(date +%F-%H-%M-%S)
+SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
+LOGFILE=/tmp/$SCRIPT_NAME-$TIMESTAMP.log
+R="\e[31m"
+G="\e[32m"
+N="\e[0m"
+Y="\e[33m"
+
+echo "Script started executing at: $TIMESTAMP"
+
+VALIDATE(){
+   if [ $1 -ne 0 ]
+   then
+        echo -e "$2...$R FAILURE $N"
+        exit 2
+    else
+        echo -e "$2...$G SUCCESS $N"
+    fi
+}
+
+if [ $USERID -ne 0 ]
+then
+    echo "Please run this script with root access."
+    exit 1 # manually exit if error comes.
+else
+    echo "You are super user."
+fi
+yum install httpd -y &>>$LOGFILE
+VALIDATE $? "Installing httpd"
+
+yum install git -y &>>$LOGFILE
+VALIDATE $? "Installing git"
+
+yum install docker -y &>>$LOGFILE
+VALIDATE $? "Installing docker"
+
+yum install asasdas as -y &>>$LOGFILE
+VALIDATE $? "Installing asdasdas"
+
+---------------------------------------------------------------------------------------------------------------------
+#! /bin/bash
+services=("nginx" "docker" "jenkins")
+for service in "${services[@]}"; do
+    if systemctl is-active --quiet $service; then
+        echo "$service is running"
+    else
+        echo "$service is not running"
+    fi
+done
+
+
+-------------------
+#!/bin/bash
+# Check if a filename is provided as an argument
+if [ $# -eq 0 ]; then
+    echo "Usage: $0 service_name"
+    exit 1
+fi
+
+service_name="$1"
+
+if systemctl is-active --quiet "$service_name"; then
+    if [ $? -eq 0 ]; then
+        echo -e "\e[32m$service_name is running\e[0m"
+    fi
+else
+    echo -e "\e[31m$service_name is not running\e[0m"
+    echo "Starting $service_name..."
+    systemctl start "$service_name"
+fi
+

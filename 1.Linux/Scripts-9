@@ -46,6 +46,7 @@ if ${COMMAND} -v nginx 1>/dev/null 2>&1 ; then
     NGINX=$(${COMMAND} -v nginx)
     nginxVer=$(${NGINX} -version 2>&1 | ${CUT}  -d '/' -f2) 
     ${ECHO} $(date '+%F') "NGINX Version is : ${nginxVer} " >> ${LOG_FILE}
+    
 else 
     nginxVer="Not Found"
 fi 
@@ -67,8 +68,8 @@ EOF
 
 # Publish to SNS
 aws sns publish \
-  --topic-arn "$SNS_TOPIC_ARN" \
-  --message "$SNS_MESSAGE" \
+  --topic-arn "arn:aws:sns:us-east-1:308414302073:tesing" \
+  --message "testing" \
   --subject "DevOps Tools Version Report from $(hostname)"
 
 

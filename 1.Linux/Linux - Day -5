@@ -328,3 +328,27 @@ ssh -o StrictHostKeyChecking=no username@hostname
 by generating ssh key
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ssh-copy-id -i ~/.ssh/id_rsa.pub ec2-user@3.87.71.192
+
+
+------------------------------------------------------------------------------------------
+
+ssh-keygen -t rsa -b 2048
+
+ssh-copy-id -i ~/.ssh/id_rsa.pub username@target_instance_ip
+
+
+/etc/ssh/sshd_config
+
+
+PubkeyAuthentication yes
+
+
+
+PasswordAuthentication no
+
+sudo systemctl restart sshd
+
+
+sudo systemctl restart ssh
+----------------------------------------------------------------------
+

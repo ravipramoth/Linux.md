@@ -45,3 +45,11 @@ tee -- &>> -- it will append ouput to the file
 
 
 ------------------------------------------------------
+How will find a largers file or older files 
+
+find /var/log -type f -mtime +7 ---- Older than 7 days files 
+find /var/log -type f -size +10M  --- > it shows the larger than 10MB files 
+
+
+------------------------------------------------------------------------------------ 
+

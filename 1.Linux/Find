@@ -1,24 +1,9 @@
 find /var/log -type f -mtime +7
-
-
-ssh-keygen -t rsa -b 2048
-
-ssh-copy-id -i ~/.ssh/id_rsa.pub username@target_instance_ip
-
-
-/etc/ssh/sshd_config
-
-
-PubkeyAuthentication yes
+dd if=/dev/zero of=15mb_file.txt bs=1M count=100
 
 
 
-PasswordAuthentication no
 
-sudo systemctl restart sshd
-
-
-sudo systemctl restart ssh
 
 ------------------------------------------------------------------
 Write a Script which will help you get important details of your machine like

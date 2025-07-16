@@ -156,4 +156,90 @@ ${CAT} << EOF | ${MAILX} -s "$(${ECHO} -e "DevOps Tools Info on $(hostname)\nCon
 
 EOF
 ----------------------------------------
+Assingment - 6 
 
+use below script to get input from user to check size or the older files to delete them. 
+
+#!/bin/bash
+
+# Update package manager
+if [ -f /etc/system-release ]; then
+    # Amazon Linux
+    sudo yum update -y
+    echo "Detected Amazon Linux."
+    
+    # Install curl
+    sudo yum install -y curl
+    echo "Installed curl on Amazon Linux."
+    
+elif [ -f /etc/lsb-release ]; then
+    # Ubuntu
+    sudo apt update -y
+    echo "Detected Ubuntu."
+    
+    # Install curl
+    sudo apt install -y curl
+    echo "Installed curl on Ubuntu."
+    
+else
+    echo "Unsupported operating system."
+    exit 1
+fi
+
+echo "Script completed successfully."
+
+---------------------------------------------------------
+#!/bin/bash
+
+# Directory to scan
+DIR="/var/log"
+
+case # Days threshold or file size 
+
+
+# Days threshold
+read -p "Enter the number of days: " DAYS
+# Log file
+LOG_FILE="/var/log/deleted_files_$(date +%F).log"
+
+# Find files older than $DAYS days
+OLD_FILES=$(find "$DIR" -type f -mtime +$DAYS)
+
+# Check if any files are found
+if [ -z "$OLD_FILES" ]; then
+    echo "No files older than $DAYS days found in $DIR."
+    exit 0
+fi
+
+# Print files that will be deleted
+echo "The following files are older than $DAYS days and will be deleted:"
+echo "$OLD_FILES"
+
+# Ask user for confirmation
+read -p "Do you want to delete these files? (yes/no): " answer
+
+case "$answer" in #Yes YEs YES 
+    [Yy][Ee][Ss])
+        echo "Cleanup started at: $(date)" >> "$LOG_FILE"
+        echo "$OLD_FILES" | while read -r file; do
+            echo "Deleting: $file" | tee -a "$LOG_FILE"
+            rm -f "$file"
+        done
+        echo "Cleanup completed at: $(date)" >> "$LOG_FILE"
+        echo "Log saved to $LOG_FILE"
+        ;;
+    [Nn][Oo])
+        echo "No files were deleted. Exiting."
+        ;;
+    *)
+        echo "Invalid input. Please enter yes or no."
+        ;;
+esac
+
+-------------------------------------------------------------
+
+first get input from user to check size or the older files to delete them.
+second any condtionl statement to check the size or the older files
+you can notfiy via email | mailx -a /path/ 
+
+------------------------------------------------------------------------------

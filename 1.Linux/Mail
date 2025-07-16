@@ -1,3 +1,15 @@
+if your server in aws cloud -- SNS -- Simple Notification Service -- Send email notifications -- > add attachment
+mailx is a command-line email client that can be used to send emails from the terminal. 
+    To use it with Gmail, you need to configure it properly. 
+    Below are the steps to install and configure mailx
+
+sendmail is a command-line utility that can be used to send emails from the terminal. 
+    To use it with Gmail, you need to configure it properly. 
+    Below are the steps to install and configure sendmail
+
+
+
+
 sudo yum install mailx -y
 
 
@@ -9,18 +21,18 @@ set ssl-verify=ignore
 set smtp=smtp://smtp.gmail.com:587
 set smtp-auth=login
 set smtp-auth-user=ravipramoth@gmail.com
-set smtp-auth-password= SMTP Code 
+set smtp-auth-password=dejvkkvzlyqxksok
 set from="ravipramoth@gmail.com"
 set nss-config-dir=/etc/pki/nssdb/
 
 
 echo "This is a test email from Amazon Linux" | mailx -s "Test Email" ravipramoth@gmail.com
-
-tar -czf /home/ec2-user/1.tar.gz /home/ec2-user/1
-echo "This is a test email with attachment" | mailx -s "Test Email with Attachment" -a /home/ec2-user/1.tar.gz
 echo "This is a test email from Amazon Linux" | mailx -s "Test Email" -a /home/ec2-user/1 ravipramoth@gmail.com
 
 ---------------------------------- 
 
 echo "Report attached" | mailx -s "Monthly Report" \
 -a /tmp/report.pdf -a /tmp/log.txt ravipramoth@gmail.com 
+
+
+password =$("aws ssm get-parameter --name "Email_ravipramoth" --with-decryption --query "Parameter.Value" --output text")
