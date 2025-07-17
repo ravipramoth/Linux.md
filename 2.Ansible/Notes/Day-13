@@ -1,0 +1,80 @@
+Ansible --> Automation -- Confgiuration management / Application deployemnt 
+
+What is configuation mangmnet ? 
+
+Install package 
+install programming langauge 
+install build topols 
+install Application runtione 
+Creation users /groups/ folders 
+Creation of systemctl service ..   /etc/systemd-- > Promotheus & grafana 
+
+features 
+Platfrom independent 
+scalbale 
+Erro handling 
+Readbale  and maintable 
+vault 
+Rich modules
+agnet less 
+Push based Arch  
+
+Ansible will use ssh connection to connect manged nodes 
+
+Ansible will YAML  ---  > yet another markup langauge 
+
+
+
+
+HTML  -- Hyper text markup language 
+
+PUSH VS PULL 
+
+PULL 
+internet Traffic Incresase 
+-- Slowness in your application 
+-- Cost ---  Data transfer cost 
+
+PUSH -- 
+untill there is change it wont work  
+
+
+
+
+We can use ansible to deploy, install, update, remove..etc
+Angentless ---  > Agent 
+
+
+Anisble vs shell script Diffrence ? 
+
+Python langauage devloped 
+
+
+
+
+#! /bin/bash 
+
+abc > akasas  ---> What ever stater shell script 
+
+Ansible -- actally state and desried sate 
+
+abc > akaasd ------> First time it will do 
+There is no change file.. 
+
+
+
+
+
+ansadmin ALL=(ALL) NOPASSWD:ALL
+ 
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+chown -R ansadmin:ansadmin ~/.ssh
+
+
+
+How to make SSH connection  
+
+
+
+
