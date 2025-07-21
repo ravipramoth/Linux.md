@@ -33,9 +33,36 @@ Difference b/w shell and Command
  
 3. ansible.builtin.file 
 
-    Sets file attributes like permissions, owner, and group.
+    Create/Modify file attributes like permissions, owner, and group.
+    It Create/delete - directory /file 
 
 Description: Used to set or change the permissions, ownership, and symbolic links of files or directories on the remote machine.
 
-ansible all -m ansible.builtin.file -a "path=/home/user/file.txt mode=0644 owner=user group=user"
+ansible all -m ansible.builtin.file -a "path=/home/ansadmin/test/test.txt mode=0644 owner=ansadmin group=ansadmin" -b 
+
+
+ansible all -m ansible.builtin.file -a " path=/home/ansadmin/test/dirc owner=ansadmin group=ansadmin state=directory" -b 
+
+to create a file = touch
+to create directory = directroy 
+to delete file/directory = absent 
+to create a link file = link -- soft link 
+to create a hard link file = hard
+
+    ansible all -m ansible.builtin.file -a " src=/home/ansadmin/test/test2.txt dest=/tmp/text.txt owner=ansadmin group=ansadmin state=link " -b 
+
+--------------------------------------------------------------------------------------- 
+
+ansible.builtin.copy --  We can copy file from controller to managed Nodes  
+
+Below command will copy a file from Controller to manged  nodes 
+
+bash '''
+    ansible all -m ansible.builtin.copy -a "src=/home/ansadmin/aws dest=/tmp " -b 
+'''
+
+Below command will copy inline content to file in manged nodes 
+
+ansible all -m ansible.builtin.copy -a " content='# This is demo to show inline content to file \n ' dest=/tmp/aws" -b 
+
  
