@@ -1,0 +1,10 @@
+Difference b/w shell and Command
+
+| Feature                   | `command`         | `shell`           |             |
+| ------------------------- | ----------------- | ----------------- | ----------- |
+| Uses shell                | ❌ No              | ✅ Yes             |             |
+| Supports pipes (\`        | \`)               | ❌ No              | ✅ Yes       |
+| Supports redirects (`>`)  | ❌ No              | ✅ Yes             |             |
+| Safe from shell injection | ✅ Yes             | ❌ No              |             |
+| Performance               | ✅ Slightly faster | ❌ Slightly slower |             |
+| Example                   | `ls -l /etc`      | \`ls -l /etc      | grep conf\` |

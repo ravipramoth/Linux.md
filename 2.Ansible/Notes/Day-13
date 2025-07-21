@@ -14,6 +14,7 @@ Platfrom independent
 scalbale 
 Erro handling 
 Readbale  and maintable 
+reusable 
 vault 
 Rich modules
 agnet less 
@@ -66,7 +67,9 @@ There is no change file..
 
 
 ansadmin ALL=(ALL) NOPASSWD:ALL
- 
+
+on Linux Machine 
+
 chmod 700 ~/.ssh
 chmod 600 ~/.ssh/authorized_keys
 chown -R ansadmin:ansadmin ~/.ssh
@@ -77,4 +80,18 @@ How to make SSH connection
 
 
 
+# Ansible Argument: Single Quotes vs Double Quotes
 
+When passing arguments to Ansible from the command line, you can use either single or double quotes. Here’s how you can pass a message argument to the debug module:
+
+ansible all -m ansible.builtin.debug -a 'msg="welcome to ansible"'
+
+**Using double quotes (requires escaping inner quotes):**
+
+ansible all -m ansible.builtin.debug -a "msg=\"welcome to ansible\""
+
+
+ **Tip:**  
+Single quotes are often easier because you don’t need to escape the inner quotes.
+
+---------------------------------------------------------------------------------

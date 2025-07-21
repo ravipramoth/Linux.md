@@ -1,0 +1,41 @@
+Ansible Module to work with files using modules 
+
+1. ansible.builtin.command 
+    Executes a command on a remote machine.
+
+Description: Runs a specified command on the target machine. It does not process the command through a shell, so no shell features like piping, redirection, or variable substitution are available.
+
+
+ansible all -m ansible.builtin.command -a "ls /home/" -b 
+ansible all -m ansible.builtin.command -a "ls -l /var/log" -b
+ansible all -m ansible.builtin.command -a "mkdir -p /tmp/demo-dir" -b
+
+2. ansible.builtin.shell 
+    Executes a shell command on the remote machine.
+
+Description: Runs a shell command on the target machine, and allows you to use shell features like pipes, redirects, and variable substitution.
+
+
+ansible all -m ansible.builtin.shell -a "echo 'Hello, World!' > /opt/hello.txt" -b  
+ansible all -m ansible.builtin.shell  -a " cat /home/ansadmin/test/test.txt | wc -l" -b 
+
+Difference b/w shell and Command
+
+| Feature                   | `command`         | `shell`           |             |
+| ------------------------- | ----------------- | ----------------- | ----------- |
+| Uses shell                | ❌ No              | ✅ Yes             |             |
+| Supports pipes (\`        | \`)               | ❌ No              | ✅ Yes       |
+| Supports redirects (`>`)  | ❌ No              | ✅ Yes             |             |
+| Safe from shell injection | ✅ Yes             | ❌ No              |             |
+| Performance               | ✅ Slightly faster | ❌ Slightly slower |             |
+| Example                   | `ls -l /etc`      | \`ls -l /etc      | grep conf\` |
+
+ 
+3. ansible.builtin.file 
+
+    Sets file attributes like permissions, owner, and group.
+
+Description: Used to set or change the permissions, ownership, and symbolic links of files or directories on the remote machine.
+
+ansible all -m ansible.builtin.file -a "path=/home/user/file.txt mode=0644 owner=user group=user"
+ 

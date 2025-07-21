@@ -1,0 +1,93 @@
+To Run Ansible Commands You have 2 options 
+    Adhoc Commands -- Command # frem -m,  
+        ansible -i < inventory file > all -m <mdoule name > -a [arguments]
+    To install s/w 
+        ansible -i <inventoryfile> -m ansible.builtin.{package/yum/dnf/ap} -a " name=s/w package state=  Present/absent/enabled/latest " --become
+    
+ansible -i list -m all ansible.builtin.package -a "name =${1} state=present" -b 
+ansible -i list all -m ansible.builtin.package -a "name=${1} state=present" -b
+
+
+    Plabook-- need to install s/w
+
+- name: install nginx s/w
+  hosts: PROD
+  become: yes
+  tasks:
+    - name: install nginx
+      ansible.builtin.package:
+          name: nginx
+          state: present
+    - name: start nginx service
+      ansible.builtin.systemd:
+          name: nginx
+          state: started
+          enabled: true 
+
+Inventory  
+
+all:
+  children:
+    PROD:
+      hosts:
+        44.198.96.123:
+    DEV:
+      hosts:
+        52.72.157.134:
+    Webserver:
+        hosts: 
+            44.198.96.123
+            10.56.256.243 
+    RHEL:
+        hosts: 
+            44.198.96.123
+    Debian: 
+        hosts: 
+            10.56.256.243
+
+
+
+
+----------------------------------------------'
+inventory.ini
+
+[PROD]
+44.198.96.123
+
+[DEV]
+52.72.157.134
+
+
+---------------------------------------------------------------- 
+ansible.cgf file  ---- >  will helps load the default values in case we haven't passed anything 
+
+Pirorot
+
+~/.ansible.cfg in home directory  
+/etc/ansible/ansible.cfg 
+
+--------------------------------------------------------------- 
+
+ansible.builtin.shell -- FQCN --- > Fully qualified Collection name 
+------------------------------------------------ 
+
+ansible.builtin.command 
+ansible.builtin.shell
+ansible.builtin.file
+ansible.builtin.copy
+ansible.builtin.stat
+ansible.builtin.lineinfile
+ansible.builtin.blockinfile
+ansible.builtin.template
+ansible.builtin.fetch
+ansible.builtin.package
+
+----------------------------------------------------------------------------- 
+
+![alt text](image.png)
+
+
+
+
+
+
