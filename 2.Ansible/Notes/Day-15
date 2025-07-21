@@ -57,7 +57,7 @@ ansible.builtin.copy --  We can copy file from controller to managed Nodes
 
 Below command will copy a file from Controller to manged  nodes 
 
-bash '''
+'''
     ansible all -m ansible.builtin.copy -a "src=/home/ansadmin/aws dest=/tmp " -b 
 '''
 
