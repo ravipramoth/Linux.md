@@ -12,7 +12,7 @@
             - " the value of x is {{ x }}"
             - " the value of y is {{ y }}"
         - name: We will be changing the value of x
-          ansible.builtin.setfacts:
+          ansible.builtin.set_facts:
              x: 150
              y: 205
         - name: Printing the change value
