@@ -6,7 +6,7 @@
       - x: 10
         y: 15 
     tasks: 
-        - name : Printing the vars value
+        - name: Printing the vars value
           ansible.builtin.debug:
             msg: 
             - " the value of x is {{ x }}"
@@ -20,4 +20,3 @@
             msg: 
             - " the value of x is {{ x }}"
             - " the value of y is {{ y }}"
-            
