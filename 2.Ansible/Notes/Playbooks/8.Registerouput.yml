@@ -1,0 +1,11 @@
+---
+- name : Registering the output
+  hosts: local
+  gather_facts: false 
+  tasks: 
+      - name: Getting the Uname value
+        ansible.builtin.command: "uname"
+        register: output
+      - name: printing the ouput
+        ansible.builtin.debug:
+          msg: " the value of uname is {{ output }}"
