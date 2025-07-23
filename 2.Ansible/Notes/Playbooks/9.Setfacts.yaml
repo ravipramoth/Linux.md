@@ -11,8 +11,8 @@
             msg: 
             - " the value of x is {{ x }}"
             - " the value of y is {{ y }}"
-        - name: We will be changing the value of x
-          ansible.builtin.set_facts:
+        - name: We will be changing the value of x & y
+          ansible.builtin.set_fact:
              x: 150
              y: 205
         - name: Printing the change value
