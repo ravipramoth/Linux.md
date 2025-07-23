@@ -1,0 +1,12 @@
+--- 
+  - name: this Playbook helps us to learn the Arethmetic Operators
+    hosts: local
+    gather_facts: false
+    vars:
+      x: 15 
+      y: 2.5
+    tasks:
+        - name : We will be doing maths calcaulations
+          ansible.builtin.debug:
+            msg: "the addtion of x and y is {{ x+y }}" 
+            
