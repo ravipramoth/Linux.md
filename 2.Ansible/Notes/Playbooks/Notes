@@ -1,0 +1,17 @@
+23-July-2025 
+
+Playbook is noting but a script which uses YAML Language 
+
+hosts: local  
+task:
+    - name : package name 
+      ansible.builtin.package:
+        name: <package_name>
+        state: present
+
+Playbook use to write to reusable roles 
+
+single play or multiple plays in playbook 
+
+save as .yml | yaml file 
+ 

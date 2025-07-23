@@ -1,0 +1,10 @@
+---
+myvaryaml: 4
+mylistyaml:
+  - 5
+  - 10
+  - 15
+  - "this is ansible class"
+mydictyaml: 
+  name: Pramoth
+  class: devops 

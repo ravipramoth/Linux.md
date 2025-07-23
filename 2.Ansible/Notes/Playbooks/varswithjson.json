@@ -1,0 +1,13 @@
+{
+  "myvar": 4,
+  "mylist": [
+    15,
+    1410,
+    152,
+    "this is ansible class in tamil"
+  ],
+  "mydict": {
+    "name": "John",
+    "class": "devops /aws "
+  }
+}

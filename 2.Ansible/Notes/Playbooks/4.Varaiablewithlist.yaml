@@ -1,0 +1,26 @@
+---
+- name: Variable with List & Dict
+  hosts: localhost
+  gather_facts: false
+  vars:
+    myvalue: 5
+    mylist:
+      - 15
+      - 10
+      - 25
+    myDict:
+      myfirst: 5
+      mysecond: 15
+
+  tasks:
+    - name: Printing the values
+      ansible.builtin.debug:
+        msg: "{{ myvalue }} {{ mylist }} {{ myDict }}"
+
+    - name: Printing the index value from list
+      ansible.builtin.debug:
+        msg: "{{ mylist[1] }}"
+
+    - name: Printing a specific Dictionary value
+      ansible.builtin.debug:
+        msg: "{{ myDict.myfirst }}"
