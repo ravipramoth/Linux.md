@@ -1,11 +1,13 @@
---- 
+---
 - name: Getting input from the user
-  hosts: local 
-  gather_facts: false 
-  vars_prompt: 
-      name: x
-      prompt: " Enter the value of x " 
+  hosts: localhost
+  gather_facts: false
+  vars_prompt:
+    - name: x
+      prompt: "Enter the value of x"
+      private: no  # Optional: ensures the input is not hidden
+
   tasks:
-      - name: printing the value of x
-        ansible.builtin.debug 
-            msg: "the value of x is {{ x }}"
+    - name: Printing the value of x
+      ansible.builtin.debug:
+          msg: "The value of x is {{ x }}"
