@@ -6,8 +6,13 @@
     - name: x
       prompt: "Enter the value of x"
       private: no  # Optional: ensures the input is not hidden
-
+    - name: y
+      prompt: "Enter the value of y"
   tasks:
     - name: Printing the value of x
       ansible.builtin.debug:
           msg: "The value of x is {{ x }}"
+    - name: Printing the value of y
+      ansible.builtin.debug:
+          msg: "The value of y is {{ y }}"
+
