@@ -1,0 +1,11 @@
+--- 
+- name: Getting input from the user
+  hosts: local 
+  gather_facts: false 
+  vars_prompt:
+      name: x
+      prompt: " Enter the value of x " 
+  tasks:
+      - name : printing the value of x
+        ansible.builtin.debug 
+            msg: "the value of x is {{ x }}"
