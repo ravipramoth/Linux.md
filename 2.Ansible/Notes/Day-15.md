@@ -72,6 +72,11 @@ Copy inline content to a file on managed nodes
 ```bash
 ansible all -m ansible.builtin.copy -a "content='# This is demo to show inline content to file \n' dest=/tmp/aws" -b
 ```
+**Example 3:**
+
+```bash
+ansible all -m ansible.builtin.copy -a "content='# This is demo to inline content to file \n' dest=/tmp/aws backup=true" -b
+``` 
 
 
 ------------------------------------------- 
