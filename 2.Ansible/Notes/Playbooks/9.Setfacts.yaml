@@ -4,7 +4,7 @@
     gather_facts: false
     vars: 
       - x: 10
-        y: 15 
+      - y: 15 
     tasks: 
         - name: Printing the vars value
           ansible.builtin.debug:
@@ -14,7 +14,7 @@
         - name: We will be changing the value of x
           ansibile.builtin.setfacts:
             - x: 150
-              y: 205
+            - y: 205
          - name: Printing the change value
            ansible.builtin.debug:
             msg: 
