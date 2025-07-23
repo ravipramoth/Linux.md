@@ -163,8 +163,41 @@ Purpose: Insert a block of text into a file.
 ``` bash 
 ansible all -m ansible.builtin.blockinfile -a "path=/etc/my_config.conf block='[section1]\noption1=value1\noption2=value2' state=present"
 ``` 
+## 8. Fetch Module 
+Purpose: To download the file from remote servers to controller node 
+``` bash
+ PROD -m ansible.builtin.fetch -a "src =/opt/devops dest= /tmp/ flat=true" -b 
+``` 
+## 9. Package Module 
 
+Purpose : to install package to manged nodes 
 
+Type :  ansible.builtin.package  -- Genric Package 
+        ansible.builtin.yum -- RHEL Famil ( red hat, amazon linu, cent os )
+        ansible.builtin.apt -- Debian ( ubuntu)
+        ansible.builtin.dnf -- RHEL family 
+
+### Example 
+
+``` bash
+ansible all -m ansible.builtin.package -a "name=s/w package state=present/absent/latest/started/enabled/restared" 
+
+``` 
+
+note: if you run ansible command with diffren user you can use -u or --username 
+To password you need use -k " it prompt the password" 
+
+## 10 . Facts 
+
+Purpose : it will collect some information about the manged nodes. These collected facts called as Gather facts 
+
+it will saved on JSON format 
+
+``` bash 
+
+ansible all -m ansible.builtin.setup -a "filter=ansible_distribution,ansible_uptime_seconds" 
+
+``` 
 
 
 
