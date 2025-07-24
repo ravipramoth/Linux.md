@@ -26,7 +26,7 @@
     - name: Check if 'apple' is in fruits list
       ansible.builtin.debug:
         msg: "Apple is in the list of fruits."
-      when: 'apple' in fruits
+      when: "'apple' in fruits"
 
     # Task 4: Check if a file exists
     - name: Check if a file exists
