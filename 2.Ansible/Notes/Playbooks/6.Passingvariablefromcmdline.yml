@@ -1,7 +1,9 @@
 ---
-- name : Passing values from the command line 
+- name: Passing values from the command line 
   hosts: local
-  gather_facts: true 
+  gather_facts: false
+  vars:
+    x: 15
   tasks:
       - name : Gettin the value of x from running playbook
         ansible.builtin.debug:
