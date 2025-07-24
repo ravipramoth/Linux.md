@@ -3,6 +3,6 @@
 - name: Example Playbook # not mandatory but good practice to have a name
   hosts: all
   tasks:
-      - name: Disaply a message
+      - name: Disaply a message # optional 
         ansible.builtin.debug:
             msg: " This is sample playbook "
