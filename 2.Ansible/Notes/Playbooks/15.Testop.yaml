@@ -1,0 +1,53 @@
+---
+- name: Demonstrate Test Operators with FQCN
+  hosts: localhost
+  vars:
+    my_var: "Hello"
+    fruits: ['apple', 'banana', 'orange']
+    server_status: "healthy"
+    cpu_usage: 75
+    user_role: "admin"
+    my_file: "/etc/passwd"
+
+  tasks:
+    # Task 1: Check if variable is defined
+    - name: Check if variable is defined
+      ansible.builtin.debug:
+        msg: "The variable is defined."
+      when: my_var is defined
+
+    # Task 2: Check if the server status is healthy
+    - name: Check if the server status is healthy
+      ansible.builtin.debug:
+        msg: "Server is healthy."
+      when: server_status == "healthy"
+
+    # Task 3: Check if 'apple' is in fruits list
+    - name: Check if 'apple' is in fruits list
+      ansible.builtin.debug:
+        msg: "Apple is in the list of fruits."
+      when: 'apple' in fruits
+
+    # Task 4: Check if a file exists
+    - name: Check if a file exists
+      ansible.builtin.debug:
+        msg: "The file exists."
+      when: my_file is file
+
+    # Task 5: Check if variable is empty
+    - name: Check if variable is empty
+      ansible.builtin.debug:
+        msg: "The variable is empty."
+      when: my_var is empty
+
+    # Task 6: Check if the number is even
+    - name: Check if the number is even
+      ansible.builtin.debug:
+        msg: "The number is even."
+      when: cpu_usage is even
+
+    # Task 7: Check if the variable is a string
+    - name: Check if the variable is a string
+      ansible.builtin.debug:
+        msg: "The variable is a string."
+      when: my_var is string

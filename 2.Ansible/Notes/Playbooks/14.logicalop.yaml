@@ -135,3 +135,14 @@
     - name: Admin and Permission Validation
       debug:
         msg: "{{ 'User is admin and has write permission.' if user_role == 'admin' and 'write' in user_permissions else 'Condition not met.' }}"
+
+
+# and: Combines conditions. Returns True if both conditions are true.
+
+# or: Combines conditions. Returns True if at least one condition is true.
+
+# not: Inverts the condition. Returns True if the condition is false.
+
+# ==: Checks for equality.
+
+# !=: Checks for inequality.
