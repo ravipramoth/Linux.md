@@ -9,9 +9,17 @@
         - name : We will be doing maths calcaulations
           ansible.builtin.debug:
             msg: 
-              - "the addtion of x and y is {{ x+y }}"
               - "The addition of x and y is {{ x + y }}"
               - "The subtraction of x and y is {{ x - y }}"
               - "The multiplication of x and y is {{ x * y }}"
               - "The division of x by y is {{ x / y }}"
               - "The modulus of x and y is {{ x % y }}" 
+
+
+# Ansible operators 
+# Arthemetic 
+ # filter | method 
+  #comparison operators
+  #membership operaors 
+  #logical operators 
+  #test operators 
