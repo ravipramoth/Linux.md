@@ -15,4 +15,4 @@
         when: "'sonar' not in devops"
       - name: Checking of variables is in the list 
         ansible.builtin.debug:
-          msg: "checking in the debug statement {{ 'sonar' in devosp }}"
+          msg: "checking in the debug statement {{ 'sonar' in devops }}"
