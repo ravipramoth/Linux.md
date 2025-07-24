@@ -8,8 +8,8 @@
     - name: Demo of filter and methods
       ansible.builtin.debug:
         msg:
-          - "The value of x in upper case is {{ x | upper }}"
+          - "The value of x in upper case is {{ x | upper }}" # upper() --> uppercase
           - "The value of x in lower case is {{ x | lower }}"
           - "The value of x in title case is {{ x | title }}"
-          - "The value of x in title case is {{ x | title() }}"
+          - "The value of x in title case is {{ x | title() }}"  # Python ()
           - "The value of x with replaced 'O' to '0' is {{ x | replace('O', '0') }}"
