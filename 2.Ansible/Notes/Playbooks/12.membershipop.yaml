@@ -10,4 +10,4 @@
     - name: Check if user is in the list
       ansible.builtin.debug:
         msg: "mentioned user is in the list of users"
-      when: 'bob' in users
+      when: "'bob' in users "
