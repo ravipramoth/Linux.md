@@ -4,13 +4,13 @@
   gather_facts: false
   vars:
     myvalue: 5
-    mylist:
+    mylist: #[10,15,20] ---> index is start Zero 0 or you can use -1,-2 
       - 15
       - 10
-      - 25
-    myDict:
+      - "ansible"
+    myDict:  # Key: value pair 
       myfirst: 5
-      mysecond: 15
+      mysecond: " this is devops class "
 
   tasks:
     - name: Printing the values
@@ -19,8 +19,10 @@
 
     - name: Printing the index value from list
       ansible.builtin.debug:
-        msg: "{{ mylist[1] }}"
+        msg: 
+          - "{{ mylist[1] }}"
+          - "{{ mylist[-1] }}"
 
     - name: Printing a specific Dictionary value
       ansible.builtin.debug:
-        msg: "{{ myDict.myfirst }}"
+        msg: "{{ myDict.mysecond }}"
