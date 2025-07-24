@@ -16,3 +16,5 @@
           msg: 
             - " this is print value in json values "
             - "{{ myvaryaml }} {{ mylistyaml }} {{ mydictyaml }}"
+
+# Assingment --> try to call index value 2 , dict any key 
