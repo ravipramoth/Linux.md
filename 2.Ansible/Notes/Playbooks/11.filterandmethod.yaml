@@ -13,3 +13,9 @@
           - "The value of x in title case is {{ x | title }}"
           - "The value of x in title case is {{ x | title() }}"  # Python ()
           - "The value of x with replaced 'O' to '0' is {{ x | replace('O', '0') }}"
+
+# --syntax-check -- it will check for syntax Errors in your playbook 
+# ansible lint to check the syntax and best partice it shows 
+# Pip module --> sudo yum install pip 
+# pip install ansible-lint 
+------------------------------------

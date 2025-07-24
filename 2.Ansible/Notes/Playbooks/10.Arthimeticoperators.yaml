@@ -1,6 +1,6 @@
 --- 
   - name: this Playbook helps us to learn the Arethmetic Operators
-    hosts: local
+    hosts: DEV
     gather_facts: false
     vars:
       x: 15 
@@ -14,6 +14,11 @@
               - "The multiplication of x and y is {{ x * y }}"
               - "The division of x by y is {{ x / y }}"
               - "The modulus of x and y is {{ x % y }}" 
+              - "The addition of a and b is {{ a + b }}"
+              - "The subtraction of a and b is {{ a - b }}"
+              - "The multiplication of a and b is {{ a * b }}"
+              - "The division of a by b is {{ a / b }}"
+              - "The modulus of a and b is {{ a % b }}" 
 
 
 # Ansible operators 
