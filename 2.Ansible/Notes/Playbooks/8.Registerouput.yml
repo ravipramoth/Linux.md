@@ -9,3 +9,9 @@
       - name: Printing the uname value 
         ansible.builtin.debug:
           msg: " {{ unameout.stdout }}"
+      - name: Need to get the version for Nginx
+        ansible.builtin.command: "nginx -v"
+        register: temp
+      - name: Displaying the nginx version
+        ansible.builtin.debug:
+            msg: "{{ temp }}"
