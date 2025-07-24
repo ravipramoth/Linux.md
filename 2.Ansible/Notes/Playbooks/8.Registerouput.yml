@@ -14,4 +14,4 @@
         register: temp
       - name: Displaying the nginx version
         ansible.builtin.debug:
-            msg: "{{ temp }}"
+            msg: "{{ temp.stderr }}"
