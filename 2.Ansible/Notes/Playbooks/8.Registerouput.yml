@@ -5,3 +5,7 @@
   tasks: 
       - name: Getting the Uname value
         ansible.builtin.command: "uname"
+        register: unameout
+      - name: Printing the uname value 
+        ansible.builtin.debug:
+          msg: " {{ unameout }}"
