@@ -4,8 +4,8 @@
   gather_facts: false
   vars_prompt:
     - name: x
-      prompt: "Enter the value of x"
-      private: no  # Optional: ensures the input is not hidden
+      prompt: "Enter the value of x" 
+      private: no  # Optional: ensures the input is not hidden or visible 
     - name: y
       prompt: "Enter the value of y"
   tasks:

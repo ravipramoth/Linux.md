@@ -25,4 +25,4 @@
           - "The data type of z is {{ z | ansible.builtin.type_debug }}"
 
 # No Datatype 
-# VARS , Vars_files, decleaer in inventory [Host,] {{ x }} -- Jinja2 templating 
+# VARS , Vars_files, vars_prompt,decleaer in inventory [Host,] {{ x }} -- Jinja2 templating 

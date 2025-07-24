@@ -3,10 +3,12 @@
   hosts: local
   gather_facts: false
   vars:
-    x: 15
+    x: 15 # it will overide if pass value in Command line 
   tasks:
       - name : Gettin the value of x from running playbook
         ansible.builtin.debug:
             msg: "the value of x is {{ x }}"
 
 # to pass the value during runtime you have use option -e or --extra-vars "x=10"
+
+#Top -- Command line Pirority  

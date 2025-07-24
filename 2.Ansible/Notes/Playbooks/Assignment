@@ -1,0 +1,40 @@
+1 - 
+---
+- name: This playbook defines how will you use vars_file to print varibales 
+  hosts: local
+  gather_facts: false
+  vars_files:  # Playbook you should have the Vars file 
+    - varswithjson.json # JSON format 
+    - varswithyaml.yaml #yaml foramt 
+  tasks:
+      - name : Printing value from json value
+        ansible.builtin.debug:
+          msg: 
+            - " this is print value in json values "
+            - "{{ myvar }} {{ mylist }} {{ mydict }}"
+      - name : Printing value from yaml value
+        ansible.builtin.debug:
+          msg: 
+            - " this is print value in json values "
+            - "{{ myvaryaml }} {{ mylistyaml }} {{ mydictyaml }}"
+
+# Assingment --> try to call index value 2 , dict any key 
+
+2 -- ---
+- name: Passing values from the command line 
+  hosts: local
+  gather_facts: false
+  vars:
+    x: 15 # it will overide if pass value in Command line 
+  tasks:
+      - name : Gettin the value of x from running playbook
+        ansible.builtin.debug:
+            msg: "the value of x is {{ x }}"
+
+# to pass the value during runtime you have use option -e or --extra-vars "x=10"
+
+#Top -- Command line Pirority  
+
+use above example try to install s/w  --> 
+
+
