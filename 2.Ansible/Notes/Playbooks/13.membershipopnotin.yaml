@@ -1,0 +1,15 @@
+---
+  - name: Playbook demo to show Membership operator not In 
+    hosts: local
+    gather_facts: false
+    vars:
+      devops:
+        - docker
+        - ansible 
+        - aws 
+        - jenkins 
+    tasks:
+      - name: Checking of variables is in the list 
+        ansible.builtin.debug:
+          msg: "print the complete list {{ devops }}"
+        when: "'sonar' not in devops"
