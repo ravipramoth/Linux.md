@@ -2,15 +2,15 @@
 - name: This playbook defines how will you use vars_file to print varibales 
   hosts: local
   gather_facts: false
-  vars_files:
-    - varswithjson.json
-    - varswithyaml.yaml
+  vars_files:  # Playbook you should have the Vars file 
+    - varswithjson.json # JSON format 
+    - varswithyaml.yaml #yaml foramt 
   tasks:
       - name : Printing value from json value
         ansible.builtin.debug:
           msg: 
             - " this is print value in json values "
-            - "{{myvar}} {{ mylist }} {{ mydict }}"
+            - "{{ myvar }} {{ mylist }} {{ mydict }}"
       - name : Printing value from yaml value
         ansible.builtin.debug:
           msg: 
