@@ -8,6 +8,7 @@
       private: no  # Optional: ensures the input is not hidden or visible 
     - name: y
       prompt: "Enter the value of y"
+      private: yes #password or secerttext
   tasks:
     - name: Printing the value of x
       ansible.builtin.debug:
