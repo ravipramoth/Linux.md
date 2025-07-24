@@ -1,0 +1,13 @@
+---
+- name: Check if a user is in a list
+  hosts: localhost
+  vars:
+    users:
+      - alice
+      - bob
+      - charlie
+  tasks:
+    - name: Check if user is in the list
+      debug:
+        msg: "mentioned user is in the list of users"
+      when: "bob in users"
