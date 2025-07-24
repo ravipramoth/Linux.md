@@ -1,5 +1,79 @@
+# ---
+# - name: Demonstrating all logical operators with FQCN
+#   hosts: localhost
+#   vars:
+#     server_status: "healthy"
+#     cpu_usage: 75
+#     disk_space: 40
+#     service_status: "running"
+#     user_role: "admin"
+#     user_permissions: ["read", "write", "execute"]
+#     maintenance_mode: true
+#     critical_users: ["alice", "bob", "charlie"]
+
+#   tasks:
+#     # Example 1: Using 'and' with multiple conditions
+#     - name: Check if server is healthy and CPU usage is below 80
+#       ansible.builtin.debug:
+#         msg: "Server is healthy and CPU usage is below 80."
+#       when: server_status == "healthy" and cpu_usage < 80
+
+#     # Example 2: Using 'or' to check if service is running or in maintenance mode
+#     - name: Check if the service is running or in maintenance mode
+#       ansible.builtin.debug:
+#         msg: "Service is running or in maintenance mode."
+#       when: service_status == "running" or maintenance_mode == true
+
+#     # Example 3: Using 'not' to ensure the server is not in maintenance mode
+#     - name: Ensure the server is not in maintenance mode
+#       ansible.builtin.debug:
+#         msg: "The server is not in maintenance mode."
+#       when: not maintenance_mode
+
+#     # Example 4: Using '==' to compare user role
+#     - name: Check if the user is admin
+#       ansible.builtin.debug:
+#         msg: "User is admin."
+#       when: user_role == "admin"
+
+#     # Example 5: Using '!=' to check if disk space is sufficient
+#     - name: Check if disk space is not less than 30%
+#       ansible.builtin.debug:
+#         msg: "Disk space is sufficient."
+#       when: disk_space != 30
+
+#     # Example 6: Combining 'and', 'or', and 'not' operators for complex condition
+#     - name: Ensure the server is healthy and CPU is below 80 or disk space is above 50%
+#       ansible.builtin.debug:
+#         msg: "Server is healthy and CPU is below 80 or disk space is sufficient."
+#       when: (server_status == "healthy" and cpu_usage < 80) or disk_space > 50
+
+#     # Example 7: Using '==', 'and', and 'not' together for permission check
+#     - name: Ensure the user is admin and has execute permission
+#       ansible.builtin.debug:
+#         msg: "User is admin and has execute permission."
+#       when: user_role == "admin" and "execute" in user_permissions and not maintenance_mode
+
+#     # Example 8: Using 'or' and '!=' to check critical user status
+#     - name: Check if the user is a critical user or has sufficient permissions
+#       ansible.builtin.debug:
+#         msg: "User is a critical user or has sufficient permissions."
+#       when: user_role == "admin" or user_role != "guest"
+
+#     # Example 9: Using 'not' with a list to ensure the user is not critical
+#     - name: Ensure the user is not in the critical users list
+#       ansible.builtin.debug:
+#         msg: "User is not a critical user."
+#       when: user_role not in critical_users
+
+#     # Example 10: Using 'and' with string comparison and list membership
+#     - name: Ensure the user is admin and has write permission
+#       ansible.builtin.debug:
+#         msg: "User is admin and has write permission."
+#       when: user_role == "admin" and "write" in user_permissions
+
 ---
-- name: Demonstrating all logical operators with FQCN
+- name: Using logical operators inside Jinja2 templates
   hosts: localhost
   vars:
     server_status: "healthy"
@@ -12,62 +86,52 @@
     critical_users: ["alice", "bob", "charlie"]
 
   tasks:
-    # Example 1: Using 'and' with multiple conditions
-    - name: Check if server is healthy and CPU usage is below 80
-      ansible.builtin.debug:
-        msg: "Server is healthy and CPU usage is below 80."
-      when: server_status == "healthy" and cpu_usage < 80
+    # Task 1: Server Health Check and CPU Optimization
+    - name: Server Health Check and CPU Optimization
+      debug:
+        msg: "{{ 'Server is healthy and CPU usage is below 80.' if server_status == 'healthy' and cpu_usage < 80 else 'Condition not met.' }}"
 
-    # Example 2: Using 'or' to check if service is running or in maintenance mode
-    - name: Check if the service is running or in maintenance mode
-      ansible.builtin.debug:
-        msg: "Service is running or in maintenance mode."
-      when: service_status == "running" or maintenance_mode == true
+    # Task 2: Service and Maintenance Status Evaluation
+    - name: Service and Maintenance Status Evaluation
+      debug:
+        msg: "{{ 'Service is running or in maintenance mode.' if service_status == 'running' or maintenance_mode else 'Neither service is running nor in maintenance mode.' }}"
 
-    # Example 3: Using 'not' to ensure the server is not in maintenance mode
-    - name: Ensure the server is not in maintenance mode
-      ansible.builtin.debug:
-        msg: "The server is not in maintenance mode."
-      when: not maintenance_mode
+    # Task 3: Maintenance Mode Check
+    - name: Maintenance Mode Check
+      debug:
+        msg: "{{ 'The server is not in maintenance mode.' if not maintenance_mode else 'The server is in maintenance mode.' }}"
 
-    # Example 4: Using '==' to compare user role
-    - name: Check if the user is admin
-      ansible.builtin.debug:
-        msg: "User is admin."
-      when: user_role == "admin"
+    # Task 4: User Role Validation
+    - name: User Role Validation
+      debug:
+        msg: "{{ 'User is admin.' if user_role == 'admin' else 'User is not admin.' }}"
 
-    # Example 5: Using '!=' to check if disk space is sufficient
-    - name: Check if disk space is not less than 30%
-      ansible.builtin.debug:
-        msg: "Disk space is sufficient."
-      when: disk_space != 30
+    # Task 5: Disk Space Validation
+    - name: Disk Space Validation
+      debug:
+        msg: "{{ 'Disk space is not 30%.' if disk_space != 30 else 'Disk space is 30%.' }}"
 
-    # Example 6: Combining 'and', 'or', and 'not' operators for complex condition
-    - name: Ensure the server is healthy and CPU is below 80 or disk space is above 50%
-      ansible.builtin.debug:
-        msg: "Server is healthy and CPU is below 80 or disk space is sufficient."
-      when: (server_status == "healthy" and cpu_usage < 80) or disk_space > 50
+    # Task 6: Server Health and Disk Space Check
+    - name: Server Health and Disk Space Check
+      debug:
+        msg: "{{ 'Server is healthy and CPU is below 80 or disk space is sufficient.' if (server_status == 'healthy' and cpu_usage < 80) or disk_space > 50 else 'Condition not met.' }}"
 
-    # Example 7: Using '==', 'and', and 'not' together for permission check
-    - name: Ensure the user is admin and has execute permission
-      ansible.builtin.debug:
-        msg: "User is admin and has execute permission."
-      when: user_role == "admin" and "execute" in user_permissions and not maintenance_mode
+    # Task 7: Permission and Maintenance Status Check
+    - name: Permission and Maintenance Status Check
+      debug:
+        msg: "{{ 'User is admin, has execute permission, and maintenance mode is off.' if user_role == 'admin' and 'execute' in user_permissions and not maintenance_mode else 'Condition not met.' }}"
 
-    # Example 8: Using 'or' and '!=' to check critical user status
-    - name: Check if the user is a critical user or has sufficient permissions
-      ansible.builtin.debug:
-        msg: "User is a critical user or has sufficient permissions."
-      when: user_role == "admin" or user_role != "guest"
+    # Task 8: User Role and Guest Status Check
+    - name: User Role and Guest Status Check
+      debug:
+        msg: "{{ 'User is admin or not a guest.' if user_role == 'admin' or user_role != 'guest' else 'User is a guest.' }}"
 
-    # Example 9: Using 'not' with a list to ensure the user is not critical
-    - name: Ensure the user is not in the critical users list
-      ansible.builtin.debug:
-        msg: "User is not a critical user."
-      when: user_role not in critical_users
+    # Task 9: Critical Users List Check
+    - name: Critical Users List Check
+      debug:
+        msg: "{{ 'User is not in the critical users list.' if user_role not in critical_users else 'User is in the critical users list.' }}"
 
-    # Example 10: Using 'and' with string comparison and list membership
-    - name: Ensure the user is admin and has write permission
-      ansible.builtin.debug:
-        msg: "User is admin and has write permission."
-      when: user_role == "admin" and "write" in user_permissions
+    # Task 10: Admin and Permission Validation
+    - name: Admin and Permission Validation
+      debug:
+        msg: "{{ 'User is admin and has write permission.' if user_role == 'admin' and 'write' in user_permissions else 'Condition not met.' }}"
