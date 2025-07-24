@@ -19,6 +19,7 @@
               - "The multiplication of a and b is {{ a * b }}"
               - "The division of a by b is {{ a / b }}"
               - "The modulus of a and b is {{ a % b }}" 
+              #test
 
 
 # Ansible operators 
