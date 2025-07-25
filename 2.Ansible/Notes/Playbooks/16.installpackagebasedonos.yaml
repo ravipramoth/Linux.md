@@ -4,6 +4,13 @@
     gather_facts: true
     become: true
     tasks:
-      - name: Prining the ansible_facts
-        ansible.builtin.debug:
-          msg: "{{ ansible_facts }}" 
+      - name: Installing s/w in Linux 
+        ansible.builtin.yum:
+          name: nginx
+          state: present
+        when: ansible_facts.os_family == "RedHat"
+      - name: Installing s/w in ubuntu
+        ansible.builtin.yum:
+          name: nginx
+          state: present
+        when: ansible_facts.os_family == "Debian"
