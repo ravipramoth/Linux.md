@@ -3,14 +3,19 @@
     hosts: all 
     gather_facts: true
     become: true
+    vars_prompt:
+      - name: software
+        prompt: enter a software name to
     tasks:
-      - name: Installing s/w in Linux 
+      - name : This Play will help you to run in Linux
         ansible.builtin.yum:
           name: nginx
           state: present
+          update_cache: yes
         when: ansible_facts.os_family == "RedHat"
-      - name: Installing s/w in ubuntu
+      - name : This play will help you yo run in ubuntu
         ansible.builtin.apt:
           name: nginx
           state: present
+          update_cache: true
         when: ansible_facts.os_family == "Debian"

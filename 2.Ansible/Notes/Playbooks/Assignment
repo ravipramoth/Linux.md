@@ -37,4 +37,31 @@
 
 use above example try to install s/w  --> 
 
+------------------------------------------------------------------
+Assingment -- you have get imput from the user to install a package: 
 
+vars_prompt ---
+name: a 
+play / test -- > call that varibale {{ a }}
+
+---
+  - name: Install playbook based on Os family
+    hosts: all 
+    gather_facts: true
+    become: true
+    vars_prompt:
+      - name: software
+        prompt: "enter a software name to install" 
+    tasks:
+      - name: Installing s/w in Linux 
+        ansible.builtin.yum:
+          name: nginx
+          state: present
+        when: ansible_facts.os_family == "RedHat"
+      - name: Installing s/w in ubuntu
+        ansible.builtin.apt:
+          name: nginx
+          state: present
+        when: ansible_facts.os_family == "Debian"
+
+        ---------------------------------------------
