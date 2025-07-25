@@ -45,3 +45,18 @@
       ansible.builtin.debug:
         msg: "The variable is a string."
       when: my_var is string
+
+
+# test operator are used to test given varaible/data 
+
+# is defined -- Declare 
+# is undefined-- Declare
+# is none
+# is even
+# is odd 
+# is lower 
+# is uppoer 
+# is file 
+# is directory 
+# is link 
+# is exist
