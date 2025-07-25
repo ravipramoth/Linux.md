@@ -7,4 +7,3 @@
       - name: Prining the ansible_facts
         ansible.builtin.debug:
           msg: "{{ ansible_facts }}" 
-e
