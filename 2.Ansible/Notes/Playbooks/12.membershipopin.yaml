@@ -9,5 +9,8 @@
   tasks:
     - name: Check if user is in the list
       ansible.builtin.debug:
-        msg: "mentioned user is in the list of users"
+        msg: "mentioned user is in the list of users {{ users }}"
       when: "'bob' in users "
+
+
+#  Used to test / valdatie the given data is exist or not {In and Not in}
