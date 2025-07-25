@@ -1,9 +1,12 @@
 ---
 - name: This playbook shows demo on string operations 
   hosts: local 
-  gether_facts: false
+  gather_facts: false
   vars:
-    mydict: {'linux': 'httpd', 'ubuntu': 'apache2', 'linux.service': 'apache2' }
+    mydict: 
+      linux: httpd
+      ubuntu: apache2 
+      linux.service: apache2
   tasks:
     - name: String operations
       ansible.builtin.debug:
