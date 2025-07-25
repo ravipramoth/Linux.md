@@ -65,3 +65,8 @@ play / test -- > call that varibale {{ a }}
         when: ansible_facts.os_family == "Debian"
 
         ---------------------------------------------
+
+---------------------------------------------
+write a playbook to disply the version of your s/w ( python, ansible, java ) also make it dynamic getting input from users 
+==------------------------------------------------------------ 
+

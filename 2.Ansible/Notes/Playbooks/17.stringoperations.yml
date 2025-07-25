@@ -1,0 +1,17 @@
+---
+- name: This playbook shows demo on string operations 
+  hosts: local 
+  gether_facts: false
+  vars:
+    mydict: {'linux': 'httpd', 'ubuntu': 'apache2', 'linux.service': 'apache2' }
+  tasks:
+    - name: String operations
+      ansible.builtin.debug:
+        msg:
+          - "{{ mydict }}"
+          - "{{ mydict.keys() }}"
+          - "{{ mydict.values() }}"
+          - {{ mydict.get('linux') }}
+          - {{ mydict.get('linux.service') }}
+
+
