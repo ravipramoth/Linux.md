@@ -16,3 +16,5 @@
       - name: Checking of variables is in the list 
         ansible.builtin.debug:
           msg: "checking in the debug statement {{ 'sonar' in devops }}"
+
+# boolen values : True or flase 
