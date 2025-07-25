@@ -10,7 +10,7 @@
           state: present
         when: ansible_facts.os_family == "RedHat"
       - name: Installing s/w in ubuntu
-        ansible.builtin.yum:
+        ansible.builtin.apt:
           name: nginx
           state: present
         when: ansible_facts.os_family == "Debian"
