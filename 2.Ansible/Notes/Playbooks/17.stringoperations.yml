@@ -15,6 +15,6 @@
           - "{{ mydict.keys() }}"
           - "{{ mydict.values() }}"
           - "{{ mydict.get('linux') }}"
-          - "{{ mydict.get('linux.service') }}"
+          - "{{ mydict.get['linux.service'] }}"
 
 
