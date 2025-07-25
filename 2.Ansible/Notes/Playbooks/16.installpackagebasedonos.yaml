@@ -9,7 +9,8 @@
           name: nginx
           state: present
           update_cache: true
-
-        
-
-           
+      - name: Installing a s/w 
+        ansible.builtin.apt:
+          name: nginx
+          state: present
+          update_cache: true
