@@ -4,13 +4,7 @@
     gather_facts: false
     become: true
     tasks:
-      - name: Installing a s/w 
-        ansible.builtin.yum:
-          name: nginx
-          state: present
-          update_cache: true
-      - name: Installing a s/w 
-        ansible.builtin.apt:
-          name: nginx
-          state: present
-          update_cache: true
+      - name: Prining the ansible_facts
+        ansible.builtin.debug:
+          msg: "{{ ansible_facts }}" 
+e
