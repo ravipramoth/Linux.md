@@ -18,4 +18,4 @@
 # ansible lint to check the syntax and best partice it shows 
 # Pip module --> sudo yum install pip 
 # pip install ansible-lint 
-------------------------------------
+

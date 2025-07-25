@@ -1,0 +1,24 @@
+---
+  - name: Install playbook based on Os family
+    hosts: all 
+    gather_facts: false
+    become: true
+    tasks:
+      - name: Printing the Facts 
+        ansible.builtin.debug:
+          msg: "{{ ansible_facts }}"
+      - name : This Play will help you to run in Linux
+        ansible.builtin.yum:
+          name: nginx
+          state: present
+          update_cache: yes
+        when: ansible_facts.os_family == "RedHat"
+      - name : This play will help you yo run in ubuntu
+        ansible.builtin.apt
+          name: nginx
+          state: present
+          update_cache: true
+        when: ansible_facts.os_family == "Debian"
+        
+
+           

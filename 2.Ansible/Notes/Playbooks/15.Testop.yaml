@@ -34,19 +34,13 @@
         msg: "The file exists."
       when: my_file is file
 
-    # Task 5: Check if variable is empty
-    - name: Check if variable is empty
-      ansible.builtin.debug:
-        msg: "The variable is empty."
-      when: my_var is empty
-
-    # Task 6: Check if the number is even
+    # Task 5: Check if the number is even
     - name: Check if the number is even
       ansible.builtin.debug:
         msg: "The number is even."
       when: cpu_usage is even
 
-    # Task 7: Check if the variable is a string
+    # Task 6: Check if the variable is a string
     - name: Check if the variable is a string
       ansible.builtin.debug:
         msg: "The variable is a string."
