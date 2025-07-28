@@ -1,0 +1,10 @@
+- name: Install httpd on RedHat
+  ansible.builtin.package:
+    name: httpd
+    state: present
+
+- name: Start httpd
+  ansible.builtin.service:
+    name: httpd
+    state: started
+    enabled: true

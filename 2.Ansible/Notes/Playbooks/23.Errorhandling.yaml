@@ -1,0 +1,38 @@
+---
+- name: Play to understand about error handling 
+  hosts: loal
+  gather_facts: false
+  tasks:
+
+    - name: Try to find nginx version (with error handling)
+      block:
+        - name: Finding nginx version
+          ansible.builtin.command:
+            cmd: 'nginx -version'
+          register: nginverVerOutput
+          failed_when: nginverVerOutput.rc != 0  # Consider it a failure if nginx is NOT found
+
+      rescue:
+        - name: Handle nginx not installed
+          ansible.builtin.debug:
+            msg: "Nginx is not installed or failed to run the version command."
+
+      always:
+        - name: Always run this to show the block is complete
+          ansible.builtin.debug:
+            msg: "Completed nginx version check block."
+
+    - name: Finding uname info
+      ansible.builtin.command:
+        cmd: uname 
+      register: unameOutput
+
+    - name: Displaying uname details
+      ansible.builtin.debug:
+        msg: 
+          - "uname : {{ unameOutput.stdout }}"
+
+    - name: Displaying nginx version if available
+      when: nginverVerOutput is defined and nginverVerOutput.rc == 0
+      ansible.builtin.debug:
+        msg: "nginx version: {{ nginverVerOutput.stderr }}"

@@ -1,0 +1,17 @@
+---
+- name: Demo using import_tasks (static)
+  hosts: dev
+  become: yes
+  gather_facts: true
+
+  tasks:
+    #  This will always try to parse both files, even if condition is false
+    - import_tasks: tasks/redhat.yml
+      when: ansible_facts['os_family'] == "RedHat"
+
+    - import_tasks: tasks/debian.yml
+      when: ansible_facts['os_family'] == "Debian"
+
+
+# Even though you're using when, import_tasks is parsed before conditions are evaluated, 
+# so both files must exist and be syntactically correct.

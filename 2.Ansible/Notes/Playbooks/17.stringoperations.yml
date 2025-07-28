@@ -15,6 +15,13 @@
           - "{{ mydict.keys() }}"
           - "{{ mydict.values() }}"
           - "{{ mydict.get('linux') }}"
-          - "{{ mydict['linux.service'] }}"
+    - name: Get the value of linux.service
+      ansible.builtin.debug:
+        msg: "{{ mydict.get('linux.service') }}"
+    - name: Get the value of linux.service directly
+      ansible.builtin.debug:
+        msg: "{{ mydict['linux.service'] }}"
+
+
 
 

@@ -1,0 +1,16 @@
+---
+- name: Play to install nginx and then to start it 
+  hosts: localhost
+  gather_facts: false 
+  become: yes
+  tasks:
+    - name: Install nginx
+      ansible.builtin.dnf:
+        name: nginx 
+        state: present 
+      notify:  Start nginx
+  handlers:
+    - name: Start nginx
+      ansible.builtin.service:
+        name: nginx 
+        state: started

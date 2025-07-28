@@ -1,0 +1,18 @@
+---
+- name: Demo using include_tasks (dynamic)
+  hosts: dev
+  become: yes
+  gather_facts: true
+
+  tasks:
+    - name: Load RedHat-specific tasks dynamically
+      include_tasks: tasks/redhat.yml
+      when: ansible_facts['os_family'] == "RedHat"
+
+    - name: Load Debian-specific tasks dynamically
+      include_tasks: tasks/debian.yml
+      when: ansible_facts['os_family'] == "Debian"
+
+
+#  With include_tasks, only the matching file is loaded at runtime,
+#  making it safer and more flexible.

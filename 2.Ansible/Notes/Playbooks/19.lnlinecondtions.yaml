@@ -1,0 +1,15 @@
+- name: Simple if-else statement
+  hosts: localhost
+  vars:
+    a: 30
+    b: 60
+    #larger: "{{a if a>b else b}}"
+  gather_facts: false
+  tasks:
+    - name: Finding larger number with set_fact module 
+      ansible.builtin.set_fact:
+        larger: "{{a if a>b else b}}"
+    - name: Finding larger number with the help of inline or if else statement
+      ansible.builtin.debug:
+        msg: 
+        - "The larger number is:  {{ larger }}"
