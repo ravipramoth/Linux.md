@@ -1,6 +1,6 @@
 ---
 - name: Play to understand about error handling 
-  hosts: loal
+  hosts: local
   gather_facts: false
   tasks:
 
