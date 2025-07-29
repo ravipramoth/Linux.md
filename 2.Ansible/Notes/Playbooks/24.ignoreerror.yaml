@@ -9,7 +9,9 @@
         cmd: nginx -v
       register: nginx_result
       ignore_errors: true
-
+    - name : Printing version
+      ansible.builtin.debug:
+        msg: "{{ nginx_result }}"
     - name:  Conditionally fail if nginx command succeeds
       ansible.builtin.debug:
         msg: "Nginx command succeeded unexpectedly!"
