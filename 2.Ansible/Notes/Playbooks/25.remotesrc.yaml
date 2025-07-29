@@ -12,6 +12,9 @@
         ansible.builtin.unarchive: 
           src: /opt/openjdk-25-ea+33_linux-x64_bin.tar.gz # I will copying this file from controller node
           dest: /opt
-          remote_src: true 
-
-
+          remote_src: true
+      - name: Setting Java_home ENV variable
+        ansible.builtin.lineinfile: 
+          path: /etc/environment
+          line: " export JAVA_HOME=/opt/jdk25"
+          state: present
