@@ -12,6 +12,6 @@
         ansible.builtin.unarchive: 
           src: /opt/openjdk-25-ea+33_linux-x64_bin.tar.gz # I will copying this file from controller node
           dest: /opt
-        remote_src: true 
+          remote_src: true 
 
 
