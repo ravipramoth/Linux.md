@@ -9,7 +9,7 @@
             url: https://download.java.net/java/early_access/jdk25/33/GPL/openjdk-25-ea+33_linux-x64_bin.tar.gz
             dest: /opt
       - name: To unarchive 
-        ansible.builtin.un_archive: 
+        ansible.builtin.unarchive: 
           src: /opt/openjdk-25-ea+33_linux-x64_bin.tar.gz
           dest: /opt
 
