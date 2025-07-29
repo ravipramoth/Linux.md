@@ -9,8 +9,12 @@
         name: nginx 
         state: present 
       notify:  Start nginx
+    - name: Print uname value
+      ansible.builtin.debug: 
+        msg : " hi "
   handlers:
     - name: Start nginx
       ansible.builtin.service:
         name: nginx 
         state: started
+
