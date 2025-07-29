@@ -16,7 +16,7 @@
       ansible.builtin.debug:
         msg: "Nginx command succeeded unexpectedly!"
       when: nginx_result.rc == 0
-      failed_when: nginx_result.rc == 0
+      failed_when: nginx_result.rc != 0
 
     - name:  Run a safe command only if nginx failed
       ansible.builtin.command:
