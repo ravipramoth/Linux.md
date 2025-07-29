@@ -1,6 +1,6 @@
 ---
 - name: Play to install nginx and then to start it 
-  hosts: localhost
+  hosts: local
   gather_facts: false 
   become: yes
   tasks:
