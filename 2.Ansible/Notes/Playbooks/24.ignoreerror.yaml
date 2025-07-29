@@ -26,5 +26,5 @@
 
     - name: Show uname output
       ansible.builtin.debug:
-        msg: "Uname output: {{ uname_output.stdout }}"
+        msg: "Uname output: {{ uname_output }}"
       when: uname_output is defined
