@@ -1,6 +1,6 @@
 ---
 - name: Demo using import_tasks (static)
-  hosts: dev
+  hosts: all
   become: yes
   gather_facts: true
 
