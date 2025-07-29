@@ -1,0 +1,12 @@
+---
+  - name : Demo for resmote_src 
+    hosts: test
+    gather_facts: false
+    become: true 
+    tasks: 
+      - name : Downloading a package from internet 
+        ansible.builtin.get_url: 
+            url: https://download.java.net/java/early_access/jdk25/33/GPL/openjdk-25-ea+33_linux-x64_bin.tar.gz
+            dest: /opt
+
+
