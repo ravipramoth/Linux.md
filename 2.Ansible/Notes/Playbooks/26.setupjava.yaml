@@ -1,6 +1,6 @@
 ---
 - name: Setting JAVA_HOME 
-  hosts: dev 
+  hosts: local 
   gather_facts: false
   vars: 
     reqLoc: /opt 
