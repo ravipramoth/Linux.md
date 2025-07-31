@@ -22,7 +22,7 @@
         ansible.builtin.file:
           path: "{{item.value.dir}}/{{item.key}}"
           mode: "{{item.value.mode}}"
-          state: touch
+          state: absent
         with_dict: "{{reqfile}}"
 
 
