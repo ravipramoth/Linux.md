@@ -12,7 +12,7 @@
       - name: printing reqfile to understand 
         ansible.builtin.debug:
           msg: "{{ item }}"
-        loop: "{{reqfile}}"
+        loop: "{{ reqfile }}"
       - name: File creation task
         ansible.builtin.file:
           path: "{{item.dir}}/{{item.name}}"

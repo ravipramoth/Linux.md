@@ -1,0 +1,45 @@
+---
+- name: This playbook demos how to run the tags and block together
+  hosts: localhost
+  gather_facts: false
+  tasks:
+
+    - name: Check Java version
+      block:
+        - name: Running Java version
+          ansible.builtin.command:
+            cmd: 'java --version'
+          register: javaoutput
+
+        - name: Show Java output
+          ansible.builtin.debug:
+            msg: "{{ javaoutput.stdout }}"
+      rescue:
+        - name: No Java version
+          ansible.builtin.debug:
+            msg: "Java not found"
+      tags:
+        - javaversion
+        - never
+        - both
+
+    - name: Check Nginx version
+      block:
+        - name: Running nginx version
+          ansible.builtin.command:
+            cmd: 'nginx -v'
+          register: nginxoutput
+          ignore_errors: true
+        
+        - name: Show nginx output
+          ansible.builtin.debug:
+            msg: "{{ nginxoutput.stderr }}"
+      rescue:
+        - name: No nginx version
+          ansible.builtin.debug:
+            msg: "Nginx not found"
+      tags:
+        - nginxversion
+        - never
+        - both 
+
