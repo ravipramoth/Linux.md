@@ -1,0 +1,20 @@
+  - name: demo for loop wih dict
+    hosts: local
+    gather_facts: false
+    become: true
+    vars: 
+      reqfile:
+        config:
+          dir : '/tmp'
+          mode: '0777'
+          config.d:
+            dir : '/opt'
+            mode: '0777'
+          config.test:
+            dir : '/home/ansadmin'
+            mode: '0777'
+    tasks:
+      - name: Printing to understand
+        ansible.builtin.debug:
+          msg: "{{item}}"
+        with_dict: "{{reqfile}}"
