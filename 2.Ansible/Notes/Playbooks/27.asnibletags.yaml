@@ -9,9 +9,11 @@
         tags:
           - first
           - devops
+          - never
       - name: Printing a secod Play
         ansible.builtin.debug:
           msg: " this is ansible class" 
         tags:
           - second
           - devops
+          - never 
