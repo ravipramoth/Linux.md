@@ -15,7 +15,7 @@
         loop: "{{reqfile}}"
       - name: File creation task
         ansible.builtin.file:
-          src: "{{item.dir}}/{{item.name}}"
+          path: "{{item.dir}}/{{item.name}}"
           state: touch 
           mode: "{{item.mode}}"
         loop: "{{reqfile}}"
