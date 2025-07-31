@@ -10,10 +10,11 @@
           ansible.builtin.command:
             cmd: 'java --version'
           register: javaoutput
-
+          
         - name: Show Java output
           ansible.builtin.debug:
             msg: "{{ javaoutput.stdout }}"
+          when: javaoutput.rc == 0
       rescue:
         - name: No Java version
           ansible.builtin.debug:
@@ -30,10 +31,11 @@
             cmd: 'nginx -v'
           register: nginxoutput
           ignore_errors: true
-        
+          
         - name: Show nginx output
           ansible.builtin.debug:
             msg: "{{ nginxoutput.stderr }}"
+          when: nginxoutput.rc == 0
       rescue:
         - name: No nginx version
           ansible.builtin.debug:
