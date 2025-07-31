@@ -4,13 +4,13 @@
     become: true
     vars: 
       reqfile:
-        config:
+        config1:
           dir : '/tmp'
           mode: '0777'
-        config.d:
+        config.d1:
             dir : '/opt'
             mode: '0777'
-        config.test:
+        config.test1:
             dir : '/home/ansadmin'
             mode: '0777'
     tasks:
@@ -18,3 +18,12 @@
         ansible.builtin.debug:
           msg: "{{item}}"
         with_dict: "{{reqfile}}"
+      - name: file creation 
+        ansible.builtin.file:
+          path: "{{item.value.dir}}/{{item.key}}"
+          mode: "{{item.value.mode}}"
+          state: touch 
+
+
+
+      
