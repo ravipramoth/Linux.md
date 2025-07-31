@@ -8,8 +8,10 @@
           msg: " this devops class "
         tags:
           - first
+          - devops
       - name: Printing a secod Play
         ansible.builtin.debug:
           msg: " this is ansible class" 
         tags:
           - second
+          - devops
