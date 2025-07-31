@@ -7,7 +7,7 @@
       reqfile:
         - {'name': 'config.d', 'dir': '/tmp', 'mode' : '0777' } 
         - {'name': 'config', 'dir': '/opt', 'mode' : '0600' }
-        - {'name': 'config.test', 'dir': 'tmp', 'mode' : '0400' }
+        - {'name': 'config.test', 'dir': '/tmp', 'mode' : '0400' }
     tasks:
       - name: printing reqfile to understand 
         ansible.builtin.debug:
