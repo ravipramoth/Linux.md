@@ -7,10 +7,10 @@
         config:
           dir : '/tmp'
           mode: '0777'
-          config.d:
+        config.d:
             dir : '/opt'
             mode: '0777'
-          config.test:
+        config.test:
             dir : '/home/ansadmin'
             mode: '0777'
     tasks:
