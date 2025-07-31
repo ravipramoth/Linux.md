@@ -10,7 +10,7 @@
     tasks:
       - name: File creation 
         ansible.builtin.file:
-          path: /tmp/{{item}}
+          path: "/tmp/{{item}}"
           state: touch
         loop: "{{ reqfile }}"  
 

@@ -1,0 +1,21 @@
+--- 
+  - name: demom for loop 
+    hosts: local
+    gather_facts: false
+    become: true
+    vars: 
+      reqfile:
+        - {'name': 'config.d', 'dir': '/tmp', 'mode' : '0777' } 
+        - {'name': 'config.d', 'dir': '/opt', 'mode' : '0600' }
+        - {'name': 'config.d', 'dir': 'tmp', 'mode' : '0400' }
+    tasks:
+      - name: printing reqfile to understand 
+        ansible.builtin.debug:
+          msg: "{{ item }}"
+        loop: "{{reqfile}}"
+
+
+
+
+
+
