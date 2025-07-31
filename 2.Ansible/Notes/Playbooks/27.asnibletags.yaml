@@ -6,6 +6,10 @@
       - name: Printing random text
         ansible.builtin.debug:
           msg: " this devops class "
+        tags:
+          - first
       - name: Printing a secod Play
         ansible.builtin.debug:
           msg: " this is ansible class" 
+        tags:
+          - second
