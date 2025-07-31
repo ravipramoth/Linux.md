@@ -12,7 +12,7 @@
         ansible.builtin.file:
           path: /tmp/{{item}}
           state: touch
-        loop: {{ reqfile }}  
+        loop: "{{ reqfile }}"  
 
 
 
