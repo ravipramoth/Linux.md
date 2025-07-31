@@ -1,0 +1,11 @@
+--- 
+ - name: Demo for Ansible Tags
+   hosts: local 
+   gather_facts: false
+   tasks:
+      - name: Printing random text
+        ansible.builtin.debug:
+          msg: " this devops class "
+      - name: Printing a secod Play
+        ansible.builtin.debug:
+          msg: " this is ansible class" 

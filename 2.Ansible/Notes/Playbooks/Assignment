@@ -70,3 +70,15 @@ play / test -- > call that varibale {{ a }}
 write a playbook to disply the version of your s/w ( python, ansible, java ) also make it dynamic getting input from users 
 ==------------------------------------------------------------ 
 
+write a split funtion to extract values for the Given Java urls 
+
+# # https://download.java.net/java/GA/jdk18.0.2/f6ad4b4450fd4d298113270ec84f30ee/9/GPL/openjdk-18.0.2_linux-x64_bin.tar.gz
+# # https://download.java.net/java/GA/jdk19.0.1/afdd2e245b014143b62ccb916125e3ce/10/GPL/openjdk-19.0.1_linux-x64_bin.tar.gz
+# # https://download.java.net/java/early_access/jdk26/8/GPL/openjdk-26-ea+8_linux-x64_bin.tar.gz
+# # https://download.java.net/java/early_access/jdk25/33/GPL/openjdk-25-ea+33_linux-x64_bin.tar.gz
+
+# https://download.oracle.com/java/21/latest/jdk-21_linux-aarch64_bin.tar.gz 
+
+eg: ref playbook 26.setupjava.yaml
+
+--------------------------------------------- 
