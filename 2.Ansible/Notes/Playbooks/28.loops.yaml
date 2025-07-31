@@ -1,0 +1,21 @@
+--- 
+  - name: demom for loop 
+    hosts: local
+    gather_facts: false
+    vars: 
+      reqfile:
+        - config.d  # ----> {{item}}
+        - config
+        - config.test
+    tasks:
+      - name: File creation 
+        ansible.builtin.file:
+          path: /tmp/{{item}}
+          state: touch
+        loop: {{ reqfile }}  
+
+
+
+
+
+
