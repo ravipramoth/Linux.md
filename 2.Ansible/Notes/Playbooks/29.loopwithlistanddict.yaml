@@ -6,16 +6,15 @@
     vars: 
       reqfile:
         - {'name': 'config.d', 'dir': '/tmp', 'mode' : '0777' } 
-        - {'name': 'config.d', 'dir': '/opt', 'mode' : '0600' }
-        - {'name': 'config.d', 'dir': 'tmp', 'mode' : '0400' }
+        - {'name': 'config', 'dir': '/opt', 'mode' : '0600' }
+        - {'name': 'config.test', 'dir': 'tmp', 'mode' : '0400' }
     tasks:
       - name: printing reqfile to understand 
         ansible.builtin.debug:
           msg: "{{ item }}"
         loop: "{{reqfile}}"
-
-
-
-
-
-
+      - name: File creation task
+        ansible.builtin.file:
+          src: "{{item.dir}}/{{item.name}}"
+          state: touch 
+          mode: "{{item.mode}}"
