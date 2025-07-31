@@ -16,4 +16,11 @@
         tags:
           - second
           - devops
-          - never 
+          - never
+      - name: Printing a third Play
+        ansible.builtin.debug:
+          msg: " this is ansible class in tamil " 
+        tags:
+          - second
+          - devops
+          - always 
