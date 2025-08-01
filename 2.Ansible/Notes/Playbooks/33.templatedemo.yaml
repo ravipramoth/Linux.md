@@ -16,7 +16,7 @@
           state: started
           enabled: true
       - name: copy a custom index file to
-        ansible.builtin.file:
+        ansible.builtin.copy:
           src: index.html
           dest: /var/www/html/index.html
         notify: Restart httpd
