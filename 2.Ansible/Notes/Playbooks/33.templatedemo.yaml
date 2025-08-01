@@ -1,6 +1,6 @@
 --- 
  - name : This play shows demo to run Template module 
-   hosts: local 
+   hosts: local:44.198.96.123
    gather_facts: false
    become: true
    tasks:
