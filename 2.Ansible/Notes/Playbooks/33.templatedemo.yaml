@@ -9,6 +9,7 @@
           name: httpd
           state: present
           update_cache: yes 
+        ignore_errors: true
       - name: httpd service up
         ansible.builtin.service:
           name: httpd
@@ -18,10 +19,9 @@
         ansible.builtin.file:
           src: index.html
           dest: /var/www/html/index.html
-        notify: Restart handler
-      
-      - handlers :
-          - name: Restart handler
-            ansible.builtin.service:
-              name: httpd
-              state: restarted
+        notify: Restart httpd
+   handlers:
+      - name : Restart handler
+        ansible.builtin.service:
+          name: httpd
+          state: restarted
