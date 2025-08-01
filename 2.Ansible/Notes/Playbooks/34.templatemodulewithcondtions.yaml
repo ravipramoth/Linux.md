@@ -1,0 +1,21 @@
+---
+  - name: this demo shows the Jinja2 condtions
+    hosts: local 
+    gather_facts: false
+    # become_user: root 
+    # become_method: sudo
+    become: true 
+    vars:
+      a: 80
+      b: 70
+      mystring: "hello"
+      mylist:
+        - vim
+        - curl
+        - nginx
+    tasks: 
+        - name: Copying the file using Jinja2 
+          ansible.builtin.template:
+            src: test.j2
+            dest: /tmp/abc.txt
+          
