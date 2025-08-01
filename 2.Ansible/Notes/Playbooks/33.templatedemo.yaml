@@ -15,11 +15,10 @@
           name: httpd
           state: started
           enabled: true
-      - name: copy a custom index file to
-        ansible.builtin.copy:
-          src: index.html
+      - name: copying file using Jinja2 template 
+        ansible.builtin.template:
+          src : index.j2
           dest: /var/www/html/index.html
-        notify: Restart httpd
    handlers:
       - name : Restart httpd
         ansible.builtin.service:
