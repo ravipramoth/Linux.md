@@ -21,7 +21,7 @@
           dest: /var/www/html/index.html
         notify: Restart httpd
    handlers:
-      - name : Restart handler
+      - name : Restart httpd
         ansible.builtin.service:
           name: httpd
           state: restarted

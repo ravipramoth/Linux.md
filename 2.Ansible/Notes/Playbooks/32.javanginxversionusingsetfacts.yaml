@@ -18,5 +18,5 @@
         - name: print Java version value  
           ansible.builtin.debug:
             msg: "{{ Java not found }}"
-          when: javaoutput.rc == 0    
+          when: javaoutput.rc != 0    
 
