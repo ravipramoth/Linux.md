@@ -1,0 +1,27 @@
+--- 
+ - name : This play shows demo to run Template module 
+   hosts: local 
+   gather_facts: false
+   become: true
+   tasks:
+      - name : installing httpd package 
+        ansible.builtin.yum:
+          name: httpd
+          state: present
+          update_cache: yes 
+      - name: httpd service up
+        ansible.builtin.service:
+          name: httpd
+          state: started
+          enabled: true
+      - name: copy a custom index file to
+        ansible.builtin.file:
+          src: index.html
+          dest: /var/www/html/index.html
+        notify: Restart handler
+      
+      - handlers :
+          - name: Restart handler
+            ansible.builtin.service:
+              name: httpd
+              state: restarted

@@ -1,0 +1,22 @@
+---
+- name: This playbook demos how to run the tags and block together
+  hosts: localhost
+  gather_facts: false
+  tasks:
+
+    - name: Check Java version
+      block:
+        - name: Running Java version
+          ansible.builtin.command:
+            cmd: 'java --version'
+          register: javaoutput
+          ignore_errors: true
+        - name: print Java version value  
+          ansible.builtin.debug:
+            msg: "{{ javaoutput }}"
+          when: javaoutput.rc == 0
+        - name: print Java version value  
+          ansible.builtin.debug:
+            msg: "{{ Java not found }}"
+          when: javaoutput.rc == 0    
+
