@@ -1,0 +1,63 @@
+  Dynamic Inventoy:
+
+  You shoudl install aws collection plugins 
+  ansible-galaxy collection install amazon.aws -p <path> 
+  go inside the collection and you will find requriment.txt 
+
+  You have create a Dynamic Inventoy: project.aws_ec2.yml
+
+You should have this in your ansible config file: 
+
+[defaults]
+remote_user = ec2-user --> It will Loggin to machine using this user 
+private_key_file = /home/ansadmin/Linux.md/2.Ansible/Notes/aws_dynamic_inventory/aws.pem -- This will connect maching using this key 
+host_key_checking = false 
+inventory = /home/ansadmin/Linux.md/2.Ansible/Notes/aws_dynamic_inventory/dynamic.aws_ec2.yml
+COLLECTIONS_PATH = /home/ansadmin/collections -- > Path
+project.aws_ec2.yml -- Inventory file 
+
+plugin: amazon.aws.aws_ec2 ---# Mandtory 
+
+access_key:  
+  AWS_ACCESS_KEY_ID: <Keys->
+  AWS_SECRET_KEY: <keys> 
+or use < IAM role with requried permission 
+
+regions:
+  - us-east-1
+  - us-east-2
+filters:
+  instance-state-name: running
+
+leading_separator: false # by default it will give _ inthe name to remove this we are using the operator 
+
+keyed_groups:  #---> to Gorup 
+  - key: tags.env
+  - key: tags.OS
+
+
+
+You can run any play book  
+
+---
+- name: Demonstrate Test Operators with FQCN
+  hosts: <keyed_groups> 
+  vars:
+    my_var: "Hello"
+    fruits: ['apple', 'banana', 'orange']
+    server_status: "healthy"
+    cpu_usage: 75
+    user_role: "admin"
+    my_file: "/etc/passwd"
+
+  tasks:
+    # Task 1: Check if variable is defined
+    - name: Check if variable is defined
+      ansible.builtin.debug:
+        msg: "The variable is defined."
+      when: my_var is defined
+
+    ------
+
+
+    

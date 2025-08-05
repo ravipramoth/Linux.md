@@ -201,5 +201,6 @@ ansible all -m ansible.builtin.setup -a "filter=ansible_distribution,ansible_upt
 
 
 
+Collections : 
+ansible coummity have nmave modules  and plugins but we can install requried collection using ansible galaxy 
 
- 

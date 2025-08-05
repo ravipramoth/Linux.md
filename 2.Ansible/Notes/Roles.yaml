@@ -1,0 +1,42 @@
+Roles -- > your breaking your playbook in samllaer piecee 
+
+ansible-galaxy init httpd<role name> --offine(to use our custom role)
+
+httpd/
+├── defaults/
+│   └── main.yml
+├── files/
+├── handlers/
+│   └── main.yml
+├── meta/
+│   └── main.yml
+├── tasks/
+│   └── main.yml
+├── templates/
+│   └── index.j2
+├── tests/
+│   ├── inventory
+│   └── test.yml
+└── vars/
+    └── main.yml
+
+
+---
+
+- name: Test the httpd role
+  hosts: web
+  become: true
+  roles:
+    - httpd
+
+-----------------
+
+ansible valut--
+
+Interview question --
+forks 
+serial 
+throttle 
+stargey 
+verbose level debugging 
+

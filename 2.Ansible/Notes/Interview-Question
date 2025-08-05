@@ -8,3 +8,180 @@ Difference b/w shell and Command
 | Safe from shell injection | ✅ Yes             | ❌ No              |             |
 | Performance               | ✅ Slightly faster | ❌ Slightly slower |             |
 | Example                   | `ls -l /etc`      | \`ls -l /etc      | grep conf\` |
+
+
+
+
+Synchronous Task
+
+poll > 0: Ansible waits, checking every few seconds.
+
+poll = 0: Ansible does NOT wait (fire-and-forget).
+
+poll < 0: Invalid
+
+
+
+
+- name: Regular shell command
+  shell: sleep 30
+Ansible will wait 30 seconds before moving on.
+
+
+Fully Asynchronous Task (poll: 0)
+Asynchronous 
+- name: Start backup but don't wait
+  shell: /usr/local/bin/backup.sh
+  async: 600     # max runtime
+  poll: 0        # fire and forget
+  register: backup_job
+
+
+Task starts.
+
+Ansible moves to next task immediately.
+
+Job runs in background on target node.
+
+You get a job_id (ansible_job_id) to track it.
+
+
+Partially Async Task (poll > 0)
+
+- name: Run heavy report and wait for result
+  shell: /usr/local/bin/generate_report.sh
+  async: 300     # let it run up to 5 min
+  poll: 10       # check every 10 sec
+
+Ansible starts the task.
+
+Every 10 sec, it checks:
+
+Is it done?
+
+If yes → continue
+
+If no and time expires → fail
+
+1. Pipelining
+
+Pipelining is an Ansible option (enabled in ansible.cfg) that can speed up remote command execution, especially over SSH.
+
+What is it?
+Normally, Ansible executes tasks by copying the module to the remote host, then running it via a temporary script. With pipelining, Ansible combines the SSH connection and remote execution steps, reducing the number of SSH operations.
+
+Effect:
+This reduces the overhead of opening multiple SSH connections per task, making playbooks run faster.
+
+How to Enable:
+In your ansible.cfg, set:
+
+INI
+[ssh_connection]
+pipelining = True
+
+
+- name: Start a long running job
+  shell: /path/to/script.sh
+  async: 600
+  poll: 0
+  register: job_info
+
+- name: Wait for long running job to finish
+  async_status:
+    jid: "{{ job_info.ansible_job_id }}"
+  register: job_result
+  until: job_result.finished
+  retries: 30
+  delay: 10
+
+  Here’s an explanation of **pipelining** and **async/poll/retries/callback** options in Ansible:
+
+---
+
+### 1. **Pipelining**
+
+**Pipelining** is an Ansible option (enabled in `ansible.cfg`) that can speed up remote command execution, especially over SSH.
+
+- **What is it?**  
+  Normally, Ansible executes tasks by copying the module to the remote host, then running it via a temporary script. With pipelining, Ansible combines the SSH connection and remote execution steps, reducing the number of SSH operations.
+
+- **Effect:**  
+  This reduces the overhead of opening multiple SSH connections per task, making playbooks run faster.
+
+- **How to Enable:**  
+  In your `ansible.cfg`, set:
+  ```ini
+  [ssh_connection]
+  pipelining = True
+  ```
+  **Note:** You may need to disable `requiretty` in `/etc/sudoers` on the remote host for pipelining to work.
+
+---
+
+### 2. **async, poll, retries, callback** Options
+
+These options relate to running tasks asynchronously and handling their results:
+
+#### **async**
+- Runs tasks asynchronously (in the background).
+- Value: Number of seconds Ansible should wait for the job to complete.
+- Example:
+  ```yaml
+  - name: Run long task
+    shell: /path/to/long_script.sh
+    async: 600
+    poll: 0
+  ```
+
+#### **poll**
+- Controls how frequently Ansible checks the status of the asynchronous job.
+- If `poll: 0`, Ansible will not wait but just start the job and move on.
+- To wait for completion, set `poll` to a positive integer (e.g., `poll: 10`).
+
+#### **retries**
+- Used with `until` loops to retry a task until a condition is met.
+- Not directly tied to async/poll, but allows for repeated attempts if a task fails.
+
+#### **callback**
+- In Ansible, “callback” usually refers to **callback plugins** that can customize the output of playbook runs (e.g., sending results to Slack).
+- For async jobs, you can use the `async_status` module to poll job status and “callback” with results.
+
+##### **Example of async/poll usage:**
+```yaml
+- name: Start a long running job
+  shell: /path/to/script.sh
+  async: 600
+  poll: 0
+  register: job_info
+
+- name: Wait for long running job to finish
+  async_status:
+    jid: "{{ job_info.ansible_job_id }}"
+  register: job_result
+  until: job_result.finished
+  retries: 30
+  delay: 10
+```
+
+---
+
+**Summary Table:**
+
+| Option      | Purpose                                                    |
+|-------------|-----------------------------------------------------------|
+| pipelining  | Speeds up SSH connections in Ansible                      |
+| async       | Runs tasks asynchronously for specified seconds           |
+| poll        | How often Ansible checks for async task completion        |
+| retries     | Number of attempts for a task with `until` condition      |
+| callback    | Plugins for playbook output; can refer to result handling |
+
+If you want more code examples or details on a specific option, let me know!
+
+
+https://hooks.slack.com/services/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
+
+export SLACK_WEBHOOK_URL='https://hooks.slack.com/services/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'
+export SLACK_CHANNEL='#ansible-update'
+export SLACK_USERNAME='AnsibleBot'
+export SLACK_ICON_EMOJI=':robot_face:'

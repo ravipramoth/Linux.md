@@ -1,6 +1,6 @@
 ---
   - name: this demo shows the Jinja2 condtions
-    hosts: local 
+    hosts: local:<ip-address:
     gather_facts: false
     # become_user: root 
     # become_method: sudo
@@ -18,4 +18,4 @@
           ansible.builtin.template:
             src: test.j2
             dest: /tmp/abc.txt
-          
+          tags : JKava 
