@@ -1,0 +1,108 @@
+1. What is the arch of the Ansible? 
+
+    Ansible follows a push-based architecture where the control node pushes configurations to managed nodes over SSH or WinRM without requiring an agent on the target machines.
+
+2. can we have windows machines as control node ? 
+
+    No, It must have linux/unix to be control / controller node ( Master / slave ) 
+
+3. advantage of Ansible when compared to other automation tools ? 
+    
+    agent less tool -- we will be using SSH connection connection our manged nodes 
+    simple and easy to learn -- uses YAML for playbooks which is human-readable 
+    idempotent -- running the same playbook multiple times will not change the state of the system if it is already in the desired state
+
+4. What is the difference between Ansible and Puppet?
+    puppet will work agent mode 
+    Ansible is agentless and uses SSH for communication, while Puppet requires an agent to be installed on each managed node.
+5.   where is an configurations file located ?
+    
+    The main configuration file for Ansible is located at `/etc/ansible/ansible.cfg` on the control node. This file can be customized to set various parameters for Ansible's operation. 
+
+    to customized you can put working project directory 
+    `ansible.cfg` file, which will override the global configuration settings.
+
+    /etc/ansible/ansible.cfg -- system wide 
+6. What is Ansible version  ? 
+
+
+
+        ansible [core 2.10.3]
+
+7. i want to copy a file to 100 servers using ansible how can i do that 
+
+        ansible.builtin.file 
+        src : 
+        dest:
+
+        forks -- > At a time how many playbook can controller run 
+        by default it will run 5 host 
+ansible-playbook <playbook-name> -f 15 
+
+to change default values of fork you have add the changes in the 
+
+ansible.cfg file
+    inventory=/home/ansadmin/list
+log_path = /home/ansadmin/ansible.log
+callback_whitelist = slack
+vault_password_file = /home/ansadmin/Linux.md/2.Ansible/Notes/Playbooks/devops.txt --> Planin txt - hashcorp valut / aws secerts manger 
+forks = 15 -- system wide 
+
+8. write a playbook to install a s/w 
+ 
+    
+    become_user: root 
+    become: true
+    become_mehtod: sudo 
+    ansible.builtin.yum/package/apt/ -- 
+9 . Whata are modules you have used? 
+
+    copy, 
+    debug 
+    template 
+    file
+    lineinfile 
+    blockinfile 
+    package
+    command 
+    servie
+    shell 
+    fetch 
+10 . difference between copy and fetch ?
+        Copy used copy the files tp controller to managed nodes 
+        fetch : from managed nodes to controller node 
+11. difference between shell and command mondule 
+
+    env varaible like PATH,HOME, && . ||, > < are not available in command module 
+
+12 . Whare are verbosity level ? 
+    tracing -> 
+    Ansible supports different verbosity levels to control the amount of output generated during playbook execution. The levels range from 0 (default) to 4, with higher levels providing more detailed output.
+    
+    - `-v`: Verbose (level 1)
+    - `-vv`: More verbose (level 2)
+    - `-vvv`: Debug (level 3)
+    - `-vvvv`: Connection debugging (level 4)
+    - ` -vvvvv` : tranpost layer level  
+
+13. I have senstive data and should not display at run time ? 
+
+    no_log: true ( to avaoid printing senstive data in the screen ) we have to use it task level 
+
+    
+- name: Playbook using encrypted variable
+  hosts: local
+  gather_facts: false
+  vars:
+   my_password: "abc" 
+  tasks:
+    - name: Print the password (example only - avoid printing in real playbooks)
+      debug:
+        msg: "the password is {{ my_password }}"
+      no_log: true
+
+
+
+
+
+

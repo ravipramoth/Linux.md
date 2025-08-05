@@ -1,0 +1,61 @@
+Valut -- It used to encrypt the secerts or keys  
+
+positional arguments:
+  {create,decrypt,edit,view,encrypt,encrypt_string,rekey}
+    create              Create new vault encrypted file
+    decrypt             Decrypt vault encrypted file
+    edit                Edit vault encrypted file
+    view                View vault encrypted file
+    encrypt             Encrypt YAML file
+    encrypt_string      Encrypt a string
+    rekey               Re-key a vault encrypted file
+
+
+
+---
+
+
+
+
+---
+
+ansible-vault encrypt_string 'my_secret_password' --name 'my_password'
+
+- name: Playbook using encrypted variable
+  hosts: localhost
+  gather_facts: false
+  vars:
+    my_password: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          30393065383064316431633731646665336331353762313734333031326166343537363335376637
+          6239376134396638313163303264613631653932386430300a303333336139663834373234393630
+          64313636313034656461643632343364656166373764326563353062336262353638363962633436
+          3864303238323462380a386237396430653038323337303238323336643766343964316538316264
+          36363066653031633864663939633932346435653235336432613265636162323933
+
+  tasks:
+    - name: Print the password (example only - avoid printing in real playbooks)
+      debug:
+        msg: "Decrypted password is {{ my_password }}"
+
+
+--ask-vault-pass 
+--vault-password-file
+you can add in the ansible cfg file 
+
+[defaults]
+inventory=/home/ansadmin/list
+log_path = /home/ansadmin/ansible.log
+callback_whitelist = slack
+vault_password_file = /home/ansadmin/Linux.md/2.Ansible/Notes/Playbooks/devops.txt --> Planin txt - hashcorp valut / aws secerts manger 
+
+AWs secerts manger --> Controller should have access to IAM Role < SSM - andmin > 
+
+--------------------------------------------------------------------------------------- 
+
+
+Ansible tower ---- > Paid --- > 
+
+AWx -- Open source 
+
+-----------------------------------------------------------------------
