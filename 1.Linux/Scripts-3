@@ -9,7 +9,7 @@ done
 #syntax for while loop
     while [ condition ]
    do
-    # commands to be executed
+    # commands to be executed adsa 
     Breaking the loop  
       done
  ------------------------------------------------
