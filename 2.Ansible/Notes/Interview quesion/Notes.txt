@@ -1,61 +1,73 @@
-1. What is the arch of the Ansible? 
+1. What is the architecture of Ansible? 
 
-    Ansible follows a push-based architecture where the control node pushes configurations to managed nodes over SSH or WinRM without requiring an agent on the target machines.
-
-2. can we have windows machines as control node ? 
-
-    No, It must have linux/unix to be control / controller node ( Master / slave ) 
-
-3. advantage of Ansible when compared to other automation tools ? 
+    Ansible follows a push-based 12. What are verbosity levels? 
+    tracing -> 
+    Ansible supports different verbosity levels to control the amount of output generated during playbook execution. The levels range from 0 (default) to 4, with higher levels providing more detailed output.
     
-    agent less tool -- we will be using SSH connection connection our manged nodes 
-    simple and easy to learn -- uses YAML for playbooks which is human-readable 
-    idempotent -- running the same playbook multiple times will not change the state of the system if it is already in the desired state
+    - `-v`: Verbose (level 1)
+    - `-vv`: More verbose (level 2)
+    - `-vvv`: Debug (level 3)
+    - `-vvvv`: Connection debugging (level 4)
+    - `-vvvvv`: Transport layer level  
+
+13. I have sensitive data and should not display at run time?
+
+    no_log: true (to avoid printing sensitive data on the screen) we have to use it at task levelwhere the control node pushes configurations to managed nodes over SSH or WinRM without requiring an agent on the target machines.
+
+2. Can we have Windows machines as control node? 
+
+    No, It must have Linux/Unix to be control / controller node ( Master / slave ) 
+
+3. Advantages of Ansible when compared to other automation tools? 
+    
+    Agentless tool -- we will be using SSH connection to connect our managed nodes 
+    Simple and easy to learn -- uses YAML for playbooks which is human-readable 
+    Idempotent -- running the same playbook multiple times will not change the state of the system if it is already in the desired state
 
 4. What is the difference between Ansible and Puppet?
-    puppet will work agent mode 
+    Puppet will work in agent mode 
     Ansible is agentless and uses SSH for communication, while Puppet requires an agent to be installed on each managed node.
-5.   where is an configurations file located ?
+5. Where is the configuration file located?
     
     The main configuration file for Ansible is located at `/etc/ansible/ansible.cfg` on the control node. This file can be customized to set various parameters for Ansible's operation. 
 
-    to customized you can put working project directory 
+    To customize, you can put a working project directory 
     `ansible.cfg` file, which will override the global configuration settings.
 
     /etc/ansible/ansible.cfg -- system wide 
-6. What is Ansible version  ? 
+6. What is Ansible version? 
 
 
 
         ansible [core 2.10.3]
 
-7. i want to copy a file to 100 servers using ansible how can i do that 
+7. I want to copy a file to 100 servers using Ansible. How can I do that? 
 
-        ansible.builtin.file 
+        ansible.builtin.copy 
         src : 
         dest:
 
-        forks -- > At a time how many playbook can controller run 
-        by default it will run 5 host 
+        forks -- > At a time how many playbooks can controller run 
+        by default it will run 5 hosts 
 ansible-playbook <playbook-name> -f 15 
 
-to change default values of fork you have add the changes in the 
+To change default values of fork you have to add the changes in the 
 
 ansible.cfg file
     inventory=/home/ansadmin/list
 log_path = /home/ansadmin/ansible.log
 callback_whitelist = slack
-vault_password_file = /home/ansadmin/Linux.md/2.Ansible/Notes/Playbooks/devops.txt --> Planin txt - hashcorp valut / aws secerts manger 
+vault_password_file = /home/ansadmin/Linux.md/2.Ansible/Notes/Playbooks/devops.txt --> Plain text - hashicorp vault / AWS secrets manager 
 forks = 15 -- system wide 
 
-8. write a playbook to install a s/w 
+8. Write a playbook to install software 
  
     
     become_user: root 
     become: true
-    become_mehtod: sudo 
+    become_method: sudo 
     ansible.builtin.yum/package/apt/ -- 
-9 . Whata are modules you have used? 
+9. What are modules you have used? 
 
     copy, 
     debug 
@@ -65,17 +77,17 @@ forks = 15 -- system wide
     blockinfile 
     package
     command 
-    servie
+    service
     shell 
     fetch 
-10 . difference between copy and fetch ?
-        Copy used copy the files tp controller to managed nodes 
-        fetch : from managed nodes to controller node 
-11. difference between shell and command mondule 
+10. Difference between copy and fetch?
+        Copy is used to copy the files from controller to managed nodes 
+        Fetch: from managed nodes to controller node 
+11. Difference between shell and command module?
 
-    env varaible like PATH,HOME, && . ||, > < are not available in command module 
+    Environment variables like PATH, HOME, && . ||, > < are not available in command module 
 
-12 . Whare are verbosity level ? 
+12. What are verbosity levels? 
     tracing -> 
     Ansible supports different verbosity levels to control the amount of output generated during playbook execution. The levels range from 0 (default) to 4, with higher levels providing more detailed output.
     
@@ -101,8 +113,543 @@ forks = 15 -- system wide
         msg: "the password is {{ my_password }}"
       no_log: true
 
+14. What is the priority of the variable in Ansible? 
+
+    Ansible command that time passing variable have the highest priority 
+
+    host: all 
+    vars: 
+        a= 10 
+    tasks:
+        debug: 
+            msg : {{ a }}
+
+ansible-playbook playbook-name -e || --extra-vars "a=15"
+
+    tasks:
+        debug: 
+            msg : {{ a =15 }}
+
+15. I want to execute a command only on specific OS and specific commands. 
+
+    gather_facts: true  # setup_module 
+    tasks:
+      - name : This play will help you to run in Ubuntu
+        ansible.builtin.apt:
+          name: nginx
+          state: present
+          update_cache: true
+        when: ansible_facts.os_family == "Debian"
+    - name : This play will help you to run in RedHat
+        ansible.builtin.yum:
+          name: nginx
+          state: present
+          update_cache: true
+        when: ansible_facts.os_family == "RedHat"
+
+16. How can I make Ansible go to next task even if current task is failed? 
+      - name : This play will help you to run in Ubuntu
+        ansible.builtin.apt:
+          name: nginx
+          state: present
+          update_cache: true
+        when: ansible_facts.os_family == "Debian"
+        ignore_errors: true 
+    - name : This play will help you to run in RedHat
+        ansible.builtin.yum:
+          name: nginx
+          state: present
+          update_cache: true
+        when: ansible_facts.os_family == "RedHat"
+17. What are tags in Ansible?
+          - name : This play will help you to run in Ubuntu
+        ansible.builtin.apt:
+          name: nginx
+          state: present
+          update_cache: true
+        ignore_errors: true 
+        tags: 
+            - ubuntu
+            - both
+
+    - name : This play will help you to run in RedHat
+        ansible.builtin.yum:
+          name: nginx
+          state: present
+          update_cache: true
+        tags: 
+            - redhat
+            - both
+
+    ansible-playbook playbook.yml --tags redhat 
+    ansible-playbook playbook.yml --list-tags 
+18. How will you check the syntax of the playbook?
+    --syntax-check
+    ansible-lint 
+    For dry run you will use --check 
+
+19. What is Jinja template?
+
+Jinja templates are used to generate dynamic content in the configuration files 
+
+We can use Jinja2 templating engine {{ }}
+
+20. What is block, rescue and always?
+    Ansible provides a way to group tasks into blocks, 
+    which can be useful for error handling and organizing playbooks. The `block`, `rescue`, and `always` keywords allow you to define a block of tasks that can handle errors gracefully.
+
+    - `block`: Contains a set of tasks that will be executed.  # Try method 
+    - `rescue`: Contains tasks that will be executed if any task in the block fails. # catch method 
+    - `always`: Contains tasks that will always be executed, regardless of whether the block succeeded or failed.
+
+21. I want to change the status of service? 
+
+    ansible.builtin.service:
+        name : nginx 
+        state: started | restarted | enabled 
+    
+    I have to restart the service in case I have change in config file. 
+        ansible.builtin.copy;
+            src: index.html 
+            dest: /var/www/html/index.html
+            notify: restart nginx 
+        Handlers: 
+            - name: restart nginx
+             ansible.builtin.service:
+                 name : nginx 
+                 state: restarted
+22. What is serial, throttle and forks in Ansible? 
+    - `serial`: Controls how many hosts are processed at a time in a playbook. For example, `serial: 5` means that only 5 hosts will be processed simultaneously.
+    - `throttle`: Limits the number of hosts that can be processed concurrently in a playbook run. This is useful for managing resource usage on the control node.
+    - `forks`: Specifies the maximum number of parallel processes that Ansible can use to execute tasks across multiple hosts. The default is usually 5, but it can be increased in the configuration file. # system wide 
+
+Fork = 20
+serial = 5
+
+[webservers]
+server1 ansible_host=192.168.1.10
+server2 ansible_host=192.168.1.11
+server3 ansible_host=192.168.1.12
+server4 ansible_host=192.168.1.13
 
 
+---
+- name: Install and start httpd on webservers in batches
+  hosts: webservers
+  become: yes
+  gather_facts: false
+
+  serial: 2  # Run in batches of 2 hosts --- Playbook 
+
+  tasks:
+    - name: Install httpd
+      ansible.builtin.yum:
+        name: httpd
+        state: present
+      throttle: 1  # Only 1 host at a time will install -- task level 
+
+    - name: Start and enable httpd
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enabled: true
+      throttle: 1
+ansible-playbook -i hosts.ini install-httpd.yml --forks=4
+ 
 
 
+| Feature       | What it does                                      |
+| ------------- | ------------------------------------------------- |
+| `serial: 2`   | Runs tasks in **batches** of 2 hosts at a time    |
+| `throttle: 1` | Limits to 1 host **at a time** for that task      |
+| `--forks=4`   | Max **parallel worker processes** Ansible can run |
+
+23. What are the types of strategy in Ansible? 
+    Ansible provides several strategies to control how tasks are executed across hosts. The default strategy is `linear`, which processes hosts in the order they are listed in the inventory. Other strategies include:
+
+    - `free`: Executes tasks on all hosts in parallel, without waiting for each host to finish.
+    - `host_pinned`: Ensures that tasks are executed on a specific host before moving to the next one.
+    - `debug`: Used for debugging purposes, providing detailed output about task execution.
+
+    You can specify a strategy in your playbook like this:
+    ```yaml
+    strategy: free
+    ```
+    hosts:
+    strategy: free
+
+24. What are roles? 
+
+    1. Roles are similar to modules in Terraform 
+    2. Roles help us to reduce the playbook size and complexity  
+    3. We can generate the custom roles using ansible-galaxy 
+        ansible-galaxy role init role-name --offline 
+25. What are pre-task and post-task in Ansible?
+
+    Pre-task -- > it will run first before the actual play begins 
+    Post-task -- > it will run after the actual play ends 
+
+    ---
+- name: Install Apache with pre and post tasks
+  hosts: webservers
+  become: true
+  gather_facts: false
+
+  pre_tasks:
+    - name: Check internet connectivity
+      ansible.builtin.uri:
+        url: http://www.google.com
+        method: GET
+      register: internet_status
+      failed_when: internet_status.status != 200
+      ignore_errors: false
+
+  tasks:
+    - name: Install httpd package
+      ansible.builtin.yum:
+        name: httpd
+        state: present
+
+    - name: Start and enable httpd service
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enabled: true
+
+  post_tasks:
+    - name: Check httpd service status
+      ansible.builtin.shell: systemctl is-active httpd
+      register: service_status
+      changed_when: false
+
+    - name: Print httpd service status
+      ansible.builtin.debug:
+        msg: "Apache service is {{ service_status.stdout }}"
+
+26. What are callback plugins?
+    Callback plugins in Ansible allow you to customize the output and behavior of playbook runs. They can be used to send notifications, log output to files, or integrate with external systems like Slack or email.
+
+    You can enable callback plugins in your `ansible.cfg` file:
+    ```ini
+    [defaults]
+    callback_whitelist = slack, timer
+    ```
+
+    To use a specific callback plugin, you can specify it when running a playbook:
+    ```bash
+    ansible-playbook playbook.yml --module-path /path/to/callback_plugins
+    ```
+
+Ansible **callback plugins** are used to alter the output or send results of a playbook run to external systems like Slack, files, JSON logs, etc.
+
+---
+
+### 🔹 **1. Using Default Callback Plugin (YAML output)**
+
+YAML output is the default format in modern Ansible.
+
+You can enforce it manually in `ansible.cfg`:
+
+```ini
+[defaults]
+stdout_callback = yaml
+```
+
+---
+
+### 🔹 **2. Enable `json` Callback Plugin**
+
+Useful when you want machine-readable output.
+
+```ini
+[defaults]
+stdout_callback = json
+```
+
+---
+
+### 🔹 **3. Enable `minimal` Plugin**
+
+Compact output, great for scripting and logging.
+
+```ini
+[defaults]
+stdout_callback = minimal
+```
+
+---
+
+### 🔹 **4. Use `log_plays` Plugin to Log to File**
+
+Logs all plays to a file for auditing.
+
+#### 🔧 `ansible.cfg`:
+
+```ini
+[defaults]
+callback_whitelist = log_plays
+log_path = 
+```
+
+#### Log file location:
+
+By default: `/tmp/ansible.log`
+
+To change:
+
+```ini
+[defaults]
+log_path = /var/log/ansible.log
+```
+
+---
+
+### 🔹 **5. Use `slack` Callback Plugin**
+
+Sends playbook result notifications to a **Slack channel**.
+
+#### Step-by-Step:
+
+1. Install Slack callback dependencies:
+
+   ```bash
+   pip install requests
+   ```
+
+2. Create a Slack **incoming webhook URL**.
+
+3. Enable in `ansible.cfg`:
+
+   ```ini
+   [defaults]
+   callback_whitelist = slack
+   ```
+
+4. Create `callback_slack.yml` in your project directory:
+
+   ```yaml
+   ---
+   slack_webhook: 'https://hooks.slack.com/services/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'
+   slack_username: 'ansible'
+   slack_channel: '#all-devops-tamil'
+   slack_msg_ok: true
+   slack_msg_failed: true
+   ```
+
+5. Export the config file path:
+
+   ```bash
+   export ANSIBLE_CALLBACK_SLACK_CFG=callback_slack.yml
+   ```
+
+---
+
+### 🔹 **6. Use `profile_tasks` to Show Execution Time**
+
+Shows time taken by each task (good for debugging performance).
+
+```ini
+[defaults]
+callback_whitelist = profile_tasks
+```
+
+---
+
+### 🔹 **7. Multiple Callback Plugins**
+
+You can enable multiple plugins using a comma-separated list:
+
+```ini
+[defaults]
+callback_whitelist = profile_tasks, log_plays, slack
+```
+
+---
+
+### 🧪 Example Playbook to Test Callback Plugin:
+
+```yaml
+---
+- name: Test callback plugins
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: Say Hello
+      ansible.builtin.debug:
+        msg: "Hello from Ansible callback demo!"
+
+    - name: Pause for 5 seconds
+      ansible.builtin.pause:
+        seconds: 5
+```
+
+---
+
+### 💡 Want to Write a Custom Callback Plugin?
+
+You can write one in Python and place it in:
+
+```bash
+~/.ansible/plugins/callback/
+```
+
+Or set a custom path in `ansible.cfg`.
+
+---
+
+Let me know if you'd like a working **Slack callback plugin setup** or a **custom file logger**.
+
+27. What is ansible-vault? 
+Ansible Vault is a feature that allows you to encrypt sensitive data, such as passwords or API keys, within Ansible playbooks and variables. This ensures that sensitive information is not stored in plaintext and can only be accessed by authorized users.
+
+positional arguments:
+  {create,decrypt,edit,view,encrypt,encrypt_string,rekey}
+    create              Create new vault encrypted file
+    decrypt             Decrypt vault encrypted file
+    edit                Edit vault encrypted file
+    view                View vault encrypted file
+    encrypt             Encrypt YAML file
+    encrypt_string      Encrypt a string
+    rekey               Re-key a vault encrypted file
+
+FQCN ------ 
+    debug: 
+        msg: 
+    ansible.builtin.debug: 
+28. Loops with_dict, loop 
+29. Difference between include and import in Ansible?
+In Ansible, `include` and `import` are used to include other playbooks or tasks, but they have different behaviors: 
+- `include`: Dynamically includes tasks or playbooks at runtime. It allows for conditional inclusion and can be used with loops.
+- `import`: Statically includes tasks or playbooks at parse time. It does not allow for dynamic conditions and is generally used for static task definitions.
+
+include_playbook
+import_tasks
+include_playbook
+include_tasks
+30. What is Ansible Galaxy?
+Ansible Galaxy is a repository for sharing and reusing Ansible roles and collections. It allows users to find, download, and share roles created by the community, making it easier to automate tasks without having to write everything from scratch
+
+31. What are Ansible collections?
+Ansible Collections are a packaging format for Ansible content, including roles, modules, plugins, and playbooks. Collections allow users to bundle and distribute Ansible content in a structured way, making it easier to share and reuse across different projects.
+
+32. How will you enable logging? 
+    log_path = "Path of the file" 
+
+33. What is remote_src? 
+The `remote_src` parameter in Ansible is used to indicate that the source file for a task is already present on the remote host rather than on the control node. This is particularly useful when you want to copy or manipulate files that are already on the target machine.
+
+e.g. ref playbook 26 
+
+34. How will you wait and retries in the playbook?
+
+In Ansible, **waiting** and **retrying** can be achieved using:
+
+* `retries` + `delay` + `until` — to **retry** tasks until a condition is met.
+* `wait_for` module — to **wait for a port, file, or condition**.
+* `pause` module — to **pause** execution for a fixed time.
+
+---
+
+## ✅ Example 1: Wait for a file to be created using `until`, `retries`, and `delay`
+
+```yaml
+---
+- name: Wait for a file to exist
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: Wait until /tmp/ready.txt is present
+      ansible.builtin.stat:
+        path: /tmp/ready.txt
+      register: file_status
+      retries: 5
+      delay: 10
+      until: file_status.stat.exists
+```
+
+🟢 This will check every 10 seconds (delay), up to 5 times, until the file exists.
+
+---
+
+## ✅ Example 2: Wait for a port to be open using `wait_for`
+
+```yaml
+- name: Wait for port 80 to be open
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Wait for port 80
+      ansible.builtin.wait_for:
+        port: 80
+        host: "{{ inventory_hostname }}"
+        timeout: 60
+```
+
+🟢 This waits up to 60 seconds for port 80 to be available.
+
+---
+
+## ✅ Example 3: Retry a command until it succeeds
+
+```yaml
+- name: Retry pinging a service until it's reachable
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: Ping an external service
+      ansible.builtin.shell: curl -sSf http://example.com/health
+      register: ping_result
+      retries: 6
+      delay: 5
+      until: ping_result.rc == 0
+```
+
+🟢 Tries the `curl` every 5 seconds for up to 6 times until return code is `0`.
+
+---
+
+## ✅ Example 4: Pause for a fixed duration
+
+```yaml
+- name: Pause before next task
+  hosts: localhost
+  tasks:
+    - name: Waiting for 15 seconds...
+      ansible.builtin.pause:
+        seconds: 15
+```
+
+---
+
+## ✅ Example 5: Wait for a service to start with `until`
+
+```yaml
+- name: Wait for httpd service to be active
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Check httpd status
+      ansible.builtin.shell: systemctl is-active httpd
+      register: service_status
+      retries: 5
+      delay: 10
+      until: service_status.stdout == "active"
+```
+
+---
+
+## 🔁 Summary of Key Parameters # task level 
+
+| Parameter  | Purpose                                  |
+| ---------- | ---------------------------------------- |
+| `retries`  | How many times to retry the task         |
+| `delay`    | How many seconds to wait between retries |
+| `until`    | Condition to be met to stop retrying     |
+| `wait_for` | Waits for ports, files, timeouts         |
+| `pause`    | Just pauses execution (manual delay)     |
+
+----------------------- 
 
