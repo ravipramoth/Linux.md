@@ -1,4 +1,6 @@
 ---
+# Purpose: Demonstrate Jinja2 test operators for variables, files, and types.
+# Key concepts: is defined/undefined, is file, is even, is string, list membership.
 - name: Demonstrate Test Operators with FQCN
   hosts: localhost
   vars:

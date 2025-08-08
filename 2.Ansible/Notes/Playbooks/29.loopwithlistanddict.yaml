@@ -1,4 +1,6 @@
 --- 
+# Purpose: Loop over a list of dictionaries to create files with attributes.
+# Key concepts: iterating dict items in a list, file mode/path from item fields.
   - name: demom for loop 
     hosts: local
     gather_facts: false

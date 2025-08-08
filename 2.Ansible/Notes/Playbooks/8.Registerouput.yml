@@ -1,4 +1,6 @@
 ---
+# Purpose: Capture command outputs using register and reference stdout/stderr.
+# Key concepts: ansible.builtin.command, register var, stdout vs stderr, debugging.
 - name : Registering the output
   hosts: local
   gather_facts: false 

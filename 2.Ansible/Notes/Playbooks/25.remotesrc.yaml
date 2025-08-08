@@ -1,4 +1,6 @@
 ---
+# Purpose: Demonstrate downloading and extracting an archive with remote_src.
+# Key concepts: get_url, unarchive remote_src=true, lineinfile for env var.
   - name : Demo for resmote_src 
     hosts: test
     gather_facts: false

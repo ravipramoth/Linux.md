@@ -1,4 +1,6 @@
 ---
+# Purpose: Demonstrate changing variables at runtime using set_fact.
+# Key concepts: set_fact, variable reassignment within a play, debug display.
   - name: Demo for show facts 
     hosts: local
     gather_facts: false

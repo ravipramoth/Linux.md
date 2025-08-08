@@ -1,4 +1,6 @@
 ---
+# Purpose: Demonstrate import_tasks (static) with OS family conditionals.
+# Key concepts: static parsing, both files must exist even if condition false.
 - name: Demo using import_tasks (static)
   hosts: all
   become: yes

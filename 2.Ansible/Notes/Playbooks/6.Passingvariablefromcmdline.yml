@@ -1,4 +1,6 @@
 ---
+# Purpose: Demonstrate overriding vars via command line extra-vars (-e).
+# Key concepts: variable precedence, CLI -e/--extra-vars, ansible.builtin.debug.
 - name: Passing values from the command line 
   hosts: local
   gather_facts: false

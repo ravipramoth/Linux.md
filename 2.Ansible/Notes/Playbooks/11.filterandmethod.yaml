@@ -1,4 +1,6 @@
 ---
+# Purpose: Showcase Jinja2 filters and methods for string manipulation.
+# Key concepts: upper, lower, title, replace; ansible-lint and syntax check notes.
 - name: This Playbook helps us to learn methods and filters
   hosts: localhost
   gather_facts: false

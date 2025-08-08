@@ -1,4 +1,6 @@
 ---
+# Purpose: Demonstrate membership operator 'not in' with lists.
+# Key concepts: boolean evaluation in when, printing list and evaluation result.
   - name: Playbook demo to show Membership operator not In 
     hosts: local
     gather_facts: false

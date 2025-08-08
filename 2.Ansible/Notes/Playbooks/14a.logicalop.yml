@@ -1,4 +1,6 @@
 ---
+# Purpose: Demonstrate logical operators with proper FQCN modules and when conditions.
+# Key concepts: and/or/not in when, equality/inequality checks, list membership.
 - name: Demonstrating all logical operators with FQCN
   hosts: localhost
   vars:

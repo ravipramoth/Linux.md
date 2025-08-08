@@ -1,4 +1,6 @@
 - name: Simple if-else statement
+  # Purpose: Calculate a value using inline Jinja2 conditional expression.
+  # Key concepts: set_fact with inline if-else, debug output.
   hosts: localhost
   vars:
     a: 30

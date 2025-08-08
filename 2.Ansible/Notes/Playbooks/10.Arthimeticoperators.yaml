@@ -1,4 +1,6 @@
 --- 
+# Purpose: Demonstrate arithmetic operations and Jinja2 expressions.
+# Key concepts: addition, subtraction, multiplication, division, modulus; type safety.
   - name: this Playbook helps us to learn the Arethmetic Operators
     hosts: DEV
     gather_facts: false

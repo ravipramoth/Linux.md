@@ -1,4 +1,6 @@
 ---
+# Purpose: Load variables from external JSON and YAML files and print them.
+# Key concepts: vars_files, data formats, accessing list/dict values from files.
 - name: This playbook defines how will you use vars_file to print varibales 
   hosts: local
   gather_facts: false

@@ -1,3 +1,5 @@
+# Purpose: Basic example printing a message to demonstrate play/task structure.
+# Key concepts: YAML document separator, play name, hosts, ansible.builtin.debug
 --- # document seperator
 
 - name: Example Playbook # not mandatory but good practice to have a name

@@ -1,4 +1,6 @@
 ---
+# Purpose: Install per-distro package names passed via nested extra-vars.
+# Key concepts: dict extra-vars, ansible_facts.pkg_mgr, conditional tasks.
 - name: Play to install a given pkg based on pkg_mgr
   hosts: dev
   gather_facts: true

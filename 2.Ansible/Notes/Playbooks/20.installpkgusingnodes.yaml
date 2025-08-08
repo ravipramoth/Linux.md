@@ -1,4 +1,6 @@
 ---
+# Purpose: Install a package based on the target's package manager.
+# Key concepts: ansible_facts.pkg_mgr, conditional package module selection, extra-vars.
 - name: Play to install a given pkg based on pkg_mgr
   hosts: dev
   gather_facts: true

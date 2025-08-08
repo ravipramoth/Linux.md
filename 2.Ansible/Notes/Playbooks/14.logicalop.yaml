@@ -1,4 +1,6 @@
 ---
+# Purpose: Illustrate logical operators (and, or, not, ==, !=) in Jinja2 expressions.
+# Key concepts: conditional expressions in debug messages, list membership checks.
 - name: Using logical operators inside Jinja2 templates
   hosts: localhost
   vars:

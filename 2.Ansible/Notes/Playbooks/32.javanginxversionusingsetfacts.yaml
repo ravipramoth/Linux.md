@@ -1,4 +1,6 @@
 ---
+# Purpose: Check Java version and branch on rc using when; demonstrate register and debug.
+# Key concepts: register, when on rc, error handling via conditional messaging.
 - name: This playbook demos how to run the tags and block together
   hosts: localhost
   gather_facts: false
@@ -11,12 +13,12 @@
             cmd: 'java --version'
           register: javaoutput
           ignore_errors: true
-        - name: print Java version value  
+    - name: Print Java version value  
           ansible.builtin.debug:
             msg: "{{ javaoutput }}"
           when: javaoutput.rc == 0
-        - name: print Java version value  
+    - name: Java not found message  
           ansible.builtin.debug:
-            msg: "{{ Java not found }}"
+      msg: "Java not found"
           when: javaoutput.rc != 0    
 

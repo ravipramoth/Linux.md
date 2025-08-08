@@ -1,4 +1,6 @@
 ---
+# Purpose: Install and start nginx on all hosts.
+# Key concepts: become privilege escalation, package module, service module, idempotent installs.
 - name: Installing nginx software
   hosts: all
   gather_facts: false

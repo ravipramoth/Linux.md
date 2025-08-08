@@ -1,4 +1,6 @@
 ---
+# Purpose: Setup JAVA_HOME from a downloaded tar.gz with dynamic parsing.
+# Key concepts: Jinja2 string ops, get_url, unarchive remote_src, lineinfile, cleanup.
 - name: Setting JAVA_HOME 
   hosts: test 
   gather_facts: false

@@ -1,4 +1,6 @@
 ---
+# Purpose: Prompt the user for input at runtime and print the values.
+# Key concepts: vars_prompt, private/no echo for sensitive input, debug output.
 - name: Getting input from the user
   hosts: localhost
   gather_facts: false

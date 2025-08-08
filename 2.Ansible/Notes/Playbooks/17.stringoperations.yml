@@ -1,4 +1,6 @@
 ---
+# Purpose: Demonstrate common string/dict operations and key access.
+# Key concepts: dict keys/values, get() vs bracket access, dotted keys.
 - name: This playbook shows demo on string operations 
   hosts: local 
   gather_facts: false

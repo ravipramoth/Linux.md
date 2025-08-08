@@ -1,4 +1,6 @@
 ---
+# Purpose: Demonstrate block/rescue/always error handling pattern.
+# Key concepts: block try-catch, failed_when, conditional debug on success, always cleanup.
 - name: Play to understand about error handling 
   hosts: local
   gather_facts: false

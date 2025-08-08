@@ -1,6 +1,8 @@
 ---
+# Purpose: Use template module alongside Jinja2 conditions with variables.
+# Key concepts: template src/dest, vars list/string, tags.
   - name: this demo shows the Jinja2 condtions
-    hosts: local:<ip-address:
+  hosts: localhost
     gather_facts: false
     # become_user: root 
     # become_method: sudo

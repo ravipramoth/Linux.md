@@ -1,4 +1,6 @@
 ---
+# Purpose: Demonstrate handlers triggered via notify after a task change.
+# Key concepts: notify/handlers, service start after package install, idempotency.
 - name: Play to install nginx and then to start it 
   hosts: local
   gather_facts: false 

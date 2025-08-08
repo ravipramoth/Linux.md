@@ -1,4 +1,6 @@
 --- 
+# Purpose: Loop over a list to create files.
+# Key concepts: loop with list, file module, templated path.
   - name: demom for loop 
     hosts: local
     gather_facts: false

@@ -1,4 +1,6 @@
 ---
+# Purpose: Show ignore_errors with conditional flows based on return codes.
+# Key concepts: command register, ignore_errors, failed_when, conditional follow-up tasks.
 - name: Demo Playbook for Error Handling
   hosts: localhost
   gather_facts: false

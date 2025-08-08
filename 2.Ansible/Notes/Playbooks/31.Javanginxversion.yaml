@@ -1,4 +1,6 @@
 ---
+# Purpose: Use blocks with tags to check Java and Nginx versions.
+# Key concepts: block/rescue, register, ignore_errors, tags including 'never' and combined.
 - name: This playbook demos how to run the tags and block together
   hosts: localhost
   gather_facts: false

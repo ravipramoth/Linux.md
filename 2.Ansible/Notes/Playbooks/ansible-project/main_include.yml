@@ -1,4 +1,6 @@
 ---
+# Purpose: Demonstrate include_tasks (dynamic) with OS family conditionals.
+# Key concepts: dynamic loading at runtime; only matched file is loaded.
 - name: Demo using include_tasks (dynamic)
   hosts: all
   become: yes

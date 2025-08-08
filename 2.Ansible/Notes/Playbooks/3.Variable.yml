@@ -1,4 +1,6 @@
 ---
+# Purpose: Demonstrate variables and type inspection with type_debug.
+# Key concepts: vars section, scalar types, ansible.builtin.debug, Jinja2 expressions.
 - name: Variables understanding
   hosts: all
   gather_facts: false

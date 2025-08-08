@@ -1,4 +1,6 @@
 ---
+# Purpose: Demonstrate membership operator 'in' with lists and vars_prompt.
+# Key concepts: vars_prompt, membership test in when, debug message.
 - name: Check if a user is in a list
   hosts: localhost
   vars:
@@ -14,7 +16,7 @@
     - name: Check if user is in the list
       ansible.builtin.debug:
         msg: "mentioned user is in the list of users {{ users }}"
-      when: "{{ check_user }} in users "
+      when: check_user in users
 
 
 #  Used to test / valdatie the given data is exist or not {In and Not in}

@@ -1,4 +1,6 @@
 ---
+# Purpose: Install nginx based on OS family using conditionals and facts.
+# Key concepts: ansible_facts.os_family, conditional tasks, become, vars_prompt.
   - name: Install playbook based on Os family
     hosts: all 
     gather_facts: true
@@ -13,7 +15,7 @@
           state: present
           update_cache: yes
         when: ansible_facts.os_family == "RedHat"
-      - name : This play will help you yo run in ubuntu
+  - name : This play will help you to run in ubuntu
         ansible.builtin.apt:
           name: nginx
           state: present

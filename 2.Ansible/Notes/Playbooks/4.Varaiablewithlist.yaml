@@ -1,4 +1,6 @@
 ---
+# Purpose: Show usage of lists and dictionaries in vars and how to access items.
+# Key concepts: list indexing, dict key access, ansible.builtin.debug, Jinja2 indexing.
 - name: Variable with List & Dict
   hosts: localhost
   gather_facts: false
