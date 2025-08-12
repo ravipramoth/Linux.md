@@ -1,32 +1,107 @@
-13-08-2025
+# Git notes (updated: 2025-08-12)
 
-Setting Up Git (First Time Use)
+## Quick setup (first time)
+- Identity
+  - git config --global user.name "Your Name"
+  - git config --global user.email "you@example.com"
+- Defaults
+  - git config --global init.defaultBranch main
+  - git config --global core.autocrlf true
+  - git config --global pull.rebase false
+- Helpful aliases
+  - git config --global alias.lg "log --oneline --graph --decorate --all"
+  - git config --global alias.st "status -sb"
+- Verify: git config --list
 
-git config --global user.name "Your Name"
-git config --global user.email "youremail@example.com"
+## Create or clone
+- git init
+- git clone <repo-url>
 
-You can verify your setup by running:
+## File lifecycle
+- git status (or: git status -s)
+- git add <file>  |  git add .
+- git commit -m "message"
+- git log --oneline --graph --decorate --all
+- git show
+- git diff
+- git diff --staged
+- git diff <A> <B> -- <path>
 
-git config --list
+## Branches
+- git branch
+- git switch -c feature/x   (or: git checkout -b feature/x)
+- git switch feature/x
+- git branch -m new-name
+- git branch -d old-branch  (or: -D to force)
 
-Basic Git Commands 
-  git init -- Initializes a new Git repository 
-  git clone <repository-url> -- Clones an existing repository
-  git status - Shows the status of the files in the working directory, such as untracked, modified, or staged.
-git add - Adds a file to the staging area, which means it's ready to be committed 
+## Merge
+- git switch main
+- git merge feature/x
+- Keep merge commit: git merge --no-ff feature/x
+Refer to Notes.md for the formatted Git cheat sheet.
 
-git add <filename>     # Add a specific file
-git add .              # Add all files
+# clean untracked files/dirs
+git clean -fd
 
-git commit
-  git commit -m "Your commit message"
+# recover using reflog (find lost commits/branches)
+git reflog
 
-log
-  git log --- git status                    # Check working directory status
-  git status -s                 # Short status format
-  git log                       # View commit history
-  git log --oneline             # Compact log view
-  git log --graph --oneline     # Visual branch history
-  git show                      # Show last commit details
 
-git diff - Shows the changes between the working directory and the staging area
+# Bisect (find first bad commit)
+# start a bisection session
+git bisect start
+git bisect bad                 # mark current as bad
+git bisect good <good-sha>     # mark a known good commit
+# Git checks out a midpoint → test your app →
+#   if bad:  git bisect bad
+#   if good: git bisect good
+# repeat until Git prints the first bad commit
+git bisect reset               # end session
+
+
+# .gitignore tips (examples)
+# Logs
+logs/
+*.log
+!keep.me
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Dependencies
+node_modules/
+venv/
+
+# Builds
+dist/
+build/
+
+
+# Everyday workflow example
+# create a branch, work, rebase on latest main, push PR
+git switch -c feature/add-api
+# edit files
+git add .
+git commit -m "feat: add API client"
+git fetch origin
+git rebase origin/main
+git push -u origin feature/add-api
+# after merge:
+git switch main
+git pull --ff-only
+git branch -d feature/add-api
+
+
+# Troubleshooting
+# push rejected (non-fast-forward)
+#   update local, reapply, push
+git fetch origin
+git rebase origin/main   # or: git pull --rebase
+# resolve conflicts → continue → push
+
+git switch -c rescue     # from detached HEAD to keep work
+
+# restore a file from another branch
+git restore -s origin/main -- path/to/file
