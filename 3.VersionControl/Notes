@@ -1,0 +1,193 @@
+# Git Version Control - Complete Guide
+
+## Initial Setup (First Time Use)
+
+```bash
+# Set global configuration
+git config --global user.name "Your Name"
+git config --global user.email "youremail@example.com"
+
+# Optional configurations
+git config --global init.defaultBranch main
+git config --global core.editor "code --wait"
+
+# Verify setup
+git config --list
+git config user.name
+git config user.email
+```
+
+## Repository Operations
+
+```bash
+# Initialize new repository
+git init
+git init my-project
+
+# Clone existing repository
+git clone https://github.com/user/repo.git
+git clone https://github.com/user/repo.git my-folder
+git clone --depth 1 https://github.com/user/repo.git  # Shallow clone
+```
+
+## Basic Workflow Commands
+
+### Status and Information
+```bash
+git status                    # Check working directory status
+git status -s                 # Short status format
+git log                       # View commit history
+git log --oneline             # Compact log view
+git log --graph --oneline     # Visual branch history
+git show                      # Show last commit details
+```
+
+### Adding and Staging
+```bash
+git add filename.txt          # Add specific file
+git add .                     # Add all files in current directory
+git add *.js                  # Add all JavaScript files
+git add -A                    # Add all changes (including deletions)
+git add -u                    # Add only modified/deleted files
+git add -p                    # Interactive staging
+```
+
+### Committing Changes
+```bash
+git commit -m "Add new feature"           # Commit with message
+git commit -am "Fix bug"                  # Add and commit modified files
+git commit --amend -m "Updated message"   # Modify last commit
+git commit --amend --no-edit              # Add to last commit
+```
+
+### Viewing Differences
+```bash
+git diff                      # Changes in working directory
+git diff --staged             # Changes in staging area
+git diff HEAD                 # All changes since last commit
+git diff branch1..branch2     # Compare branches
+git diff HEAD~1 HEAD          # Compare with previous commit
+```
+
+## Branch Management
+
+```bash
+# List branches
+git branch                    # Local branches
+git branch -r                 # Remote branches
+git branch -a                 # All branches
+
+# Create and switch branches
+git branch feature-login      # Create new branch
+git checkout feature-login    # Switch to branch
+git checkout -b feature-api   # Create and switch in one command
+git switch main               # Modern way to switch branches
+git switch -c hotfix-bug      # Create and switch (modern syntax)
+
+# Merge branches
+git checkout main
+git merge feature-login       # Merge feature into main
+git merge --no-ff feature-api # Force merge commit
+
+# Delete branches
+git branch -d feature-login   # Delete merged branch
+git branch -D feature-login   # Force delete branch
+```
+
+## Remote Repository Operations
+
+```bash
+# Add remote
+git remote add origin https://github.com/user/repo.git
+git remote -v                 # View remotes
+
+# Push changes
+git push origin main          # Push to main branch
+git push -u origin feature    # Push and set upstream
+git push --all                # Push all branches
+
+# Pull changes
+git pull origin main          # Fetch and merge
+git pull --rebase origin main # Fetch and rebase
+git fetch origin              # Fetch without merging
+```
+
+## Undoing Changes
+
+```bash
+# Unstage files
+git reset filename.txt        # Unstage specific file
+git reset                     # Unstage all files
+
+# Discard changes
+git checkout -- filename.txt  # Discard working directory changes
+git restore filename.txt      # Modern way to discard changes
+git restore --staged file.txt # Unstage file (modern syntax)
+
+# Reset commits
+git reset --soft HEAD~1       # Keep changes staged
+git reset --mixed HEAD~1      # Keep changes in working directory
+git reset --hard HEAD~1       # Discard all changes
+
+# Revert commits
+git revert HEAD               # Create new commit that undoes last commit
+```
+
+## Practical Examples
+
+### Daily Workflow
+```bash
+# Start new feature
+git checkout main
+git pull origin main
+git checkout -b feature-user-auth
+
+# Work on feature
+echo "auth code" > auth.js
+git add auth.js
+git commit -m "Add user authentication"
+
+# Push feature
+git push -u origin feature-user-auth
+
+# Merge to main
+git checkout main
+git merge feature-user-auth
+git push origin main
+git branch -d feature-user-auth
+```
+
+### Hotfix Workflow
+```bash
+# Create hotfix from main
+git checkout main
+git checkout -b hotfix-critical-bug
+
+# Fix and commit
+git add .
+git commit -m "Fix critical security bug"
+
+# Merge to main
+git checkout main
+git merge hotfix-critical-bug
+git push origin main
+
+# Clean up
+git branch -d hotfix-critical-bug
+```
+
+## Git Aliases (Time Savers)
+
+```bash
+# Set up useful aliases
+git config --global alias.st status
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.ci commit
+git config --global alias.lg "log --oneline --graph --decorate --all"
+
+# Usage
+git st                        # Instead of git status
+git co main                   # Instead of git checkout main
+git lg                        # Pretty log view
+```
