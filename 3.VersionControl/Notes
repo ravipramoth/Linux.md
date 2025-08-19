@@ -1,21 +1,45 @@
 # Git notes (updated: 2025-08-12)
 
+What is version Control  ? 
+
+Version control is a system that records changes to files or sets of files over time so that you can recall specific versions later. 
+It allows multiple people to collaborate on projects, track changes, and revert to previous states if necessary.
+
+Types of version contorl ?
+
+
+  Github -- It place where you can host your code on Cloud (bitbucet, azure repo, Aws Code commit, gitlab,github)
+
+To install git in windows 
+
+
+https://git-scm.com/downloads/win
+
+for other operating system
+
+https://git-scm.com/downloads 
+
+GUI - Git 
+
+https://www.gitkraken.com/download/windows64 
+
+Working ( current directrory )
+Stagging Area ( index )
+commit 
+
+
+
 ## Quick setup (first time)
 - Identity
-  - git config --global user.name "Your Name"
-  - git config --global user.email "you@example.com"
+  - git config --global user.name "Pramoth"
+  - git config --global user.email "ravipramoth@gmail.com"
 - Defaults
   - git config --global init.defaultBranch main
-  - git config --global core.autocrlf true
-  - git config --global pull.rebase false
-- Helpful aliases
-  - git config --global alias.lg "log --oneline --graph --decorate --all"
-  - git config --global alias.st "status -sb"
-- Verify: git config --list
+  - Verify: git config --list
 
 ## Create or clone
 - git init
-- git clone <repo-url>
+
 
 ## File lifecycle
 - git status (or: git status -s)
@@ -24,21 +48,26 @@
 - git log --oneline --graph --decorate --all
 - git show
 - git diff
-- git diff --staged
-- git diff <A> <B> -- <path>
+- git diff --staged  # It will show the changes of file between working and stagging ares 
+  - git diff <A> <B> -- <path>
 
 ## Branches
 - git branch
-- git switch -c feature/x   (or: git checkout -b feature/x)
+- git switch -c feature/x   (or: git checkout -b feature/x) # It will create the branch and Jump to that barnch 
 - git switch feature/x
 - git branch -m new-name
-- git branch -d old-branch  (or: -D to force)
+- git branch -d old-branch  (or: -D to force) # delete the branch that not requried 
 
 ## Merge
 - git switch main
 - git merge feature/x
 - Keep merge commit: git merge --no-ff feature/x
 Refer to Notes.md for the formatted Git cheat sheet.
+
+PR -- Pull request or merge 
+
+
+
 
 # clean untracked files/dirs
 git clean -fd
@@ -105,3 +134,6 @@ git switch -c rescue     # from detached HEAD to keep work
 
 # restore a file from another branch
 git restore -s origin/main -- path/to/file
+
+
+git brab
