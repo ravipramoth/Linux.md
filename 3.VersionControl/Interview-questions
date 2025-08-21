@@ -1,0 +1,31 @@
+1. Git VS Github 
+    Git allows us to track the code changes and helps us to collebrate with teams 
+    Github allows us to store our code on the Cloud(bitbucet, azure repo, Aws Code commit, gitlab,github)
+
+2 What is gitignore file?
+    A .gitignore file tells Git which files (or patterns) it should ignore. This is useful for excluding files that are not necessary to track, such as build artifacts, temporary files, or sensitive information.
+    
+    https://github.com/github/gitignore/blob/main/Terraform.gitignore
+
+3. Remote Repo 
+
+    bitbucket 
+    Azure repo 
+    AWS CodeCommit
+    gitlab 
+    github
+
+4. Git pull vs git fetch ?
+- git Pull  - It will pull the changes fromt he remote repo and it will merge to local baranc
+- `git fetch` retrieves updates from the remote repository but does not merge them into your local branch. It updates your remote-tracking branches.
+
+Git branching stargery 
+cherry pick 
+merge confict 
+PR request --  
+Branch protection rule 
+rebase 
+revert 
+reset 
+stash
+bisect 
