@@ -1,0 +1,228 @@
+# Git Reset, Revert, Cherry-pick, Rebase, Bisect & Stash
+
+## Git Reset
+
+### Scenario: You made 3 commits but want to undo the last 1
+
+```bash
+git log --oneline
+# 3a5f8c3 (HEAD -> main) Fix typo
+# 2b4e8d1 Add login feature
+# 7a1b2c0 Initial commit
+```
+
+### Three types of reset:
+
+1. **Soft reset** - Undo commit but keep changes in staging area:
+   ```bash
+   git reset --soft HEAD~1
+   ```
+
+2. **Mixed reset** (default) - Undo commit and remove from staging (keep in working dir):
+   ```bash
+   git reset --mixed HEAD~1
+   # or simply:
+   git reset HEAD~1
+   ```
+
+3. **Hard reset** - Undo commit and delete changes completely:
+   ```bash
+   git reset --hard HEAD~1
+   ```
+
+---
+
+## Git Revert
+
+**Safely undo a commit in a shared repo by creating a new commit**
+
+### Example:
+```bash
+git log --oneline
+# 3a5f8c3 Fix typo
+# 2b4e8d1 Add login feature
+# 7a1b2c0 Initial commit
+
+# Revert "Fix typo" commit
+git revert 3a5f8c3
+```
+
+**Why use revert over reset?**
+- Creates a new commit that cancels out the changes
+- Safer than reset because history remains intact
+- Safe for shared repositories
+
+---
+
+## Git Cherry-pick
+
+**Apply a specific commit from one branch to another**
+
+### Example:
+```bash
+# On feature branch we have a commit we want in main
+git log --oneline
+# b7c9d21 Fix security bug
+# 2b4e8d1 Add login feature
+
+# Switch to main branch
+git checkout main
+
+# Pick that bugfix commit
+git cherry-pick b7c9d21
+```
+
+---
+
+## Git Rebase
+
+**Reapply commits on top of another branch → creates a cleaner linear history**
+
+### Basic rebase:
+```bash
+# You are on feature branch
+git checkout feature
+
+# Rebase on top of main
+git rebase main
+```
+
+**Result:** Instead of a merge commit, it moves your commits on top of main → cleaner history
+
+### Interactive Rebase (`git rebase -i`)
+
+**Use case:** Squash, edit, reorder commits before pushing
+
+#### Example: Combining messy commits
+```bash
+# You have 3 messy commits
+git log --oneline
+# 3f9d2a1 Add function
+# 8c1d2b4 Fix bug in function
+# 5d1f9a3 Update comments
+
+# Combine them into 1 clean commit
+git rebase -i HEAD~3
+```
+
+**Interactive editor will show:**
+```
+pick 3f9d2a1 Add function
+squash 8c1d2b4 Fix bug in function
+squash 5d1f9a3 Update comments
+```
+
+---
+
+## Git Bisect
+
+**What is git bisect?**
+
+Instead of checking each commit one by one, git bisect uses binary search to quickly find the commit that introduced a bug.
+
+**When to use:** Very useful when a repo has hundreds of commits and you need to identify where things broke.
+
+### Example usage:
+```bash
+# Start bisecting
+git bisect start
+
+# Mark current commit as bad
+git bisect bad
+
+# Mark a known good commit
+git bisect good <commit-hash>
+
+# Git will checkout a middle commit
+# Test your code, then mark as good or bad
+git bisect good    # if this commit works
+git bisect bad     # if this commit is broken
+
+# Repeat until Git finds the first bad commit
+git bisect reset   # Exit bisect mode
+```
+
+---
+
+## Git Stash
+
+**What is git stash?**
+
+👉 `git stash` lets you temporarily save your uncommitted changes (both staged and unstaged) without committing them.
+
+### Why use stash?
+- Switch branches safely
+- Pull latest changes
+- Work on something else without losing your current work
+- Think of it like a clipboard or temporary locker for your changes
+
+### Basic stash workflow:
+
+#### 1. You have changes not ready to commit 
+
+```bash
+echo "temporary change" >> app.py
+git status
+# modified: app.py
+```
+
+#### 2. Save them with stash
+```bash
+git stash
+```
+
+#### 3. List your stashes
+```bash
+git stash list
+# stash@{0}: WIP on feature-login: 3a5f8c3 Add login API
+```
+
+#### 4. Reapply the changes later
+```bash
+git stash apply stash@{0}
+```
+
+#### 5. Remove from stash after applying
+```bash
+git stash drop stash@{0}
+```
+
+**Or combine apply + drop in one step:**
+```bash
+git stash pop
+```
+
+### Advanced stash options:
+
+- **Stash only staged changes:**
+  ```bash
+  git stash --keep-index
+  # or
+  git stash -k
+  ```
+
+- **Stash including untracked files:**
+  ```bash
+  git stash -u
+  ```
+
+- **Stash with a message:**
+  ```bash
+  git stash save "WIP: fixing bug in login"
+  # or (newer syntax)
+  git stash push -m "WIP: fixing bug in login"
+  ```
+
+---
+
+## Quick Demo Setup
+
+```bash
+mkdir git-demo && cd git-demo
+git init
+echo "file1" > file.txt && git add . && git commit -m "Initial commit"
+echo "feature A" >> file.txt && git commit -am "Add feature A"
+echo "bug fix" >> file.txt && git commit -am "Fix bug"
+```
+
+  

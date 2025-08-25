@@ -1,0 +1,27 @@
+What Are Branch Protection Rules ?
+
+They are guardrails applied to important branches (e.g., main, master, develop) to prevent direct pushes, enforce reviews, and enforce quality checks before merging.
+👉 Ensures stability, security, and code quality. 
+
+
+🔹 Common Branch Protection Rules
+1. Restrict Direct Pushes
+
+Developers cannot push directly to main/master.
+
+They must create a Pull Request (PR).
+✅ Prevents accidental overwrites and bad code in production branches.
+
+
+2. Require Pull Request Reviews
+
+PRs must be approved before merging.
+
+Example: At least 2 approvals required.
+✅ Promotes peer review and avoids single-person mistakes.
+
+
+Merge Conflict 
+
+
+A merge conflict in a PR happens when Git cannot auto-merge because the same code was modified in different ways. To resolve, we manually edit the conflicted files, stage them, and commit. CI/CD pipelines usually block PR merge until conflicts are resolved.”

@@ -136,4 +136,74 @@ git switch -c rescue     # from detached HEAD to keep work
 git restore -s origin/main -- path/to/file
 
 
-git brab
+Here are the **common branching strategies** used in software development and DevOps workflows. Each has its own pros, cons, and use cases:
+
+---
+
+## 1. **Mainline (Trunk-Based Development)**
+
+* Developers commit directly to the main branch (`main`/`trunk`/`master`).
+* Short-lived feature branches are allowed but merged back quickly (daily or multiple times a day).
+* Encourages **Continuous Integration (CI)**.
+* **Best for:** Agile teams, fast releases, DevOps environments.
+
+---
+
+## 2. **Feature Branching**
+
+* Each feature is developed in its own branch from `main` or `develop`.
+* After completion, merged back via Pull Request (PR) with code reviews.
+* Provides **isolation** for features but can lead to long-lived branches if not disciplined.
+* **Best for:** Teams using GitHub/GitLab PR workflows.
+
+---
+
+## 3. **Git Flow**
+
+* A structured model with multiple long-lived branches:
+
+  * `main` → production-ready code
+  * `develop` → integration branch for features
+  * `feature/*` → feature-specific work
+  * `release/*` → pre-production stabilization
+  * `hotfix/*` → urgent fixes in production
+* Provides clear structure but may feel **heavyweight** for fast-moving teams.
+* **Best for:** Enterprises, large teams, projects with defined release cycles.
+
+---
+
+## 4. **GitHub Flow**
+
+* A **simplified version of Git Flow**:
+
+  * Only `main` branch.
+  * Create feature branch → work → open PR → review → merge → deploy.
+* Focuses on **continuous delivery** and **small, frequent deployments**.
+* **Best for:** Startups, cloud-native teams, SaaS products.
+
+---
+
+## 5. **Release Branching**
+
+* Each release gets its own branch (e.g., `release-v1.0`, `release-v2.0`).
+* Allows for **patching old versions** while developing new features.
+* **Best for:** Products that need **long-term support (LTS)** or multiple versions in parallel.
+
+---
+
+## 6. **Environment Branching**
+
+* Separate branches per environment (e.g., `dev`, `qa`, `staging`, `prod`).
+* Code is promoted from lower → higher environments.
+* Can cause **merge hell** if not managed properly.
+* **Best for:** Legacy systems, organizations without CI/CD maturity.
+
+---
+
+## 7. **Forking Workflow**
+
+* Developers fork the main repository, make changes in their fork, then submit a Pull Request.
+* Common in **open-source projects** to enable contributions without giving direct write access.
+* **Best for:** Open-source collaboration.
+
+---
