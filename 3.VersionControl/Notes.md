@@ -52,7 +52,7 @@
 - Abort: git rebase --abort
 - Interactive squash/reword: git rebase -i HEAD~N
 
-## Stash (WIP)
+## Stash (WIP) -- Temp save 
 - Save: git stash push -m "wip: msg"
 - Include untracked: git stash push -u -m "wip: msg"
 - Keep index (don’t stash staged): git stash push --keep-index -m "wip"
@@ -60,7 +60,7 @@
 - Apply vs pop: git stash apply  |  git stash pop
 - Drop specific: git stash drop stash@{n}
 - Partial/interactive: git stash -p
-- From stash to branch: git stash branch fix-branch stash@{0}
+- From stash to branch: git stash branch fix-branch st  ash@{0}
 
 ## Tags
 - Lightweight: git tag v1.0.0
@@ -87,7 +87,7 @@
 - Clean untracked: git clean -fd
 - Recover with reflog: git reflog
 
-## Bisect (find bad commit)
+## Bisect (find bad commit) ---> 
 - git bisect start
 - git bisect bad
 - git bisect good <good-sha>
@@ -127,3 +127,18 @@ git branch -d feature/add-api
 - Push rejected: git fetch origin; git rebase origin/main; resolve; push
 - Detached HEAD: git switch -c rescue
 - Restore a file from another branch: git restore -s origin/main -- path/to/file
+
+
+
+* 8b4a1a4 (HEAD -> aws, tag: v1.0, tag: release1.2, origin/aws)  Change od stash
+* b1f4394  Change od stash
+* 9e4e77b  changes is added in demo.sh file
+* 839bbff  changes is added in demo.sh file
+* 6ae36b2  changes is added in demo.sh file
+* 5528c27  changes is added in demo.sh file good commit 
+* 30f697a  changes is added in demo.sh file
+* f454ce3  changes is added in demo.sh file
+* 1065075  changes is added in demo.sh file
+* c39b0cd  changes is added in demo.sh file
+* 14427f3
+
