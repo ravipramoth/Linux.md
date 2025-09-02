@@ -1,7 +1,7 @@
 1. Git vs GitHub
 Git is an application which helps to track your code changes.
 Git also allows to work on the same codebase with multiple developers.
-GitHub == GitLab == Bitbucket == Azure Repo provides a platform to host your code Remotely.
+GitHub == GitLab == Bitbucket == Azure Repo, code commit provides a platform to host your code Remotely.
 
 2. What are the basic Git commands you use frequently or on a daily basis?
 git add .; git commit -m "demo"; git push origin <branch>
@@ -55,8 +55,16 @@ Both achieve the same goal of merging the changes from one branch to another bra
 
 10. How to work with Large Files using Git? What is Git LFS?
 Max file limit for GitHub/GitLab/Bibucket/Azure Repo is 100MB. If you have large files, you can use Git LFS (Large File Storage) to store large files. Git LFS will store the large files in a separate storage and store the reference in the Git repository. You need to install Git LFS in your local machine and configure the Git LFS in your repository.
-git lfs install
-git lfs track "*.iso"
+
+# Download latest Git LFS package
+curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | sudo bash
+
+# Install Git LFS
+sudo yum install git-lfs -y
+
+
+git lfs install -- to intialize 
+git lfs track "*.iso" | name | "*.zip"
 git add .gitattributes
 git add <large-file>
 git commit -m "Added large file"
@@ -67,7 +75,7 @@ Git Stash is used to save the changes in your working directory to a temporary l
 git stash
 git stash list
 git stash pop
-git stash pop 0
+git stash pop 1   Index it will start from Zero 
 git stash clear
 
 
@@ -96,7 +104,7 @@ Its recommended to use revert instead of reset when you are working on a public 
 16. git branch -D hello #Delete the branch hello
 17. Use reflog to recover the deleted branch.
     git reflog && git checkout -b 5d1e2b2
-18. git rename -m <old-branch-name> <new-branch-name>
+18. git branch -m <old-branch-name> <new-branch-name>
 
 19. How to delete specific commit in Git?
 git rebase -i HEAD~5 and drop the commit.
@@ -107,10 +115,10 @@ git rebase -i aaac44b(firstcommit)
 Git Squash is used to combine multiple commits into a single commit. You can squash the last 3 commits into a single commit. This is useful when you want to combine multiple commits into a single commit before raising a pull request. It can be used with interactive rebase.
 git rebase -i aaac44b # use squash instead of pick for the commits you want to squash.
 
-20. What is Git Bisect?
+20. What is Git Bisect? --- > devoplers -- binary search 
 Git Bisect is used to find the commit which introduced a bug. You can mark a commit as good and bad. Git Bisect will help you to find the commit which introduced the bug. You can use git bisect start, git bisect bad, git bisect good, git bisect reset.
 
-17. Git Tag?
+17. Git Tag?  
 git tag -a v1.0 -m "Version 1.0"
 git push origin v1.0
 git tag -d v1.0
