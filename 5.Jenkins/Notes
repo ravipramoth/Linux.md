@@ -1,0 +1,66 @@
+CI & CD -->  Continious Intergration & Continious Deployment / Delivery  
+
+github --> Jar---> tomcat host --V1
+
+
+Continious Intergration -- > Continious Test + Continious Build
+
+V1 ---> Jenkins ---> Prod 
+V2 ---> Jenkins ---> Test ---> Prod
+
+CD - Continous Delivery [if you deploying your code manully into server ]
+
+CD vs CD 
+
+CD - Continous Delivery [if you deploying your code manully into server(Approval requried) ]
+CD - Continious Deployment [if you deploying your code automatically into server ]
+
+CI  -- Jenkins 
+
+Cricle CI 
+Gitlab CI 
+github actions 
+AWS code pipeline 
+Azure CI 
+ligthspeed 
+harnesh CI 
+
+Jenkins : 
+
+Jenkins is deployed based on Java Langauage 
+we can automate teh build and deployment process 
+
+Pre-reqrusiste 
+
+1. Java should be installed in your machine
+2. Jenkins Will run default port 8080 
+
+How to install the jenkins: 
+1. Lanuch a EC2 instance 
+
+2. Add this repo 
+sudo wget -O /etc/yum.repos.d/jenkins.repo \
+    https://pkg.jenkins.io/redhat-stable/jenkins.repo
+3. import the key  
+
+    sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+
+4. sudo yum upgrade 
+5. sudo yum install jenkins 
+
+To install java use 
+sudo yum install java-21-amazon-corretto -y
+cat /var/lib/jenkins/secrets/initialAdminPassword
+
+Pipeline Sciprt -- 
+
+Declearatvie 
+Scripted 
+
+Jenkins will works on Master and slave concepts 
+
+MAster ---> Multiple slave 
+
+
+Thin backup 
+Admin password -- Recovery  

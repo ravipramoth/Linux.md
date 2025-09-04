@@ -1,0 +1,120 @@
+Maven : 
+    In Reakl time maven is mostly used by the devlopers 
+For Devops Enginner -- We need to understand the code flow and how to package the code 
+    Maven is a build tool for Java projects 
+    Maven is used to manage a project build, reporting and documentation from a central piece of information 
+    Maven is based on POM (Project Object Model) file which is an XML file that contains information about the project and configuration details used by Maven to build the project 
+    Maven can manage a project's build, reporting and documentation from a central piece of information 
+    Maven can also manage dependencies of the project
+
+    maven is a build tool which is used to create the intial project structure / folder structure 
+
+    src
+        main
+        test 
+    POM.XML 
+
+    Devoplers will write the souurce code for your application 
+
+maven will support the Java programming langauage ()
+
+Python -- Pycharm 
+Ruby -- Rakes 
+.net -- MS Build 
+anugular -- npm Build
+
+Most of the project 90% still running on JAVA 
+
+
+Project ---> Devoplers( will write the code )--- Name Netflix.java ---> github
+    ---> Jenkins (Build tool) ---> Maven (Build tool) ---> Artifactory (Repo Manager) ---> Kubernetes (Container Orchestration tool) 
+
+How maven is used by Devops Enginner ? 
+
+    using maven we can create the intila project folder structure 
+    Using maven we can download teh dependencies, requried for the projects 
+
+Dependecie ? 
+java Code ( application ) ---> POM.xml ( Spring boot, sping Framework)
+
+how maven know which dependencies we will be using 
+
+with help of POM.xml ( we will download the dependencies)
+
+POM -- Project object model 
+xml -- Extensive markup langauage 
+
+using maven we can compile the code on the application 
+
+public class HelloWorld {
+    public static void main(String[] args) {
+        // Prints "Hello, World!" to the console
+        System.out.println("Hello, World!");
+    }
+}
+        complilation 
+.java -----------------> .class file 
+
+we can 100+ Java files 
+100+ .java ---------->  100.+ class file
+
+We can package this into application 
+
+Types of application 
+    -- Standalone application ---> Package ----> .Jar file ( Java archive file )
+    -- Web application  --------> Package -----> .war( web application archive )
+    -- Enterprise application  -----> Pacakge ---> .ear ( Enterprise archive)
+
+Maven -- > JPL 
+    pre-requrisest 
+        Java more than 8 is suffient java 17 
+Lanuch a instance 
+Install maven 
+Sudo yum install maven --> ( Java will installed )
+
+
+Maven Terminology  
+
+Arch type
+    represent what type project we are going to create 
+        - maven-archtype-webapp ---> it represent the web applicaiton (.war)
+        - maven-archtype-quickstart ---> It represent the Standalone applicaion (.Jar)
+group ID 
+    it represent the compay name or projects:
+        eg : 
+            GroupID:linkedin.devlop 
+
+Artifact ID : 
+        Project moudle name 
+        Eg:  
+            netflix-movies 
+            netlix-servic 
+            Once we build the code we will get target folder ( Artifcats .war, .jar , .ear )
+Pacakging
+    How we are going to package our code in applicaition 
+
+
+mvn archetype:generate \
+    -DgroupId=linkedin.devlop \
+    -DartifactId=my-webapp \
+    -DarchetypeArtifactId=maven-archetype-webapp \
+    -DinteractiveMode=false
+
+
+Mvn Goals / Life cylce 
+
+1. Clean -- What directroy was created it will get delete and it create new one 
+2. test --- It will run th test case 
+3. Compile --- > it will complile from human readbale to machine readbale
+4. Package --> Package (war)
+
+Maven Repostries ? To store dependencies file 
+    1 Local --> .m2 folder in user location 
+    2.Central ---> in case dependencies it will download central repos (maven repo )
+    3. Remote --> Jfrog,nexus 
+    
+        (Project MAr 2025 -- 3.4 any issues --- end aug 2025 (vlun in the dependencies) )
+            They will download the dependencies from teh mvn and push it to ther owrn artficatory 
+
+            Code ----> Local ---> Remote 
+            Code ----> Local ---> Central Repo 
