@@ -1,0 +1,31 @@
+pipeline {
+    agent any 
+    options {
+  buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '30', numToKeepStr: '2')
+        }
+    environment {
+        Name = "Pramoth"
+    }
+    parameters {
+  string defaultValue: 'Devops', description: 'we will get values dyanmicall from the user', name: 'string'
+}
+
+    stages {
+        stage('this is my first stage '){
+            steps{
+                echo "this is my name ${env.Name}"
+                echo "this is my name ${params.string}"
+            }
+        }
+        stage ('this is second stage'){
+            steps {
+                echo "this is my name ${BUILD_NUMBER}"
+            }
+        }
+                stage ('this is Third stage'){
+            steps {
+                echo "this is my jenklins build url ${BUILD_URL}"
+            }
+        }
+    }
+}

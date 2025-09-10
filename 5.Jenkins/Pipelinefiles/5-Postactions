@@ -1,0 +1,68 @@
+pipeline {
+    agent any 
+
+    options {
+        buildDiscarder logRotator(
+            artifactDaysToKeepStr: '', 
+            artifactNumToKeepStr: '', 
+            daysToKeepStr: '30', 
+            numToKeepStr: '2'
+        )
+    }
+
+    environment {
+        Name = "Pramoth"
+    }
+
+    parameters {
+        string(
+            defaultValue: 'Devops', 
+            description: 'We will get values dynamically from the user', 
+            name: 'string'
+        )
+    }
+
+    stages {
+        stage('First Stage') {
+            steps {
+                echo "this is my name ${env.Name}"
+                echo "this is my name ${params.string}"
+            }
+        }
+
+        stage('Second Stage') {
+            steps {
+                echo "this is my build number ${BUILD_NUMBER}"
+            }
+        }
+
+        stage('Third Stage') {
+            steps {
+                echo "this is my Jenkins build URL ${BUILD_URL}"
+            }
+        }
+    }
+
+    post {
+        success {
+            mail bcc: '',
+                 body: """The Jenkins job '${JOB_NAME}' with build number ${BUILD_NUMBER} has successfully completed.
+
+Check the full details at: ${BUILD_URL}""",
+                 cc: '',
+                 from: '',
+                 replyTo: '',
+                 subject: "SUCCESS: Job '${JOB_NAME} [${BUILD_NUMBER}]' has completed successfully",
+                 to: 'vexemir393@dpwev.com'
+        }
+        aborted {
+            echo "Build is aborted"
+        }
+        failure {
+            echo "Build has failed"
+        }
+        always {
+            echo "Build has finished (success/failure/aborted)"
+        }
+    }
+}

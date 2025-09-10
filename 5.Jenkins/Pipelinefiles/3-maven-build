@@ -1,0 +1,23 @@
+pipeline {
+    agent any 
+    options {
+  buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '30', numToKeepStr: '2')
+}
+    tools {
+        maven 'Maven'
+    }
+    
+
+    stages {
+        stage('Checkout the code '){
+            steps{
+                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/promo286/addressbook.git']])
+            }
+        }
+        stage ('Build'){
+            steps {
+                sh 'mvn package'
+            }
+        }
+    }
+}

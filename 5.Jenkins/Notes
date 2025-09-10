@@ -62,5 +62,79 @@ Jenkins will works on Master and slave concepts
 MAster ---> Multiple slave 
 
 
-Thin backup 
-Admin password -- Recovery  
+By deafualt all the Jenkins inforamtion is stored in the below path 
+/var/lib/jenkins
+
+config.xml -- Global config 
+credentials  -- To save password and secrets 
+plugins --> to intergate with diffrent tools 
+Jobs : ( Pre defined jobs or Adhoc Task )
+    Config.xml -- Jobs (xml)
+    builds: How many builds (files)
+    workspace -Logical namespace 
+nodes: Workload 
+
+Jobs -- Task 
+
+1 Freestyle jobs  basic Scripts --> complex 
+2. Pipeline Stages -----< Jenkinsfile >
+3. Multibarnach --- env (main,uat,qa )
+4. Multiconfig -- Java 13 17 23 ,  
+5. folder -- Grouping of jobs (uat - 5 )
+
+
+freestyle  
+
+#!/bin/bash
+
+age=30
+
+if [ $age -gt 18 ]; then
+    echo "You are good to vote"
+else
+    echo "You are not ready"
+fi
+ 
+---- 
+
+
+
+#!/bin/bash
+
+num1=15
+num2=25
+
+# Add the numbers
+sum=$((num1 + num2))
+
+# Print result
+echo "The sum of $num1 and $num2 is: $sum"
+
+
+Email Notifaction  
+
+Mailx -- We send email 
+
+smtp server --> smtp.gmail.com
+suffic ---> @gmail.com
+port --> 465 
+username -- ravipramoth@gmail.com
+Password or app password (google.com / app paasword ) osro ycui eaph mvbe
+ssl --> 
+Recipent address ---> 
+
+Agent -- Master and slave --->  
+
+Agents benfits 
+
+Scalabilty 
+Maintance 
+Flexbitity (java 21 , 17 , 23 )
+Security --
+
+How can we setup agents 
+
+Launch a instance in aws  (t3.medium) --> 172.31.93.128
+
+
+java-mvn
