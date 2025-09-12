@@ -138,3 +138,14 @@ Launch a instance in aws  (t3.medium) --> 172.31.93.128
 
 
 java-mvn
+ 
+pipelinejobs  - how can scripts 
+
+Multi branch ----  is jenkins powerful feature that allows you to mange and automate builds for multiple branches from single configuration file 
+
+Benfits 
+
+Reducec duplications
+centralized managemnt 
+branch specifc configuration
+indvidual build hisory 

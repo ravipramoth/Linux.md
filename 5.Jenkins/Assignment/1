@@ -1,0 +1,8 @@
+write a piplein for the address book application 
+
+checkout 
+test 
+build 
+deploy 
+    Publish over ssh -- > 
+    tomcat server -- > 

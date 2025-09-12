@@ -1,0 +1,24 @@
+pipeline {
+    agent any 
+
+    stages {
+        stage('code checkout') {
+            steps {
+                echo "checking out the code from GitHub"
+                git branch: 'main', changelog: false, poll: false, url: 'https://github.com/promo286/testing-scripts.git'
+            }
+        }
+
+        stage('to run script') {
+            steps {
+                script {
+                    def value = ['uat', 'dev', 'prod']
+                    sh "chmod +x function.sh"
+                    for (name in value) {
+                        sh "./function.sh ${name}"
+                    }
+                }
+            }
+        }
+    }
+}

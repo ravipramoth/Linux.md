@@ -1,0 +1,22 @@
+pipeline {
+    agent any 
+
+    stages {
+        stage('this is my first stage ') {
+            steps {
+                echo "this is first stage to build "
+                script { 
+                    def age = 5           // variable 'age' = 5
+                    def mul = age * 5     // calculation = 25
+                    echo " ${mul}"        // prints "25"
+                }
+            }
+        }
+
+        stage ('this is second stage') {
+            steps {
+                echo " this is deploy stage"
+            }
+        }
+    }
+}

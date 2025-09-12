@@ -1,0 +1,29 @@
+pipeline {
+    agent any 
+
+    stages {
+        stage('code checkout  ') {
+            steps {
+                echo "checking out the code from the github  "
+                git branch: 'main', changelog: false, poll: false, url: 'https://github.com/promo286/testing-scripts.git'
+
+            }
+        }
+
+        stage ('to run script') {
+            steps {
+                sh "chmod +x test.sh "
+                sh "./test.sh"
+            }
+        }
+        stage ('Loop '){
+            steps {
+                script { 
+                    for (int i=1; i<=10; i++ ){
+                        echo " 5 x ${i}= ${5*i}"
+                    }
+                }
+            }
+        }
+    }
+}
